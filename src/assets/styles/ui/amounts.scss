@@ -1,0 +1,31 @@
+.amounts-wrap {
+	margin: 14px auto 0;
+	padding: 0 0 18px 0;
+	width: 334px;
+	display: flex;
+	position: relative;
+
+	&:after {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		bottom: 0;
+		left: 0;
+		background: linear-gradient(90deg, rgba(91, 136, 226, 0) 0%, rgba(91, 136, 226, 0.5) 50.8%, rgba(91, 136, 226, 0) 100%);
+		border-radius: 3px;
+	}
+
+	.amount-wrap {
+		width: 50%;
+
+		h3 {
+			@include font(12px, 500, var(--gray), 15px);
+		}
+
+		p {
+			margin: 2px 0 0 0;
+			@include font(14px, 600, var(--white), 17px);
+		}
+	}
+}

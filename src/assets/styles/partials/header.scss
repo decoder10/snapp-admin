@@ -1,0 +1,13 @@
+header.header {
+	position: fixed;
+	z-index: 99;
+	top: 16px;
+	right: 24px;
+	width: 152px;
+	display: flex;
+	justify-content: space-between;
+
+	&.opened {
+		z-index: 100;
+	}
+}
