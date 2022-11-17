@@ -1,17 +1,5 @@
 html, body {
-	height: 100%;
-
-	#root {
-		height: 100%;
-
-		.app {
-			height: 100%;
-			display: flex;
-		}
-	}
 }
 
 body {
-	background: var(--main-background);
-	@include font(14px, 400, var(--white));
 }
