@@ -66,7 +66,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint \"**/*.+(ts|tsx)\" --ignore-pattern 'node_modules/'",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(ts|tsx)\"",
-    "format": "npm run prettier -- --write",
+    "format": "npm run prettier --write",
     "check-format": "npm run prettier -- --list-different",
     "prepare": "husky install"
   },
@@ -74,19 +74,6 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css}": [
-      "prettier --write",
-      "eslint --fix src/",
-      "tslint --fix --project .",
-      "git add"
     ]
   },
   "browserslist": {
