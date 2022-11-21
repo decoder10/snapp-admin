@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useReducer } from 'react';
+import { createContext, useCallback, useReducer } from 'react';
 
 import TestContextReducer, { increaseState, updateState } from 'contexts/test-context/testContextReducer';
 

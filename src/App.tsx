@@ -16,7 +16,7 @@ function App() {
   const testData = useAppSelector(getTest);
 
   useEffect(() => {
-    dispatch(testAction(['1', '2', '3', '4', '5']));
+    dispatch(testAction(['1', '2', '3', '4', '5', '6', '7', '7']));
   }, [dispatch]);
 
   useEffect(() => {

@@ -1,4 +1,5 @@
 {
+    "root": true,
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
@@ -22,17 +23,14 @@
     "extends": [
         "prettier",
         "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/eslint-recommended"
+        "plugin:@typescript-eslint/recommended"
     ],
     "plugins": [
-        "react",
         "jest",
         "react-hooks",
         "jsx-a11y",
         "import",
-        "@typescript-eslint/eslint-plugin"
+        "@typescript-eslint"
     ],
     "rules": {
         "jsx-a11y/no-autofocus": "off",
@@ -201,10 +199,6 @@
         "strict": ["warn", "never"],
         "prefer-const": ["error", { "ignoreReadBeforeAssign": false }],
         "react/display-name": "off",
-        "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-        "react/jsx-no-undef": ["error", { "allowGlobals": true }],
-        "react/jsx-uses-vars": "warn",
-        "react/jsx-uses-react": "warn",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
         "react/prop-types": "off",

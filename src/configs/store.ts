@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { appReducer } from 'reducers';
 import logger from 'redux-logger';
-
-import { appReducer } from '../reducers';
 
 export const store = configureStore({
   reducer: appReducer,
