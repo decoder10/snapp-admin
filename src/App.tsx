@@ -23,7 +23,6 @@ function App() {
     const lang = loadLocalStorage('lang');
 
     getTranslations(lang).then(response => {
-      console.log('');
       saveLocalStorage('translations', response);
     });
   }, []);
