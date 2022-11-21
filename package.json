@@ -66,7 +66,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint \"**/*.+(ts|tsx)\" --ignore-pattern 'node_modules/'",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(ts|tsx)\"",
-    "format": "npm run prettier --write",
+    "format": "npm run prettier -- --write",
     "check-format": "npm run prettier -- --list-different",
     "prepare": "husky install"
   },
