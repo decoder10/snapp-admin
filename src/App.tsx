@@ -17,6 +17,8 @@ function App() {
 
   useEffect(() => {
     dispatch(testAction(['1', '2', '3', '4', '5', '6', '7', '7']));
+
+    asdasd;
   }, [dispatch]);
 
   useEffect(() => {
