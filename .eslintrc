@@ -1,14 +1,7 @@
 {
     "root": true,
     "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "modules": true,
-            "jsx": true
-        },
-        "ecmaVersion": 2020,
-        "sourceType": "module"
-    },
+    "parserOptions": { "project": ["./tsconfig.json"] },
     "globals": {
         "Promise": true,
         "chrome": true,
