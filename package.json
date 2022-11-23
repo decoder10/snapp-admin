@@ -24,7 +24,7 @@
     "swagger-typescript-api": "12.0.2",
     "typescript": "4.9.3",
     "web-vitals": "3.1.0",
-    "yarn": "^1.22.19"
+    "yarn": "1.22.19"
   },
   "devDependencies": {
     "@babel/preset-env": "7.20.2",
@@ -68,8 +68,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint \"**/*.+(ts|tsx)\" --ignore-pattern 'node_modules/'",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(ts|tsx)\"",
-    "format": "npm run prettier -- --write",
-    "check-format": "npm run prettier -- --list-different",
+    "format": "yarn run prettier -- --write",
+    "check-format": "yarn run prettier -- --list-different",
     "prepare": "husky install"
   },
   "eslintConfig": {
