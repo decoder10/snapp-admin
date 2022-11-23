@@ -3,3 +3,9 @@ export enum ModalTypesEnums {
   INLINE = 'inline',
   POSITIONED = 'positioned',
 }
+
+export enum PermissionTypesEnum {
+  visibility,
+  ability,
+  redirect,
+}

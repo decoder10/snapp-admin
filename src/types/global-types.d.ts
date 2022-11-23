@@ -2,6 +2,11 @@ type Nullable<T> = T | null;
 type Undefined<T> = T | undefined;
 type Event = MouseEvent | TouchEvent;
 
+interface IPermissionsProps {
+  permission: Nullable<Array<string>>;
+  children: React.ReactNode;
+}
+
 interface ITabsProps {
   title: string;
   key: string;

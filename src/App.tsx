@@ -1,5 +1,8 @@
 import { useEffect } from 'react';
 
+import { PermissionTypesEnum } from 'enums';
+import { PermissionWrapper } from 'permissions/permission-wrapper';
+
 import { useAppDispatch, useAppSelector } from 'configs/hooks';
 import { loadLocalStorage, saveLocalStorage } from 'configs/local-storage';
 
@@ -30,9 +33,12 @@ function App() {
   return (
     <div className="app">
       <section className="home">
-        <TestContextProvider>
-          <TestContextExample startNumber={1} />
-        </TestContextProvider>
+        <PermissionWrapper wrapper={PermissionTypesEnum.visibility} permission={['edit']}>
+          <p>permission test</p>
+          <TestContextProvider>
+            <TestContextExample startNumber={1} />
+          </TestContextProvider>
+        </PermissionWrapper>
 
         {testData.test.map(item => (
           <p key={item}>{item}</p>
