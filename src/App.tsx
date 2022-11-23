@@ -9,14 +9,14 @@ import { getTest, testAction } from 'reducers/test-reducer';
 
 import TestContextProvider from 'contexts/test-context';
 
-import TestContextExample from 'components/test-context-example/test-context-example';
+import { TestContextExample } from 'components/test-context-example/test-context-example';
 
 function App() {
   const dispatch = useAppDispatch();
   const testData = useAppSelector(getTest);
 
   useEffect(() => {
-    dispatch(testAction(['1', '2', '3', '4', '5', '6', '7', '7']));
+    dispatch(testAction(['1', '2', '3', '4', '5', '6', '7', '8']));
   }, [dispatch]);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function App() {
     <div className="app">
       <section className="home">
         <TestContextProvider>
-          <TestContextExample />
+          <TestContextExample startNumber={1} />
         </TestContextProvider>
 
         {testData.test.map(item => (

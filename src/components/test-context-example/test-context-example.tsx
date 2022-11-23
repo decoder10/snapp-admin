@@ -1,19 +1,24 @@
-import { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { TestContext } from 'contexts/test-context';
 
 let incrementNumber = 1;
 
-export default function TestContextExample() {
+interface IProps {
+  startNumber: number;
+}
+
+export const TestContextExample: React.FC<IProps> = ({ startNumber }) => {
   const { state, updateStateWithDispatch, increaseStateWithDispatch } = useContext(TestContext);
 
   useEffect(() => {
-    updateStateWithDispatch({ test: 5 });
+    updateStateWithDispatch({ test: startNumber });
+
     setInterval(() => {
       increaseStateWithDispatch({ test: incrementNumber });
       incrementNumber += 10;
     }, 1000);
-  }, [increaseStateWithDispatch, updateStateWithDispatch]);
+  }, [increaseStateWithDispatch, startNumber, updateStateWithDispatch]);
 
   return <div>{state.test}</div>;
-}
+};
