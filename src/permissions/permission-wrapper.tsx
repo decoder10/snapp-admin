@@ -11,10 +11,10 @@ interface IWrapperProps {
   children: ReactNode;
 }
 
-interface ICheckerArgs {
+export interface ICheckerArgs {
   userPermissions: Nullable<Array<string>>;
   permissions: Nullable<Array<string>>;
-  fetcher: () => void;
+  fetcher(): void;
 }
 
 interface IFilterCheckerArgs {
@@ -23,7 +23,9 @@ interface IFilterCheckerArgs {
   key: string;
 }
 
-export const PermissionWrapper = ({ wrapper, permission, children }: IWrapperProps): ReactElement => {
+export const PermissionWrapper = (props: IWrapperProps): ReactElement => {
+  const { wrapper, permission, children } = props;
+
   switch (wrapper) {
     case PermissionTypesEnum.visibility:
       return <VisibilityPermission permission={permission}>{children}</VisibilityPermission>;
@@ -36,17 +38,18 @@ export const PermissionWrapper = ({ wrapper, permission, children }: IWrapperPro
   }
 };
 
-PermissionWrapper.checker = (...args: ICheckerArgs[]): void => {
-  const granted = args[1].permissions.some(permission => args[0].userPermissions.includes(permission));
+PermissionWrapper.checker = (props: ICheckerArgs): void => {
+  const { permissions, userPermissions, fetcher } = props;
 
-  granted && args[2].fetcher();
+  const granted = permissions.some(permission => userPermissions.includes(permission));
+
+  granted && fetcher();
 };
 
-PermissionWrapper.dataFilterChecker = (...args: IFilterCheckerArgs[]): Array<object> => {
+PermissionWrapper.dataFilterChecker = (props: IFilterCheckerArgs): Array<object> => {
+  const { userPermissions, list, key } = props;
+
   const filteredArray = [];
-  const userPermissions = args[0].userPermissions;
-  const list = args[1].list;
-  const key = args[2].key;
 
   list.forEach(listItem => {
     listItem[key] &&
