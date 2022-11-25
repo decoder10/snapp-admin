@@ -16,6 +16,9 @@ import TestContextProvider from 'contexts/test-context';
 
 import { TestContextExample } from 'components/test-context-example/test-context-example';
 
+import Aside from 'ui/partials/aside/aside';
+import Header from 'ui/partials/header/header';
+
 function App() {
   const dispatch = useAppDispatch();
   const testData = useAppSelector(getTest);
@@ -34,9 +37,13 @@ function App() {
 
   return (
     <div className="app">
-      <AdminRoutes />
+      <Header />
 
-      <section className="home">
+      <Aside />
+
+      <section className="main-content">
+        <AdminRoutes />
+
         <PermissionWrapper wrapper={PermissionTypesEnum.visibility} permission={['edit']}>
           <p>permission test</p>
           <TestContextProvider>
