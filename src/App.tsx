@@ -6,6 +6,8 @@ import { PermissionWrapper } from 'permissions/permission-wrapper';
 import { useAppDispatch, useAppSelector } from 'configs/hooks';
 import { loadLocalStorage, saveLocalStorage } from 'configs/local-storage';
 
+import AdminRoutes from 'routes/admin-routes';
+
 import { getTranslations } from 'services/requests';
 
 import { getTest, testAction } from 'reducers/test-reducer';
@@ -32,6 +34,8 @@ function App() {
 
   return (
     <div className="app">
+      <AdminRoutes />
+
       <section className="home">
         <PermissionWrapper wrapper={PermissionTypesEnum.visibility} permission={['edit']}>
           <p>permission test</p>
