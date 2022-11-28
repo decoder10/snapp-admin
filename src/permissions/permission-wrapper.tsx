@@ -52,9 +52,11 @@ PermissionWrapper.dataFilterChecker = (props: IFilterCheckerArgs): Array<object>
   const filteredArray = [];
 
   list.forEach(listItem => {
-    listItem[key] &&
-      listItem[key].some(item => userPermissions && userPermissions.includes(item)) &&
+    if (listItem[key]) {
+      listItem[key].some(item => userPermissions && userPermissions.includes(item)) && filteredArray.push(listItem);
+    } else {
       filteredArray.push(listItem);
+    }
   });
 
   return filteredArray;
