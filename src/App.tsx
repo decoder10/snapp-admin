@@ -46,6 +46,7 @@ function App() {
 
         <PermissionWrapper wrapper={PermissionTypesEnum.visibility} permission={['edit']}>
           <p>permission test</p>
+
           <TestContextProvider>
             <TestContextExample startNumber={1} />
           </TestContextProvider>

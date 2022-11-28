@@ -1,11 +1,12 @@
 import { FunctionComponent } from 'react';
 
+import { PermissionWrapper } from 'permissions/permission-wrapper';
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom';
 
 import Dashboard from 'ui/dashboard/dashboard';
 import NotFound from 'ui/not-found/not-found';
 
-type CustomRouteConfig = RouteObject & { permission: string[]; isMenuItem: boolean };
+type CustomRouteConfig = RouteObject & { permission?: string[]; isMenuItem: boolean };
 
 const routeConfig: CustomRouteConfig[] = [
   {
@@ -17,13 +18,18 @@ const routeConfig: CustomRouteConfig[] = [
   {
     path: '*',
     element: <NotFound />,
-    permission: ['edit'],
     isMenuItem: false,
   },
 ];
 
 const AdminRoutes: FunctionComponent = () => {
-  const router = createBrowserRouter(routeConfig);
+  const filteredData = PermissionWrapper.dataFilterChecker({
+    userPermissions: ['edi1t'],
+    list: routeConfig,
+    key: 'permission',
+  });
+
+  const router = createBrowserRouter(filteredData);
 
   return <RouterProvider router={router} />;
 };
