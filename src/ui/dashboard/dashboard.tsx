@@ -1,8 +1,8 @@
-import { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
-const Dashboard: FunctionComponent = () => {
+const Dashboard: FC = () => {
   return (
     <div>
       DashBoard
