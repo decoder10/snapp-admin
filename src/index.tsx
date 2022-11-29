@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from 'configs/store';
 
 import 'assets/styles/admin.scss';
+import Loader from 'components/loader/loader';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -12,5 +13,7 @@ const root = createRoot(container);
 root.render(
   <Provider store={store}>
     <Auth />
+
+    <Loader />
   </Provider>,
 );

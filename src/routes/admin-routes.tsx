@@ -17,21 +17,20 @@ const routeConfig: CustomRouteConfig[] = [
     isMenuItem: false,
   },
   {
-    path: '*',
-    element: <NotFound />,
+    path: 'sign-in',
+    element: <SignIn />,
     isMenuItem: false,
   },
   {
-    path: 'sign-in',
-    element: <SignIn />,
-    permission: ['edit'],
+    path: '*',
+    element: <NotFound />,
     isMenuItem: false,
   },
 ];
 
 const AdminRoutes: FunctionComponent = () => {
   const filteredData = PermissionWrapper.dataFilterChecker({
-    userPermissions: ['edi1t'],
+    userPermissions: ['edit'],
     list: routeConfig,
     key: 'permission',
   });
