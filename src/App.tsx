@@ -41,7 +41,7 @@ function App() {
 
       <Aside />
 
-      <section className="main-content">
+      <section className="main-content" style={{ padding: '100px 0 0 240px' }}>
         <AdminRoutes />
 
         <PermissionWrapper wrapper={PermissionTypesEnum.visibility} permission={['edit']}>

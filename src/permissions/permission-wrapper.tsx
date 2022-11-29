@@ -18,8 +18,8 @@ export interface ICheckerArgs {
 }
 
 interface IFilterCheckerArgs {
-  userPermissions: Nullable<Array<string>>;
-  list: Nullable<Array<object>>;
+  userPermissions: Array<string>;
+  list: Array<object>;
   key: string;
 }
 
@@ -46,7 +46,7 @@ PermissionWrapper.checker = (props: ICheckerArgs): void => {
   granted && fetcher();
 };
 
-PermissionWrapper.dataFilterChecker = (props: IFilterCheckerArgs): Array<object> => {
+PermissionWrapper.dataFilterChecker = (props: IFilterCheckerArgs) => {
   const { userPermissions, list, key } = props;
 
   const filteredArray = [];
