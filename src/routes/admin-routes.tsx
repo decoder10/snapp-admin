@@ -6,22 +6,20 @@ import { Routes, Route } from 'react-router-dom';
 import { CustomRouteConfig, routeConfig } from 'routes/routes-config';
 
 const AdminRoutes: FunctionComponent = () => {
-  const filteredData: CustomRouteConfig[] = PermissionWrapper.dataFilterChecker({
+  const filteredData = PermissionWrapper.dataFilterChecker<CustomRouteConfig>({
     userPermissions: ['edit'],
     list: routeConfig,
     key: 'permission',
   });
 
   return (
-    <div>
-      <Routes>
-        {filteredData.map(item => {
-          const { title, path, element } = item;
+    <Routes>
+      {filteredData.map(item => {
+        const { title, path, element } = item;
 
-          return <Route key={title} path={path} element={element} />;
-        })}
-      </Routes>
-    </div>
+        return <Route key={title} path={path} element={element} />;
+      })}
+    </Routes>
   );
 };
 

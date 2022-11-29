@@ -46,7 +46,7 @@ PermissionWrapper.checker = (props: ICheckerArgs): void => {
   granted && fetcher();
 };
 
-PermissionWrapper.dataFilterChecker = (props: IFilterCheckerArgs) => {
+PermissionWrapper.dataFilterChecker = <T,>(props: IFilterCheckerArgs): T[] => {
   const { userPermissions, list, key } = props;
 
   const filteredArray = [];
