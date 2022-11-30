@@ -7,19 +7,19 @@ import { VisibilityPermission } from 'permissions/visibility-permission';
 
 interface IWrapperProps {
   wrapper: PermissionTypesEnum;
-  permission: Nullable<Array<string>>;
+  permission: Permission;
   children: ReactNode;
 }
 
 export interface ICheckerArgs {
-  userPermissions: Nullable<Array<string>>;
-  permissions: Nullable<Array<string>>;
+  userPermissions: Permission;
+  permissions: Permission;
   fetcher(): void;
 }
 
-interface IFilterCheckerArgs {
-  userPermissions: Array<string>;
-  list: Array<object>;
+interface IFilterCheckerArgs<T> {
+  userPermissions: Permission;
+  list: T[];
   key: string;
 }
 
@@ -46,7 +46,7 @@ PermissionWrapper.checker = (props: ICheckerArgs): void => {
   granted && fetcher();
 };
 
-PermissionWrapper.dataFilterChecker = <T,>(props: IFilterCheckerArgs): T[] => {
+PermissionWrapper.dataFilterChecker = <T,>(props: IFilterCheckerArgs<T>): T[] => {
   const { userPermissions, list, key } = props;
 
   const filteredArray = [];

@@ -1,7 +1,7 @@
 import AdminRoutes from 'routes/admin-routes';
 
-import Aside from 'ui/partials/aside/aside';
-import Header from 'ui/partials/header/header';
+import Aside from 'statics/aside/aside';
+import Header from 'statics/header/header';
 
 function App() {
   return (

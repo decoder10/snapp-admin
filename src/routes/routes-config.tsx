@@ -4,7 +4,7 @@ import Dashboard from 'ui/dashboard/dashboard';
 import NotFound from 'ui/not-found/not-found';
 import SignIn from 'ui/sign-in/sign-in';
 
-export type CustomRouteConfig = RouteObject & { permission?: string[]; isMenuItem: boolean; title: string };
+export type CustomRouteConfig = RouteObject & { permission?: Permission; isMenuItem: boolean; title: string };
 
 export const routeConfig: CustomRouteConfig[] = [
   {
