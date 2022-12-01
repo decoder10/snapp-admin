@@ -20,10 +20,10 @@ export interface ICheckerArgs {
 interface IFilterCheckerArgs<T> {
   userPermissions: Permission;
   list: T[];
-  key: string;
+  key: keyof T;
 }
 
-export const PermissionWrapper = (props: IWrapperProps): ReactElement => {
+export const PermissionWrapper = (props: IWrapperProps): Nullable<ReactElement> => {
   const { wrapper, permission, children } = props;
 
   switch (wrapper) {
@@ -46,14 +46,20 @@ PermissionWrapper.checker = (props: ICheckerArgs): void => {
   granted && fetcher();
 };
 
-PermissionWrapper.dataFilterChecker = <T,>(props: IFilterCheckerArgs<T>): T[] => {
+PermissionWrapper.dataFilterChecker = <T extends object>(props: IFilterCheckerArgs<T>): T[] => {
   const { userPermissions, list, key } = props;
 
-  const filteredArray = [];
+  const filteredArray: T[] = [];
 
   list.forEach(listItem => {
     if (listItem[key]) {
-      listItem[key].some(item => userPermissions && userPermissions.includes(item)) && filteredArray.push(listItem);
+      const filterResult = (listItem[key] as Array<string>).some(
+        (item: string) => userPermissions && userPermissions.includes(item),
+      );
+
+      if (filterResult) {
+        filteredArray.push(listItem);
+      }
     } else {
       filteredArray.push(listItem);
     }

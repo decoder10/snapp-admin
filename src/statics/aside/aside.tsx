@@ -25,21 +25,19 @@ const Aside: FunctionComponent = () => {
               <ListItemButton
                 sx={{
                   minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
-                onClick={() => navigate(path)}
+                onClick={() => navigate(path || '/')}
               >
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
-                    mr: open ? 3 : 'auto',
                     justifyContent: 'center',
                   }}
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={title} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={title} />
               </ListItemButton>
             </ListItem>
           ) : null;
