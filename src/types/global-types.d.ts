@@ -1,6 +1,9 @@
 type Nullable<T> = T | null;
 type Undefined<T> = T | undefined;
 type Unknown<T> = T | unknown;
+type TKeyOf<T> = keyof T;
+
+// type PermissionTypes = keyof typeof import('src/enums').PermissionTypesEnum;
 
 type Event = MouseEvent | TouchEvent;
 

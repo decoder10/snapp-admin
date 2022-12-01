@@ -6,7 +6,7 @@ import { RedirectionPermission } from 'permissions/redirection-permission';
 import { VisibilityPermission } from 'permissions/visibility-permission';
 
 interface IWrapperProps {
-  wrapper: PermissionTypesEnum;
+  wrapper: keyof typeof PermissionTypesEnum;
   permission: Permission;
   children: ReactNode;
 }
@@ -20,18 +20,18 @@ export interface ICheckerArgs {
 interface IFilterCheckerArgs<T> {
   userPermissions: Permission;
   list: T[];
-  key: keyof T;
+  key: TKeyOf<T>;
 }
 
 export const PermissionWrapper = (props: IWrapperProps): Nullable<ReactElement> => {
   const { wrapper, permission, children } = props;
 
   switch (wrapper) {
-    case PermissionTypesEnum.visibility:
+    case 'visibility':
       return <VisibilityPermission permission={permission}>{children}</VisibilityPermission>;
-    case PermissionTypesEnum.ability:
+    case 'ability':
       return <AbilityPermission permission={permission}>{children}</AbilityPermission>;
-    case PermissionTypesEnum.redirect:
+    case 'redirect':
       return <RedirectionPermission permission={permission}>{children}</RedirectionPermission>;
     default:
       return null;

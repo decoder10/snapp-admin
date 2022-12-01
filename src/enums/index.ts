@@ -1,7 +1,7 @@
 export enum PermissionTypesEnum {
-  visibility,
-  ability,
-  redirect,
+  visibility = 'visibility',
+  ability = 'ability',
+  redirect = 'redirect',
 }
 
 export enum ModalEnum {}
