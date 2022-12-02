@@ -2,7 +2,7 @@ import React from 'react';
 
 export const RedirectionPermission: React.FC<IPermissionsProps> = ({ permission, children }) => {
   function checkPermission() {
-    const permissionList: string[] = [];
+    const permissionList: Permission = [];
 
     return permissionList.length && permission.some(ele => permissionList.includes(ele));
   }
