@@ -14,9 +14,14 @@ import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
+import { useAppDispatch } from 'configs/hooks';
+import { emptyState } from 'configs/local-storage';
+
 import { CoreSearch } from 'core/core';
 
 const Header: FunctionComponent = () => {
+  const dispatch = useAppDispatch();
+
   const [anchorEl, setAnchorEl] = useState<Nullable<HTMLElement>>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<Nullable<HTMLElement>>(null);
 
@@ -31,9 +36,18 @@ const Header: FunctionComponent = () => {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
+  const handleMenuClose = (action: string) => {
     setAnchorEl(null);
     handleMobileMenuClose();
+
+    switch (action) {
+      case 'logout':
+        emptyState();
+        dispatch({ type: 'LOGOUT' });
+        break;
+      default:
+        break;
+    }
   };
 
   const handleMobileMenuOpen = (event: MouseEvent<HTMLElement>) => {
@@ -57,8 +71,9 @@ const Header: FunctionComponent = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={() => handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={() => handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={() => handleMenuClose('logout')}>LogOut</MenuItem>
     </Menu>
   );
 

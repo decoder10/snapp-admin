@@ -2,13 +2,19 @@ import { ChangeEvent, FC, useState } from 'react';
 
 import { Button, TextField } from '@mui/material';
 
-interface FormFieldsProps {
+import { useAppDispatch } from 'configs/hooks';
+
+import { userAuthenticate } from 'reducers/authentication';
+
+export interface IAuthFormFields {
   userName: string;
   password: string;
 }
 
 const SignIn: FC = () => {
-  const [userData, setUserData] = useState<FormFieldsProps>({
+  const dispatch = useAppDispatch();
+
+  const [userData, setUserData] = useState<IAuthFormFields>({
     userName: '',
     password: '',
   });
@@ -19,12 +25,8 @@ const SignIn: FC = () => {
     setUserData({ ...userData, ...{ [name]: value } });
   };
 
-  const onSubmit = (formFields: FormFieldsProps) => {
-    console.log(formFields);
-  };
-
   const handleSubmit = () => {
-    onSubmit(userData);
+    dispatch(userAuthenticate(userData));
   };
 
   return (

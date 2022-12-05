@@ -1,9 +1,6 @@
 import { AxiosResponse } from 'axios';
-import { WritableDraft } from 'immer/dist/internal';
-import { CombinedState } from 'redux';
 
-import { TestState } from 'reducers/test-reducer';
-import { TestRequestState } from 'reducers/test-request-reducer';
+import { IAuthenticationState } from 'reducers/authentication';
 
 export const loadAuthState = () => {
   try {
@@ -18,22 +15,24 @@ export const loadAuthState = () => {
   }
 };
 
-export const saveAuthState = (
-  state: CombinedState<{ testRequestStore: WritableDraft<TestRequestState>; testStore: TestState }>,
-) => {
+export const saveAuthState = ({ authenticationStore }: { authenticationStore: IAuthenticationState }) => {
   try {
-    // const { authentication } = state;
-    //
-    // if (authentication.loggedInUser) {
-    //   const serializedState = JSON.stringify({
-    //     authentication,
-    //   });
-    //
-    //   localStorage.setItem('state', serializedState);
-    // }
+    const { authentication } = authenticationStore;
+
+    if (authentication) {
+      const serializedState = JSON.stringify({
+        authenticationStore,
+      });
+
+      localStorage.setItem('authState', serializedState);
+    }
   } catch (e) {
     // ignore errors
   }
+};
+
+export const emptyState = () => {
+  localStorage.removeItem('authState');
 };
 
 export const saveLocalStorage = (

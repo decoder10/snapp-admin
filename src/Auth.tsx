@@ -1,17 +1,28 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 
 import App from 'App';
+import { useNavigate } from 'react-router-dom';
 
-import MainLoading from 'components/main-loading/main-loading';
+import { useAppSelector } from 'configs/hooks';
+
+import { getIsAuth } from 'reducers/authentication';
+
+import SignIn from 'ui/sign-in/sign-in';
 
 const Auth: FunctionComponent = () => {
-  const [isAuth, setIsAuth] = useState<boolean>(true);
+  const navigate = useNavigate();
+
+  const isAuth = useAppSelector(getIsAuth);
 
   useEffect(() => {
-    setTimeout(() => setIsAuth(false), 2000);
-  }, []);
+    if (!isAuth) {
+      navigate('/sign-in');
+    } else {
+      navigate('/');
+    }
+  }, [isAuth, navigate]);
 
-  return isAuth ? <MainLoading /> : <App />;
+  return isAuth ? <App /> : <SignIn />;
 };
 
 export default Auth;

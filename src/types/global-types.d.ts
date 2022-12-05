@@ -9,6 +9,8 @@ type Event = MouseEvent | TouchEvent;
 
 type Permission = string[];
 
+type Authentication = Nullable<{ token: string; refreshToken: string }>;
+
 interface IKeyValueObject {
   [key: string]: string;
 }
