@@ -15,11 +15,7 @@ const Auth: FunctionComponent = () => {
   const isAuth = useAppSelector(getIsAuth);
 
   useEffect(() => {
-    if (!isAuth) {
-      navigate('/sign-in');
-    } else {
-      navigate('/');
-    }
+    navigate(isAuth ? '/' : '/sign-in');
   }, [isAuth, navigate]);
 
   return isAuth ? <App /> : <SignIn />;
