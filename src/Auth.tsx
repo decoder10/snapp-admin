@@ -28,7 +28,7 @@ const Auth: FunctionComponent = () => {
     } else {
       setTimeout(() => dispatch(setLoaderAction(false)), 2000);
     }
-  }, [isAuth, isLoading, navigate]);
+  }, [dispatch, isAuth, isLoading, navigate]);
 
   return isLoading ? <MainLoading /> : isAuth ? <App /> : <SignIn />;
 };
