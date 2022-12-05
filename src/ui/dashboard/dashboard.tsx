@@ -6,7 +6,7 @@ const Dashboard: FC = () => {
   return (
     <div>
       DashBoard
-      <Link to={'sign-in'}>asdaskjdhjkashgdkjhaksjhdjkashdkjhaskjhdkjhaskjd hkjashdkj aksjhdkjaskjd</Link>
+      <Link to={'asdasd'}>asdaskjdhjkashgdkjhaksjhdjkashdkjhaskjhdkjhaskjd hkjashdkj aksjhdkjaskjd</Link>
     </div>
   );
 };

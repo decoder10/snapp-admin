@@ -1,9 +1,11 @@
 import { AnyAction, combineReducers, Reducer } from 'redux';
 
 import authenticationStore from './authentication';
+import rootLoaderStore from './root-loader';
 
 export const appReducer = combineReducers({
   authenticationStore,
+  rootLoaderStore,
 });
 
 export type RootState = ReturnType<typeof appReducer>;
