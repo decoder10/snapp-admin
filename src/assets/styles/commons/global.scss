@@ -29,6 +29,14 @@ body {
 
 
 .main-content {
-	width: calc(100% - var(--sidebar-width-opened));
+	transition: all 0.3s ease;
 	padding: var(--space);
+
+	&.opened {
+		width: calc(100% - var(--sidebar-width-opened));
+	}
+	
+	&.closed {
+		width: calc(100% - var(--sidebar-width-closed));
+	}
 }

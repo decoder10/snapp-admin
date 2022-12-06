@@ -1,10 +1,18 @@
+import { ReactElement } from 'react';
+
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import { RouteObject } from 'react-router-dom';
 
 import Dashboard from 'ui/dashboard/dashboard';
 import NotFound from 'ui/not-found/not-found';
 import SignIn from 'ui/sign-in/sign-in';
 
-export type CustomRouteConfig = RouteObject & { permission?: Permission; isMenuItem: boolean; title: string };
+export type CustomRouteConfig = RouteObject & {
+  permission?: Permission;
+  isMenuItem: boolean;
+  title: string;
+  icon?: ReactElement;
+};
 
 export const routeConfig: CustomRouteConfig[] = [
   {
@@ -13,6 +21,7 @@ export const routeConfig: CustomRouteConfig[] = [
     element: <Dashboard />,
     permission: ['edit'],
     isMenuItem: true,
+    icon: <DashboardIcon />,
   },
   {
     path: 'sign-in',
