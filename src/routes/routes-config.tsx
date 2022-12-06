@@ -1,10 +1,11 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import { RouteObject } from 'react-router-dom';
+import { Navigate, RouteObject } from 'react-router-dom';
 
 import Dashboard from 'ui/dashboard/dashboard';
 import NotFound from 'ui/not-found/not-found';
+import SignIn from 'ui/sign-in/sign-in';
 
 export type CustomRouteConfig = RouteObject & {
   permission?: Permission;
@@ -27,5 +28,18 @@ export const routeConfig: CustomRouteConfig[] = [
     title: 'Not Found',
     element: <NotFound />,
     isMenuItem: false,
+  },
+];
+
+export const signInRouteConfig: Omit<CustomRouteConfig, 'isMenuItem'>[] = [
+  {
+    path: 'sign-in',
+    title: 'Sign In',
+    element: <SignIn />,
+  },
+  {
+    path: '*',
+    title: 'Redirect',
+    element: <Navigate to="/sign-in" replace />,
   },
 ];

@@ -1,14 +1,17 @@
 import React, { FunctionComponent, memo } from 'react';
 
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
-import SignIn from 'ui/sign-in/sign-in';
+import { signInRouteConfig } from 'routes/routes-config';
 
 const SignInRoute: FunctionComponent = () => {
   return (
     <Routes>
-      <Route path="/sign-in" element={<SignIn />} />
-      <Route path="*" element={<Navigate to="/sign-in" replace />} />
+      {signInRouteConfig.map(item => {
+        const { title, path, element } = item;
+
+        return <Route key={title} path={path} element={element} />;
+      })}
     </Routes>
   );
 };
