@@ -25,10 +25,6 @@ const Header: FunctionComponent = () => {
 
   const [anchorEl, setAnchorEl] = useState<Nullable<HTMLElement>>(null);
 
-  const handleProfileMenuOpen = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -39,7 +35,7 @@ const Header: FunctionComponent = () => {
             edge={'start'}
           />
 
-          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Typography variant="h6" noWrap component="div">
             SNAPP
           </Typography>
 
@@ -52,7 +48,11 @@ const Header: FunctionComponent = () => {
 
             <CoreIconButton children={<NotificationsIcon />} badgeCount={17} />
 
-            <CoreIconButton children={<AccountCircle />} click={handleProfileMenuOpen} edge={'end'} />
+            <CoreIconButton
+              children={<AccountCircle />}
+              click={(event: MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)}
+              edge={'end'}
+            />
           </Box>
         </Toolbar>
       </AppBar>
