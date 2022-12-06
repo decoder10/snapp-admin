@@ -40,7 +40,6 @@ const SignIn: FC = () => {
           label="UserName"
           variant="outlined"
           className="input"
-          required
         />
         <TextField
           name="password"
@@ -49,7 +48,6 @@ const SignIn: FC = () => {
           label="Password"
           variant="outlined"
           className="input"
-          required
         />
         <Button variant="contained" onClick={handleSubmit}>
           Login
