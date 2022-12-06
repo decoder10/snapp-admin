@@ -1,5 +1,5 @@
 export default class Validator {
-  required(value: string | number): boolean {
+  required(value: string | number | null | undefined): boolean {
     return !!value;
   }
 
@@ -11,7 +11,7 @@ export default class Validator {
     let count = 0;
     symbols.forEach(elem => {
       if (value.includes(elem)) {
-        count = count + 1;
+        count += 1;
       }
     });
 
@@ -22,7 +22,7 @@ export default class Validator {
     let count = 0;
     symbols.forEach(elem => {
       if (!value.includes(elem)) {
-        count = count + 1;
+        count += 1;
       }
     });
     return count === symbols.length;
