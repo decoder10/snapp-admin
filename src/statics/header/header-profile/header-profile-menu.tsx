@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react';
 import { ListItemIcon } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from 'configs/hooks';
 import { emptyState } from 'configs/local-storage';
@@ -16,6 +17,7 @@ interface IProps {
 
 const HeaderProfileMenu: FunctionComponent<IProps> = ({ anchorEl, setAnchorEl }) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -26,6 +28,7 @@ const HeaderProfileMenu: FunctionComponent<IProps> = ({ anchorEl, setAnchorEl })
       case 'logout':
         emptyState();
         dispatch({ type: 'LOGOUT' });
+        navigate('/sign-in');
         break;
       default:
         break;

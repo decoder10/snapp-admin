@@ -4,12 +4,12 @@ import App from 'App';
 
 import { useAppDispatch, useAppSelector } from 'configs/hooks';
 
+import { MemorizedSignInRoute } from 'routes/sign-in-route';
+
 import { getIsAuth } from 'reducers/authentication';
 import { getRootLoaderState, setLoaderAction } from 'reducers/root-loader';
 
 import { MemoizedMainLoading } from 'components/main-loading/main-loading';
-
-import SignIn from 'ui/sign-in/sign-in';
 
 const Auth: FunctionComponent = () => {
   const dispatch = useAppDispatch();
@@ -20,9 +20,9 @@ const Auth: FunctionComponent = () => {
 
   useEffect(() => {
     setTimeout(() => dispatch(setLoaderAction(false)), 2000);
-  }, [dispatch]);
+  }, [dispatch, isAuth]);
 
-  return isLoading ? <MemoizedMainLoading /> : isAuth ? <App /> : <SignIn />;
+  return isLoading ? <MemoizedMainLoading /> : isAuth ? <App /> : <MemorizedSignInRoute />;
 };
 
 export default Auth;
