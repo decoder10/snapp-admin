@@ -5,7 +5,6 @@ import { RouteObject } from 'react-router-dom';
 
 import Dashboard from 'ui/dashboard/dashboard';
 import NotFound from 'ui/not-found/not-found';
-import SignIn from 'ui/sign-in/sign-in';
 
 export type CustomRouteConfig = RouteObject & {
   permission?: Permission;
@@ -22,12 +21,6 @@ export const routeConfig: CustomRouteConfig[] = [
     permission: ['edit'],
     isMenuItem: true,
     icon: <DashboardIcon />,
-  },
-  {
-    path: 'sign-in',
-    title: 'Sign In',
-    element: <SignIn />,
-    isMenuItem: false,
   },
   {
     path: '*',
