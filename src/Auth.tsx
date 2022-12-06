@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from 'configs/hooks';
 import { getIsAuth } from 'reducers/authentication';
 import { getRootLoaderState, setLoaderAction } from 'reducers/root-loader';
 
-import MainLoading from 'components/main-loading/main-loading';
+import { MemoizedMainLoading } from 'components/main-loading/main-loading';
 
 import SignIn from 'ui/sign-in/sign-in';
 
@@ -30,7 +30,7 @@ const Auth: FunctionComponent = () => {
     }
   }, [dispatch, isAuth, isLoading, navigate]);
 
-  return isLoading ? <MainLoading /> : isAuth ? <App /> : <SignIn />;
+  return isLoading ? <MemoizedMainLoading /> : isAuth ? <App /> : <SignIn />;
 };
 
 export default Auth;

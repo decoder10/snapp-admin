@@ -1,4 +1,4 @@
-import { FunctionComponent, useState, MouseEvent } from 'react';
+import { FunctionComponent, useState, MouseEvent, memo } from 'react';
 
 import { AccountCircle } from '@mui/icons-material';
 import MailIcon from '@mui/icons-material/Mail';
@@ -62,4 +62,4 @@ const Header: FunctionComponent = () => {
   );
 };
 
-export default Header;
+export const MemoizedHeader = memo(Header);

@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, memo } from 'react';
 
-const MainLoading: FunctionComponent = props => {
+const MainLoading: FunctionComponent = () => {
   return <div className="main-loading">main loading...</div>;
 };
 
-export default MainLoading;
+export const MemoizedMainLoading = memo(MainLoading);

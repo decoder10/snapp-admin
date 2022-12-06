@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, memo } from 'react';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -40,4 +40,4 @@ const Aside: FunctionComponent = () => {
   );
 };
 
-export default Aside;
+export const MemoizedAside = memo(Aside);

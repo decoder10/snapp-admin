@@ -4,18 +4,18 @@ import AdminRoutes from 'routes/admin-routes';
 
 import { getMenuState } from 'reducers/menu-state';
 
-import Aside from 'statics/aside/aside';
-import Header from 'statics/header/header';
+import { MemoizedAside } from 'statics/aside/aside';
+import { MemoizedHeader } from 'statics/header/header';
 
 function App() {
   const menuState = useAppSelector(getMenuState);
 
   return (
     <div className="app">
-      <Header />
+      <MemoizedHeader />
 
       <div className="app-container">
-        <Aside />
+        <MemoizedAside />
 
         <section className={`main-content ${menuState ? 'opened' : 'closed'}`}>
           <AdminRoutes />
