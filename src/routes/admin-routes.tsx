@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FC } from 'react';
 import React from 'react';
 
 import { PermissionWrapper } from 'permissions/permission-wrapper';
@@ -6,7 +6,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { CustomRouteConfig, routeConfig } from 'routes/routes-config';
 
-const AdminRoutes: FunctionComponent = () => {
+const AdminRoutes: FC = () => {
   const filteredData = PermissionWrapper.dataFilterChecker<CustomRouteConfig>({
     userPermissions: ['edit'],
     list: routeConfig,

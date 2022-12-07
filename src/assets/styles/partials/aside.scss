@@ -2,7 +2,8 @@ aside.main-sidebar {
 	height: 100%;
 	border-right: 1px solid lightgray;
 	transition: all 0.3s ease;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 
 	nav {
 		width: var(--sidebar-width-opened);

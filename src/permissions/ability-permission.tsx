@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 // TODO not finished. should be changed.
 
-export const AbilityPermission: React.FC<IPermissionsProps> = ({ permission, children }) => {
+export const AbilityPermission: FC<IPermissionsProps> = ({ permission, children }) => {
   return <div>{children}</div>;
 };

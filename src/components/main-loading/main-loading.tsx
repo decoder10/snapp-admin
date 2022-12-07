@@ -1,6 +1,6 @@
-import React, { FunctionComponent, memo } from 'react';
+import React, { FC, memo } from 'react';
 
-const MainLoading: FunctionComponent = () => {
+const MainLoading: FC = () => {
   return <div className="main-loading">main loading...</div>;
 };
 

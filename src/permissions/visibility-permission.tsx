@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-export const VisibilityPermission: React.FC<IPermissionsProps> = ({ permission, children }) => {
+export const VisibilityPermission: FC<IPermissionsProps> = ({ permission, children }) => {
   function checkPermission() {
     const permissionList: Permission = ['edit'];
 
