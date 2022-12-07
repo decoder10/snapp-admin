@@ -1,7 +1,6 @@
 import { ChangeEvent, FC, useState } from 'react';
 
 import { Button, TextField } from '@mui/material';
-// import { Simulate } from 'react-dom/test-utils';
 import _ from 'lodash';
 
 import { useAppDispatch } from 'configs/hooks';
@@ -53,6 +52,7 @@ const SignIn: FC = () => {
         />
         <TextField
           name="password"
+          color={'secondary'}
           onChange={handler}
           value={userData.password}
           label="Password"
