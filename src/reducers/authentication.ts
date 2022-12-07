@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { IAuthFormFields } from 'ui/sign-in/sign-in';
-
 export interface IAuthenticationState {
   authentication: Authentication;
   errors: Nullable<string>;

@@ -5,6 +5,7 @@ import { Navigate, RouteObject } from 'react-router-dom';
 
 import Dashboard from 'ui/dashboard/dashboard';
 import NotFound from 'ui/not-found/not-found';
+// import Racing from 'ui/racing/racing';
 import SignIn from 'ui/sign-in/sign-in';
 
 export type CustomRouteConfig = RouteObject & {

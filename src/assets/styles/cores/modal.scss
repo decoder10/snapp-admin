@@ -55,3 +55,70 @@
 		}
 	}
 }
+
+//========================================== racing game start ==========================================
+
+.area {
+	display: flex;
+	height: 862px;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+
+	.left-gazon, .right-gazon {
+		flex: 19%;
+		height: inherit;
+		background-color: green;
+	}
+	.panel {
+		button {
+			width: 80%;
+			margin: 10%;
+			font-weight: bold;
+			font-size: 25px;
+			cursor: pointer;
+		}
+
+		p {
+			font-size: 40px;
+			font-weight: bold;
+			text-align: center;
+			color: indianred;
+		}
+	}
+	.road {
+		position: relative;
+		width: 970px;
+		height: inherit;
+		//flex: 60%;
+		background-color: gray;
+		overflow: hidden;
+
+		.line {
+			position: relative;
+			width: 10px;
+			background-color: white;
+			height: inherit;
+			margin: 0 auto;
+
+			.black-line {
+				position: absolute;
+				width: 100%;
+				height: 60px;
+				background-color: gray;
+			}
+		}
+
+		.car {
+			z-index: 1;
+			width: 70px;
+			height: auto;
+			position: absolute;
+		}
+
+		.car-x-1 {
+			@extend .car;
+			transform: rotate(180deg);
+		}
+	}
+}

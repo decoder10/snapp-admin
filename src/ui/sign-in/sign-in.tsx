@@ -1,19 +1,21 @@
 import { ChangeEvent, FC, useState } from 'react';
 
 import { Button, TextField } from '@mui/material';
+// import { Simulate } from 'react-dom/test-utils';
+import _ from 'lodash';
 
 import { useAppDispatch } from 'configs/hooks';
 
 import { userAuthenticate } from 'reducers/authentication';
 
-export interface IAuthFormFields {
-  userName: string;
-  password: string;
-}
+import { SignInValidator } from 'ui/sign-in/sign-in-validator';
+
+const validator = new SignInValidator();
 
 const SignIn: FC = () => {
   const dispatch = useAppDispatch();
 
+  const [errorResult, setErrorResult] = useState<Partial<IAuthFormFields>>({});
   const [userData, setUserData] = useState<IAuthFormFields>({
     userName: '',
     password: '',
@@ -26,7 +28,13 @@ const SignIn: FC = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(userAuthenticate(userData));
+    const err = validator.validate(userData);
+
+    if (_.size(err) === 0) {
+      dispatch(userAuthenticate(userData));
+    } else {
+      setErrorResult(err as IAuthFormFields);
+    }
   };
 
   return (
@@ -40,6 +48,8 @@ const SignIn: FC = () => {
           label="UserName"
           variant="outlined"
           className="input"
+          error={!!errorResult.userName}
+          helperText={errorResult.userName}
         />
         <TextField
           name="password"
@@ -48,6 +58,8 @@ const SignIn: FC = () => {
           label="Password"
           variant="outlined"
           className="input"
+          error={!!errorResult.password}
+          helperText={errorResult.password}
         />
         <Button variant="contained" onClick={handleSubmit}>
           Login
