@@ -30,7 +30,7 @@ const Aside: FC = () => {
     >
       <nav aria-label="main navigation">
         <List>
-          {routeConfig.map((item, index) => {
+          {routeConfig.map(item => {
             const { title, path, isMenuItem, icon } = item;
 
             const isActive = location.pathname === path;
