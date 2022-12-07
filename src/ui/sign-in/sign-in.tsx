@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, useState } from 'react';
 
 import { Button, TextField } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import _ from 'lodash';
 
 import { useAppDispatch } from 'configs/hooks';
@@ -39,7 +40,10 @@ const SignIn: FC = () => {
   return (
     <section className="signInWrapper">
       <div className="container">
-        <h1>Sign In</h1>
+        <Typography variant="h5" align="center">
+          Sign In
+        </Typography>
+
         <TextField
           name="userName"
           onChange={handler}
@@ -50,9 +54,9 @@ const SignIn: FC = () => {
           error={!!errorResult.userName}
           helperText={errorResult.userName}
         />
+
         <TextField
           name="password"
-          color={'secondary'}
           onChange={handler}
           value={userData.password}
           label="Password"
@@ -61,6 +65,7 @@ const SignIn: FC = () => {
           error={!!errorResult.password}
           helperText={errorResult.password}
         />
+
         <Button variant="contained" onClick={handleSubmit}>
           Login
         </Button>

@@ -3,6 +3,12 @@
 	height: 100%;
 }
 
+.center {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 .flex-center {
 	align-items: center;
 	justify-content: center;
@@ -35,7 +41,7 @@ body {
 	&.opened {
 		width: calc(100% - var(--sidebar-width-opened));
 	}
-	
+
 	&.closed {
 		width: calc(100% - var(--sidebar-width-closed));
 	}
