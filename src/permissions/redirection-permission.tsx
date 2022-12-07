@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-export const RedirectionPermission: React.FC<IPermissionsProps> = ({ permission, children }) => {
+export const RedirectionPermission: FC<IPermissionsProps> = ({ permission, children }) => {
   function checkPermission() {
     const permissionList: Permission = [];
 

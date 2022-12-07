@@ -1,8 +1,8 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { Backdrop, CircularProgress } from '@mui/material';
 
-const Loader: FunctionComponent = () => {
+const Loader: FC = () => {
   const [isLoading] = useState<boolean>(false);
 
   return (

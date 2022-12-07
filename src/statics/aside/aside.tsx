@@ -1,11 +1,11 @@
-import { FunctionComponent, memo } from 'react';
+import { FC, memo } from 'react';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from 'configs/hooks';
 
@@ -13,8 +13,9 @@ import { routeConfig } from 'routes/routes-config';
 
 import { getMenuState } from 'reducers/menu-state';
 
-const Aside: FunctionComponent = () => {
+const Aside: FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const menuState = useAppSelector(getMenuState);
 
@@ -27,7 +28,7 @@ const Aside: FunctionComponent = () => {
 
             return isMenuItem ? (
               <ListItem key={title} disablePadding>
-                <ListItemButton onClick={() => navigate(path || '/')}>
+                <ListItemButton onClick={() => navigate(path || '/')} selected={location.pathname === path}>
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText primary={title} className={menuState ? '' : 'visible-hidden'} />
                 </ListItemButton>

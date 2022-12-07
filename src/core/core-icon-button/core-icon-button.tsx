@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement, MouseEvent } from 'react';
+import React, { FC, ReactElement, MouseEvent } from 'react';
 
 import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
@@ -12,7 +12,7 @@ interface IProps {
   click?(event: MouseEvent<HTMLElement>): void;
 }
 
-export const CoreIconButton: FunctionComponent<IProps> = ({
+export const CoreIconButton: FC<IProps> = ({
   size = 'large',
   color = 'error',
   badgeCount,

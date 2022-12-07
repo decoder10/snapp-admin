@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 
 import { ListItemIcon } from '@mui/material';
 import Menu from '@mui/material/Menu';
@@ -14,7 +14,7 @@ interface IProps {
   setAnchorEl(state: null): void;
 }
 
-const HeaderProfileMenu: FunctionComponent<IProps> = ({ anchorEl, setAnchorEl }) => {
+const HeaderProfileMenu: FC<IProps> = ({ anchorEl, setAnchorEl }) => {
   const dispatch = useAppDispatch();
 
   const isMenuOpen = Boolean(anchorEl);

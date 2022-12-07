@@ -1,4 +1,4 @@
-import { FunctionComponent, useState, MouseEvent, memo } from 'react';
+import { FC, useState, MouseEvent, memo } from 'react';
 
 import { AccountCircle } from '@mui/icons-material';
 import MailIcon from '@mui/icons-material/Mail';
@@ -18,7 +18,7 @@ import { CoreIconButton, CoreSearch } from 'core/core';
 
 import HeaderProfileMenu from 'statics/header/header-profile/header-profile-menu';
 
-const Header: FunctionComponent = () => {
+const Header: FC = () => {
   const dispatch = useAppDispatch();
 
   const menuState = useAppSelector(getMenuState);

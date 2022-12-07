@@ -1,10 +1,10 @@
-import React, { FunctionComponent, memo } from 'react';
+import React, { FC, memo } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
 import { signInRouteConfig } from 'routes/routes-config';
 
-const SignInRoute: FunctionComponent = () => {
+const SignInRoute: FC = () => {
   return (
     <Routes>
       {signInRouteConfig.map(item => {

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { FC, useContext, useEffect } from 'react';
 
 import { TestContext } from 'contexts/test-context';
 
@@ -8,7 +8,7 @@ interface IProps {
   startNumber: number;
 }
 
-export const TestContextExample: React.FC<IProps> = ({ startNumber }) => {
+export const TestContextExample: FC<IProps> = ({ startNumber }) => {
   const { state, updateStateWithDispatch, increaseStateWithDispatch } = useContext(TestContext);
 
   useEffect(() => {

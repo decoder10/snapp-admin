@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import App from 'App';
 
@@ -11,7 +11,7 @@ import { getRootLoaderState, setLoaderAction } from 'reducers/root-loader';
 
 import { MemoizedMainLoading } from 'components/main-loading/main-loading';
 
-const Auth: FunctionComponent = () => {
+const Auth: FC = () => {
   const dispatch = useAppDispatch();
 
   const isLoading = useAppSelector(getRootLoaderState);
