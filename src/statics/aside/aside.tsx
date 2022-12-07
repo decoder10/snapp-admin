@@ -25,7 +25,7 @@ const Aside: FC = () => {
 
   return (
     <aside
-      className={`main-sidebar scrollbar  ${menuState ? 'opened' : 'closed'}`}
+      className={`main-sidebar  ${menuState ? 'opened' : 'closed'}`}
       style={{ backgroundColor: primaryColor.main }}
     >
       <nav aria-label="main navigation">
