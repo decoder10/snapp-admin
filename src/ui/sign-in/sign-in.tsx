@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, useState } from 'react';
 
-import { Button, TextField } from '@mui/material';
+import { Button, createTheme, TextField, ThemeProvider } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import _ from 'lodash';
 
@@ -9,6 +9,12 @@ import { useAppDispatch } from 'configs/hooks';
 import { userAuthenticate } from 'reducers/authentication';
 
 import { SignInValidator } from 'ui/sign-in/sign-in-validator';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 const validator = new SignInValidator();
 
@@ -40,35 +46,37 @@ const SignIn: FC = () => {
   return (
     <section className="signInWrapper">
       <div className="container">
-        <Typography variant="h5" align="center">
-          Sign In
-        </Typography>
+        <ThemeProvider theme={darkTheme}>
+          <Typography variant="h4" align="center" marginBottom={2} style={{ color: 'white' }}>
+            Sign In
+          </Typography>
 
-        <TextField
-          name="userName"
-          onChange={handler}
-          value={userData.userName}
-          label="UserName"
-          variant="outlined"
-          className="input"
-          error={!!errorResult.userName}
-          helperText={errorResult.userName}
-        />
+          <TextField
+            name="userName"
+            onChange={handler}
+            value={userData.userName}
+            label="UserName"
+            variant="outlined"
+            className="input"
+            error={!!errorResult.userName}
+            helperText={errorResult.userName}
+          />
 
-        <TextField
-          name="password"
-          onChange={handler}
-          value={userData.password}
-          label="Password"
-          variant="outlined"
-          className="input"
-          error={!!errorResult.password}
-          helperText={errorResult.password}
-        />
+          <TextField
+            name="password"
+            onChange={handler}
+            value={userData.password}
+            label="Password"
+            variant="outlined"
+            className="input"
+            error={!!errorResult.password}
+            helperText={errorResult.password}
+          />
 
-        <Button variant="contained" onClick={handleSubmit}>
-          Login
-        </Button>
+          <Button variant="contained" onClick={handleSubmit}>
+            Login
+          </Button>
+        </ThemeProvider>
       </div>
     </section>
   );

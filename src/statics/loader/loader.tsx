@@ -6,7 +6,7 @@ const Loader: FC = () => {
   const [isLoading] = useState<boolean>(false);
 
   return isLoading ? (
-    <Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open>
+    <Backdrop open>
       <CircularProgress color="inherit" />
     </Backdrop>
   ) : null;
