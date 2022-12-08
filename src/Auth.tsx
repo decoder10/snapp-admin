@@ -9,7 +9,7 @@ import { MemorizedSignInRoute } from 'routes/sign-in-route';
 import { getIsAuth } from 'reducers/authentication';
 import { getRootLoaderState, setLoaderAction } from 'reducers/root-loader';
 
-import { MemoizedMainLoading } from 'components/main-loading/main-loading';
+import { MemoizedMainLoading } from 'statics/main-loading/main-loading';
 
 const Auth: FC = () => {
   const dispatch = useAppDispatch();

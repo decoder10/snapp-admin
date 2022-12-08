@@ -5,8 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { store } from 'configs/store';
 
+import { MemoizedLoader } from 'statics/loader/loader';
+
 import 'assets/styles/admin.scss';
-import Loader from 'components/loader/loader';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -16,6 +17,6 @@ root.render(
     <BrowserRouter>
       <Auth />
     </BrowserRouter>
-    <Loader />
+    <MemoizedLoader />
   </Provider>,
 );
