@@ -4,8 +4,7 @@ import AdminRoutes from 'routes/admin-routes';
 
 import { getMenuState } from 'reducers/menu-state';
 
-import { MemoizedAside } from 'statics/aside/aside';
-import { MemoizedHeader } from 'statics/header/header';
+import { MemoizedAside, MemoizedHeader } from 'statics/statics';
 
 function App() {
   const menuState = useAppSelector(getMenuState);
