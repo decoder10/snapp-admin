@@ -2,13 +2,8 @@ import { ChangeEvent, FC, useState } from 'react';
 
 import { Button, createTheme, TextField, ThemeProvider } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import _ from 'lodash';
 
-import { useAppDispatch } from 'configs/hooks';
-
-import { userAuthenticate } from 'reducers/authentication';
-
-import { SignInValidator } from 'ui/sign-in/sign-in-validator';
+import { useSignIn } from 'ui/sign-in/use-sign-in';
 
 const darkTheme = createTheme({
   palette: {
@@ -16,31 +11,18 @@ const darkTheme = createTheme({
   },
 });
 
-const validator = new SignInValidator();
-
 const SignIn: FC = () => {
-  const dispatch = useAppDispatch();
+  const [signIn, errors] = useSignIn();
 
-  const [errorResult, setErrorResult] = useState<Partial<IAuthFormFields>>({});
   const [userData, setUserData] = useState<IAuthFormFields>({
     userName: '',
     password: '',
   });
 
-  const handler = (e: ChangeEvent<HTMLInputElement>) => {
+  const signInFormChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setUserData({ ...userData, ...{ [name]: value } });
-  };
-
-  const handleSubmit = () => {
-    const err = validator.validate(userData);
-
-    if (_.size(err) === 0) {
-      dispatch(userAuthenticate(userData));
-    } else {
-      setErrorResult(err as IAuthFormFields);
-    }
   };
 
   return (
@@ -53,27 +35,27 @@ const SignIn: FC = () => {
 
           <TextField
             name="userName"
-            onChange={handler}
+            onChange={signInFormChangeHandler}
             value={userData.userName}
             label="UserName"
             variant="outlined"
             className="input"
-            error={!!errorResult.userName}
-            helperText={errorResult.userName}
+            error={!!errors.userName}
+            helperText={errors.userName}
           />
 
           <TextField
             name="password"
-            onChange={handler}
+            onChange={signInFormChangeHandler}
             value={userData.password}
             label="Password"
             variant="outlined"
             className="input"
-            error={!!errorResult.password}
-            helperText={errorResult.password}
+            error={!!errors.password}
+            helperText={errors.password}
           />
 
-          <Button variant="contained" onClick={handleSubmit}>
+          <Button variant="contained" onClick={() => signIn(userData)}>
             Login
           </Button>
         </ThemeProvider>
