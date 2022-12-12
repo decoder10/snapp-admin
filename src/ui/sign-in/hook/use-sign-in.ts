@@ -6,7 +6,7 @@ import { useAppDispatch } from 'configs/hooks';
 
 import { userAuthenticate } from 'reducers/authentication';
 
-import { SignInValidator } from 'ui/sign-in/sign-in-validator';
+import { SignInValidator } from 'ui/sign-in/validator/sign-in-validator';
 
 export const useSignIn = (): [(userData: IAuthFormFields) => void, Partial<IAuthFormFields>] => {
   const dispatch = useAppDispatch();

@@ -3,7 +3,7 @@ import { ChangeEvent, FC, useState } from 'react';
 import { Button, createTheme, TextField, ThemeProvider } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-import { useSignIn } from 'ui/sign-in/use-sign-in';
+import { useSignIn } from 'ui/sign-in/hook/use-sign-in';
 
 const darkTheme = createTheme({
   palette: {
