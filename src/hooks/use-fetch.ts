@@ -8,8 +8,8 @@ interface IFetch<T> {
   body: T & AxiosRequestConfig<T>;
 }
 
-export const useFetch = <T>(): [({ type, url, body }: IFetch<T>) => void] => {
-  const fetchData = ({ type, url, body }: IFetch<T>) => {
+export const useFetch = (): [<T>({ type, url, body }: IFetch<T>) => void] => {
+  const fetchData = <T>({ type, url, body }: IFetch<T>) => {
     return client()[type](url, body);
   };
 
