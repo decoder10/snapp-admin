@@ -26,6 +26,7 @@ import Communications from 'ui/communications/communications';
 import Customer from 'ui/customer/customer';
 import Dashboard from 'ui/dashboard/dashboard';
 import Documents from 'ui/documents/documents';
+import ForgotPassword from 'ui/forgot-password/forgot-password';
 import Help from 'ui/help/help';
 import Merchant from 'ui/merchant/merchant';
 import NotFound from 'ui/not-found/not-found';
@@ -34,8 +35,8 @@ import Permissions from 'ui/permissions/permissions';
 import Reports from 'ui/reports/reports';
 import ServiceCategory from 'ui/service-category/service-category';
 import Service from 'ui/service/service';
-import Settings from 'ui/settings/settings';
 // import Racing from 'ui/racing/racing';
+import Settings from 'ui/settings/settings';
 import SignIn from 'ui/sign-in/sign-in';
 import Transactions from 'ui/transactions/transactions';
 import Translations from 'ui/translations/translations';
@@ -197,6 +198,11 @@ export const signInRouteConfig: Omit<CustomRouteConfig, 'isMenuItem'>[] = [
     path: 'sign-in',
     title: 'Sign In',
     element: <SignIn />,
+  },
+  {
+    path: 'forgot-password',
+    title: 'Forgot Password',
+    element: <ForgotPassword />,
   },
   {
     path: '*',

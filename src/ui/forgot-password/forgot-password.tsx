@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-const Settings: FC = () => {
+const ForgotPassword: FC = () => {
   return <div>Forgot Password</div>;
 };
 
-export default Settings;
+export default ForgotPassword;

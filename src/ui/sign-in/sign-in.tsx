@@ -2,6 +2,7 @@ import { ChangeEvent, FC, useState } from 'react';
 
 import { Button, createTheme, TextField, ThemeProvider } from '@mui/material';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
 import { useSignIn } from 'ui/sign-in/hook/use-sign-in';
 
@@ -54,6 +55,8 @@ const SignIn: FC = () => {
             error={!!errors.password}
             helperText={errors.password}
           />
+
+          <Link to={'/forgot-password'}>Forgot Password</Link>
 
           <Button variant="contained" onClick={() => signIn(userData)}>
             Login
