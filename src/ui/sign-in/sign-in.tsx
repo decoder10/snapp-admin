@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
 import { useSignIn } from 'ui/sign-in/hook/use-sign-in';
+import { signInFormConfig } from 'ui/sign-in/sign-in-form-config';
 
 const darkTheme = createTheme({
   palette: {
@@ -26,6 +27,12 @@ const SignIn: FC = () => {
     setUserData({ ...userData, ...{ [name]: value } });
   };
 
+  const handleKeyDown = (event: { key: string }) => {
+    if (event.key === 'Enter') {
+      signIn(userData);
+    }
+  };
+
   return (
     <section className="signInWrapper">
       <div className="container">
@@ -34,27 +41,24 @@ const SignIn: FC = () => {
             Sign In
           </Typography>
 
-          <TextField
-            name="userName"
-            onChange={signInFormChangeHandler}
-            value={userData.userName}
-            label="UserName"
-            variant="outlined"
-            className="input"
-            error={!!errors.userName}
-            helperText={errors.userName}
-          />
+          {signInFormConfig.map(item => {
+            const { key, label } = item;
 
-          <TextField
-            name="password"
-            onChange={signInFormChangeHandler}
-            value={userData.password}
-            label="Password"
-            variant="outlined"
-            className="input"
-            error={!!errors.password}
-            helperText={errors.password}
-          />
+            return (
+              <TextField
+                key={key}
+                name={key}
+                onChange={signInFormChangeHandler}
+                value={userData[key]}
+                label={label}
+                variant="outlined"
+                className="input"
+                error={!!errors[key]}
+                helperText={errors[key]}
+                onKeyDown={handleKeyDown}
+              />
+            );
+          })}
 
           <Link to={'/forgot-password'}>Forgot Password</Link>
 
