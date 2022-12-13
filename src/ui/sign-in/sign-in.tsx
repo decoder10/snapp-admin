@@ -42,7 +42,7 @@ const SignIn: FC = () => {
           </Typography>
 
           {signInFormConfig.map(item => {
-            const { key, label } = item;
+            const { key, label, type } = item;
 
             return (
               <TextField
@@ -55,6 +55,7 @@ const SignIn: FC = () => {
                 className="input"
                 error={!!errors[key]}
                 helperText={errors[key]}
+                type={type}
                 onKeyDown={handleKeyDown}
               />
             );
