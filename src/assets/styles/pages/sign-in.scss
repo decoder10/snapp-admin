@@ -14,6 +14,8 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+
+		font-family: "Roboto","Helvetica","Arial",sans-serif;
 		width: 500px;
 		animation: example 0.6s forwards;
 		opacity: 0;
@@ -26,6 +28,13 @@
 
 		.input {
 			margin-top: 10px;
+		}
+
+		.forgotPassword {
+			color: rgba(255, 255, 255, 0.7);
+			text-align: right;
+			margin-top: 5px;
+			font-size: 14px;
 		}
 
 		Button {

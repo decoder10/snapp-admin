@@ -56,7 +56,9 @@ const SignIn: FC = () => {
             helperText={errors.password}
           />
 
-          <Link to={'/forgot-password'}>Forgot Password</Link>
+          <Link className="forgotPassword" to={'/forgot-password'}>
+            Forgot Password?
+          </Link>
 
           <Button variant="contained" onClick={() => signIn(userData)}>
             Login
