@@ -41,25 +41,28 @@ const SignIn: FC = () => {
             Sign In
           </Typography>
 
-          {signInFormConfig.map(item => {
-            const { key, label, type } = item;
+          <form>
+            {signInFormConfig.map(item => {
+              const { key, label, type } = item;
 
-            return (
-              <TextField
-                key={key}
-                name={key}
-                onChange={signInFormChangeHandler}
-                value={userData[key]}
-                label={label}
-                variant="outlined"
-                className="input"
-                error={!!errors[key]}
-                helperText={errors[key]}
-                type={type}
-                onKeyDown={handleKeyDown}
-              />
-            );
-          })}
+              return (
+                <TextField
+                  key={key}
+                  name={key}
+                  onChange={signInFormChangeHandler}
+                  value={userData[key]}
+                  label={label}
+                  variant="outlined"
+                  className="input"
+                  error={!!errors[key]}
+                  helperText={errors[key]}
+                  type={type}
+                  onKeyDown={handleKeyDown}
+                  autoComplete={userData[key]}
+                />
+              );
+            })}
+          </form>
 
           <Link to={'/forgot-password'}>Forgot Password</Link>
 
