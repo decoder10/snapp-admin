@@ -13,6 +13,6 @@ export const forgotPasswordFormConfig: IForgotPasswordConfig[] = [
   {
     key: 'confirmPassword',
     label: 'Confirm Password',
-    type: 'confirmPassword',
+    type: 'password',
   },
 ];
