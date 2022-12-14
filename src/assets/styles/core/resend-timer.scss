@@ -1,0 +1,17 @@
+.timerContainer {
+    display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	p {
+		color: #FFFFFFB2;
+	}
+
+	.resendButton {
+		font-weight: bold;
+		color: #FFFFFFB2;
+		text-decoration: underline;
+	}
+}
+
+
