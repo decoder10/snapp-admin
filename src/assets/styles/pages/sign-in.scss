@@ -31,6 +31,8 @@
 		}
 
 		.input {
+
+
 			margin-top: 10px;
 		}
 
@@ -41,14 +43,9 @@
 			font-size: 14px;
 		}
 
-		Button {
+		.submit-button {
 			font-weight: bold;
 			margin-top: 20px;
-			background-color: #42a5f5;
-		}
-
-		button:hover {
-			background-color: #2f8dd9;
 		}
 	}
 }

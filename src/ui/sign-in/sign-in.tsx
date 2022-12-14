@@ -1,8 +1,10 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, useRef, useState } from 'react';
 
-import { Button, createTheme, TextField, ThemeProvider } from '@mui/material';
+import { Button, createTheme, InputAdornment, TextField, ThemeProvider } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+
+import Eye from 'core/eye/eye';
 
 import { useSignIn } from 'ui/sign-in/hook/use-sign-in';
 import { signInFormConfig } from 'ui/sign-in/sign-in-form-config';
@@ -14,6 +16,11 @@ const darkTheme = createTheme({
 });
 
 const SignIn: FC = () => {
+  const formFieldsRef = useRef<IRefAuthFormFields>({
+    userName: null,
+    password: null,
+  });
+
   const [signIn, errors] = useSignIn();
 
   const [userData, setUserData] = useState<IAuthFormFields>({
@@ -33,6 +40,8 @@ const SignIn: FC = () => {
     }
   };
 
+  console.log('log-----', formFieldsRef.current);
+
   return (
     <section className="signInWrapper">
       <div className="container">
@@ -43,10 +52,11 @@ const SignIn: FC = () => {
 
           <form>
             {signInFormConfig.map(item => {
-              const { key, label, type } = item;
+              const { key, label, type, rightIcon } = item;
 
               return (
                 <TextField
+                  inputRef={ref => (formFieldsRef.current[key] = ref)}
                   key={key}
                   name={key}
                   onChange={signInFormChangeHandler}
@@ -59,6 +69,19 @@ const SignIn: FC = () => {
                   type={type}
                   onKeyDown={handleKeyDown}
                   autoComplete={userData[key]}
+                  InputProps={{
+                    endAdornment: rightIcon ? (
+                      <InputAdornment position="end">
+                        <Eye
+                          makeVisible={value => {
+                            if (formFieldsRef && formFieldsRef.current) {
+                              // formFieldsRef.current[key].type = value ? 'text' : 'password';
+                            }
+                          }}
+                        />
+                      </InputAdornment>
+                    ) : null,
+                  }}
                 />
               );
             })}
@@ -68,7 +91,7 @@ const SignIn: FC = () => {
             Forgot Password?
           </Link>
 
-          <Button variant="contained" onClick={() => signIn(userData)}>
+          <Button variant="contained" onClick={() => signIn(userData)} className="submit-button">
             Login
           </Button>
         </ThemeProvider>
