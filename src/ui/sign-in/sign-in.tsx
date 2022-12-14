@@ -40,8 +40,6 @@ const SignIn: FC = () => {
     }
   };
 
-  console.log('log-----', formFieldsRef.current);
-
   return (
     <section className="signInWrapper">
       <div className="container">
@@ -74,8 +72,8 @@ const SignIn: FC = () => {
                       <InputAdornment position="end">
                         <Eye
                           makeVisible={value => {
-                            if (formFieldsRef && formFieldsRef.current) {
-                              // formFieldsRef.current[key].type = value ? 'text' : 'password';
+                            if (formFieldsRef.current && formFieldsRef.current[key]) {
+                              formFieldsRef.current[key]!.type = value ? 'text' : 'password';
                             }
                           }}
                         />
