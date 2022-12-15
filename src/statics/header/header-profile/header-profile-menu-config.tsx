@@ -12,7 +12,7 @@ interface IHeaderProfileMenuConfig {
 
 export const headerProfileMenuConfig: IHeaderProfileMenuConfig[] = [
   {
-    title: 'Log Out',
+    title: 'logOut',
     actionType: 'logout',
     icon: <LogoutIcon />,
   },

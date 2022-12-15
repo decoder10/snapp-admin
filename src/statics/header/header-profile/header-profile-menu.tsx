@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 
+import { tKeys } from 'translations/translation-keys';
+
 import { ListItemIcon } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -41,7 +43,7 @@ const HeaderProfileMenu: FC<IProps> = ({ anchorEl, setAnchorEl }) => {
           <MenuItem onClick={() => handleMenuClose(actionType)} key={title}>
             {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
 
-            {title}
+            {tKeys(title)}
           </MenuItem>
         );
       })}

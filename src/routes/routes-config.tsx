@@ -51,7 +51,7 @@ export type CustomRouteConfig = RouteObject & {
 export const routeConfig: CustomRouteConfig[] = [
   {
     path: '/',
-    title: 'Dashboard',
+    title: 'dashboard',
     element: <Dashboard />,
     permission: ['edit'],
     isMenuItem: true,
@@ -59,7 +59,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/admin-users',
-    title: 'Admin Users',
+    title: 'adminUsers',
     element: <AdminUsers />,
     permission: ['edit'],
     isMenuItem: true,
@@ -67,7 +67,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/permissions',
-    title: 'Role/permission',
+    title: 'rolePermission',
     element: <Permissions />,
     permission: ['edit'],
     isMenuItem: true,
@@ -75,7 +75,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/customer',
-    title: 'Customers',
+    title: 'customers',
     element: <Customer />,
     permission: ['edit'],
     isMenuItem: true,
@@ -83,7 +83,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/merchants',
-    title: 'Merchants',
+    title: 'merchants',
     element: <Merchant />,
     permission: ['edit'],
     isMenuItem: true,
@@ -91,7 +91,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/service-category',
-    title: 'Translations Category',
+    title: 'translationsCategory',
     element: <ServiceCategory />,
     permission: ['edit'],
     isMenuItem: true,
@@ -99,7 +99,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/service',
-    title: 'Service',
+    title: 'service',
     element: <Service />,
     permission: ['edit'],
     isMenuItem: true,
@@ -107,7 +107,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/categories',
-    title: 'Categories',
+    title: 'categories',
     element: <Categories />,
     permission: ['edit'],
     isMenuItem: true,
@@ -115,7 +115,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/transactions',
-    title: 'Transactions',
+    title: 'transactions',
     element: <Transactions />,
     permission: ['edit'],
     isMenuItem: true,
@@ -123,7 +123,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/payments',
-    title: 'Payments',
+    title: 'payments',
     element: <Payments />,
     permission: ['edit'],
     isMenuItem: true,
@@ -131,7 +131,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/billing',
-    title: 'Billing',
+    title: 'billing',
     element: <Billing />,
     permission: ['edit'],
     isMenuItem: true,
@@ -139,7 +139,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/reports',
-    title: 'Reports',
+    title: 'reports',
     element: <Reports />,
     permission: ['edit'],
     isMenuItem: true,
@@ -147,7 +147,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/documents',
-    title: 'Documents',
+    title: 'documents',
     element: <Documents />,
     permission: ['edit'],
     isMenuItem: true,
@@ -155,7 +155,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/communications',
-    title: 'Communications',
+    title: 'communications',
     element: <Communications />,
     permission: ['edit'],
     isMenuItem: true,
@@ -163,7 +163,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/translations',
-    title: 'Translations',
+    title: 'translations',
     element: <Translations />,
     permission: ['edit'],
     isMenuItem: true,
@@ -171,7 +171,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/help',
-    title: 'Help',
+    title: 'help',
     element: <Help />,
     permission: ['edit'],
     isMenuItem: true,
@@ -179,7 +179,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '/settings',
-    title: 'Settings',
+    title: 'settings',
     element: <Settings />,
     permission: ['edit'],
     isMenuItem: true,
@@ -187,7 +187,7 @@ export const routeConfig: CustomRouteConfig[] = [
   },
   {
     path: '*',
-    title: 'Not Found',
+    title: 'notFound',
     element: <NotFound />,
     isMenuItem: false,
   },
@@ -196,7 +196,7 @@ export const routeConfig: CustomRouteConfig[] = [
 export const signInRouteConfig: Omit<CustomRouteConfig, 'isMenuItem'>[] = [
   {
     path: 'sign-in',
-    title: 'Sign In',
+    title: 'Sign-In',
     element: <SignIn />,
   },
   {
