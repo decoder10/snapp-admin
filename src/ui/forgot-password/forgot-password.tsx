@@ -56,6 +56,11 @@ const ForgotPassword: FC = () => {
     }
   };
 
+  const resend = () => {
+    setForgotPasswordData({ ...forgotPasswordData, ...{ otp: '' } });
+    // to be continued
+  };
+
   return (
     <section className="forgotPasswordWrapper">
       <div className="forgotPasswordContainer">
@@ -72,9 +77,10 @@ const ForgotPassword: FC = () => {
             containerStyle="otpContainer"
             hasErrored={!!errors.otp}
             errorStyle={{ border: '1px solid red' }}
+            shouldAutoFocus
           />
 
-          <ResendTimer />
+          <ResendTimer resend={resend} />
 
           {forgotPasswordFormConfig.map(item => {
             const { key, label, type, rightIcon } = item;
