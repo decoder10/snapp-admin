@@ -1,7 +1,8 @@
 import { t } from './translator';
 
-export const tKeys = (key: string | number) => {
+export const tKeys = (key: string | number, variables?: (string | number)[]) => {
   const tr: { [key: string | number]: string } = {
+    signInPasswordDigitsRange: '[signInPasswordDigitsRange]',
     // aside
     dashboard: '[dashboard]',
     adminUsers: '[adminUsers]',
@@ -44,5 +45,5 @@ export const tKeys = (key: string | number) => {
     return `[${key}]`;
   }
 
-  return t(tr[key] || `[${key}]`);
+  return t(tr[key] || `[${key}]`, variables);
 };
