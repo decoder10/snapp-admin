@@ -1,11 +1,14 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useRef, useState } from 'react';
 
-import { Button, createTheme, TextField, ThemeProvider } from '@mui/material';
+import { tKeys } from 'translations/translation-keys';
+
+import { Button, createTheme, InputAdornment, TextField, ThemeProvider } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import _ from 'lodash';
 import OtpInput from 'react-otp-input';
 import { useNavigate } from 'react-router-dom';
 
+import Eye from 'core/eye/eye';
 import ResendTimer from 'core/resend-timer/resend-timer';
 
 import { forgotPasswordFormConfig } from 'ui/forgot-password/forgot-password-config';
@@ -19,6 +22,11 @@ const darkTheme = createTheme({
 
 const ForgotPassword: FC = () => {
   const navigation = useNavigate();
+  const forgotPasswordRef = useRef<IRefForgotPasswordFormFields>({
+    password: null,
+    confirmPassword: null,
+    otp: null,
+  });
   const [forgotPasswordData, setForgotPasswordData] = useState<IForgotPasswordFormFields>({
     password: '',
     confirmPassword: '',
@@ -69,9 +77,10 @@ const ForgotPassword: FC = () => {
           <ResendTimer />
 
           {forgotPasswordFormConfig.map(item => {
-            const { key, label, type } = item;
+            const { key, label, type, rightIcon } = item;
             return (
               <TextField
+                inputRef={ref => (forgotPasswordRef.current[key] = ref)}
                 type={type}
                 className="forgotPasswordInput"
                 key={key}
@@ -81,11 +90,24 @@ const ForgotPassword: FC = () => {
                 name={key}
                 error={!!errors[key]}
                 helperText={errors[key]}
+                InputProps={{
+                  endAdornment: rightIcon ? (
+                    <InputAdornment position="end">
+                      <Eye
+                        makeVisible={value => {
+                          if (forgotPasswordRef.current && forgotPasswordRef.current[key]) {
+                            forgotPasswordRef.current[key]!.type = value ? 'text' : 'password';
+                          }
+                        }}
+                      />
+                    </InputAdornment>
+                  ) : null,
+                }}
               />
             );
           })}
           <Button className="forgotConfirmButton" variant="contained" onClick={confirm}>
-            Confirm
+            {tKeys('confirm')}
           </Button>
         </ThemeProvider>
       </div>

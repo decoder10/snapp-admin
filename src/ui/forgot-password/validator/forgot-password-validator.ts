@@ -1,3 +1,5 @@
+import { tKeys } from 'translations/translation-keys';
+
 import { Validator } from 'fluentvalidation-ts';
 
 export class ForgotPasswordValidator extends Validator<IForgotPasswordFormFields> {
@@ -9,7 +11,7 @@ export class ForgotPasswordValidator extends Validator<IForgotPasswordFormFields
 
     this.ruleFor('password')
       .notEmpty()
-      .withMessage('Please enter your password')
+      .withMessage(tKeys('noEmpty'))
       .minLength(this.minLength)
       .withMessage(`Pass must be ${this.minLength} - ${this.maxLength} digits`)
       .maxLength(this.maxLength)
@@ -19,7 +21,7 @@ export class ForgotPasswordValidator extends Validator<IForgotPasswordFormFields
       .must((value, field) => {
         return value === field.password;
       })
-      .withMessage('must be same');
+      .withMessage(tKeys('mustBeSame'));
 
     this.ruleFor('otp').notEmpty().minLength(4);
   }

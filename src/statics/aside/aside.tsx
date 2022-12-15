@@ -1,5 +1,7 @@
 import { FC, memo } from 'react';
 
+import { tKeys } from 'translations/translation-keys';
+
 import { useTheme } from '@mui/material';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -44,7 +46,7 @@ const Aside: FC = () => {
                 >
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText
-                    primary={title}
+                    primary={tKeys(title)}
                     className={`${menuState ? '' : 'visible-hidden'}`}
                     style={{ color: 'white' }}
                   />

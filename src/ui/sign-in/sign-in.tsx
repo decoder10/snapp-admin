@@ -1,5 +1,7 @@
 import { ChangeEvent, FC, useRef, useState } from 'react';
 
+import { tKeys } from 'translations/translation-keys';
+
 import { Button, createTheme, InputAdornment, TextField, ThemeProvider } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
@@ -90,7 +92,7 @@ const SignIn: FC = () => {
           </Link>
 
           <Button variant="contained" onClick={() => signIn(userData)} className="submit-button">
-            Login
+            {tKeys('login')}
           </Button>
         </ThemeProvider>
       </div>
