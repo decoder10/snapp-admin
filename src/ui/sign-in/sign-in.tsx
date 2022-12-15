@@ -47,7 +47,6 @@ const SignIn: FC = () => {
           <Typography variant="h4" align="center" marginBottom={2} style={{ color: 'white' }}>
             Sign In
           </Typography>
-
           <form>
             {signInFormConfig.map(item => {
               const { key, label, type, rightIcon } = item;
@@ -84,11 +83,9 @@ const SignIn: FC = () => {
               );
             })}
           </form>
-
           <Link className="forgotPassword" to={'/forgot-password'}>
             Forgot Password?
           </Link>
-
           <Button variant="contained" onClick={() => signIn(userData)} className="submit-button">
             Login
           </Button>
