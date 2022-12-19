@@ -43,7 +43,7 @@ const SignIn: FC = () => {
   };
 
   return (
-    <section className="signInWrapper">
+    <section className="signIn-wrapper">
       <div className="container">
         <ThemeProvider theme={darkTheme}>
           <Typography variant="h4" align="center" marginBottom={2} style={{ color: 'white' }}>
@@ -85,7 +85,7 @@ const SignIn: FC = () => {
               );
             })}
           </form>
-          <Link className="forgotPassword" to={'/forgot-password'}>
+          <Link className="forgot-password" to={'/forgot-password'}>
             Forgot Password?
           </Link>
           <Button variant="contained" onClick={() => signIn(userData)} className="submit-button">

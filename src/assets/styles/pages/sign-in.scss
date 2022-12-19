@@ -1,4 +1,4 @@
-.signInWrapper {
+.signIn-wrapper {
 	@extend .fullSize;
 	display: block;
 	background: #2d2d2d;
@@ -36,7 +36,7 @@
 			margin-top: 10px;
 		}
 
-		.forgotPassword {
+		.forgot-password {
 			color: rgba(255, 255, 255, 0.7);
 			text-align: right;
 			margin-top: 5px;

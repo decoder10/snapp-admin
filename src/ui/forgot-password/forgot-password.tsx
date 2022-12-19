@@ -57,8 +57,8 @@ const ForgotPassword: FC = () => {
   };
 
   return (
-    <section className="forgotPasswordWrapper">
-      <div className="forgotPasswordContainer">
+    <section className="forgot-password-wrapper">
+      <div className="forgot-password-container">
         <ThemeProvider theme={darkTheme}>
           <Typography variant="h4" align="center" marginBottom={2} style={{ color: '#FFFFFFB2' }}>
             Reset Password
@@ -106,7 +106,7 @@ const ForgotPassword: FC = () => {
               />
             );
           })}
-          <Button className="forgotConfirmButton" variant="contained" onClick={confirm}>
+          <Button className="forgot-confirm-button" variant="contained" onClick={confirm}>
             {tKeys('confirm')}
           </Button>
         </ThemeProvider>
