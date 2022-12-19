@@ -3,7 +3,7 @@ import axios from 'axios';
 import { rootReducer } from 'reducers';
 import logger from 'redux-logger';
 
-import useLocalStorage from 'hooks/use-local-storage';
+import { useLocalStorage } from 'hooks/use-local-storage';
 
 import { loadAuthState, saveAuthState } from 'configs/auth-storage';
 

@@ -1,8 +1,8 @@
-const useLocalStorage: () => [
+export const useLocalStorage = (): [
   (name: string, state: Undefined<object>) => void,
   (name: string) => void,
   (name: string) => object,
-] = () => {
+] => {
   const addLocalStorage = (name: string, state: Undefined<object>) => {
     const serializedState = JSON.stringify(state);
 
@@ -17,5 +17,3 @@ const useLocalStorage: () => [
 
   return [addLocalStorage, removeLocalStorage, getLocalStorage];
 };
-
-export default useLocalStorage;
