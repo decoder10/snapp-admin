@@ -10,7 +10,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from 'configs/hooks';
+import { useAppSelector } from 'hooks/hooks';
 
 import { routeConfig } from 'routes/routes-config';
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import _ from 'lodash';
 
-import { useAppDispatch } from 'configs/hooks';
+import { useAppDispatch } from 'hooks/hooks';
 
 import { userAuthenticate } from 'reducers/authentication';
 

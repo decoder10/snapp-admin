@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-import { useAppDispatch, useAppSelector } from 'configs/hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
 import { getMenuState, setMenuStateAction } from 'reducers/menu-state';
 

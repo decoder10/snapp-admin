@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 
 import App from 'App';
 
-import { useAppDispatch, useAppSelector } from 'configs/hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
 import { MemorizedSignInRoute } from 'routes/sign-in-route';
 

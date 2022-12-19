@@ -1,5 +1,3 @@
-import { AxiosResponse } from 'axios';
-
 import { IAuthenticationState } from 'reducers/authentication';
 
 export const loadAuthState = () => {
@@ -31,24 +29,6 @@ export const saveAuthState = ({ authenticationStore }: { authenticationStore: IA
   }
 };
 
-export const emptyState = () => {
+export const emptyAuthState = () => {
   localStorage.removeItem('authState');
 };
-
-export const saveLocalStorage = (
-  name: string,
-  state: Record<string, unknown> | string | AxiosResponse<IKeyValueObject>,
-) => {
-  const serializedState = JSON.stringify(state);
-
-  localStorage.setItem(name, serializedState);
-};
-
-export const loadLocalStorage = (name: string) => JSON.parse(localStorage.getItem(name) || '{}');
-
-export const saveSessionStorage = (name: string, state: Record<string, unknown> | string) => {
-  const serializedState = JSON.stringify(state);
-  window.sessionStorage.setItem(name, serializedState);
-};
-
-export const loadSessionStorage = (name: string) => JSON.parse(window.sessionStorage.getItem(name) || '{}');

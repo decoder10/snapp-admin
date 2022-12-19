@@ -1,5 +1,3 @@
-import { loadLocalStorage } from 'configs/local-storage';
-
 // saveLocalStorage('translations', {
 //   signInPasswordDigitsRange: 'Pass must be ${this.minLength} - ${this.maxLength} digits',
 // });
@@ -7,7 +5,7 @@ import { loadLocalStorage } from 'configs/local-storage';
 const translator = (key: string, variables?: (string | number)[]) => {
   const regex = /\[[a-zA-Z\d\s ,-_.*$%^#@&!~`]+]/g;
 
-  const languageDictionary = loadLocalStorage('translations') || {};
+  const languageDictionary = JSON.parse(localStorage.getItem('translations') || '{}');
 
   const _t = (key: string) => {
     const lowerCaseKey: string = key.toLowerCase();

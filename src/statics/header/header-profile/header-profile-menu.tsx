@@ -6,8 +6,9 @@ import { ListItemIcon } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import { useAppDispatch } from 'configs/hooks';
-import { emptyState } from 'configs/local-storage';
+import { useAppDispatch } from 'hooks/hooks';
+
+import { emptyAuthState } from 'configs/auth-storage';
 
 import { headerProfileMenuConfig } from 'statics/header/header-profile/header-profile-menu-config';
 
@@ -26,7 +27,7 @@ const HeaderProfileMenu: FC<IProps> = ({ anchorEl, setAnchorEl }) => {
 
     switch (action) {
       case 'logout':
-        emptyState();
+        emptyAuthState();
         dispatch({ type: 'LOGOUT' });
         break;
       default:
