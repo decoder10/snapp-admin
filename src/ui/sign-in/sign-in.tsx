@@ -2,39 +2,26 @@ import { ChangeEvent, FC, useRef, useState } from 'react';
 
 import { tKeys } from 'translations/translation-keys';
 
-import {
-  Button,
-  Checkbox,
-  createTheme,
-  FormControlLabel,
-  InputAdornment,
-  TextField,
-  ThemeProvider,
-} from '@mui/material';
-import Typography from '@mui/material/Typography';
+import { Button, Checkbox, FormControlLabel, InputAdornment, TextField, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import Eye from 'core/eye/eye';
 
+import { MemoizedFormLogo } from 'statics/form-logo/form-logo';
+
 import { useSignIn } from 'ui/sign-in/hook/use-sign-in';
 import { signInFormConfig } from 'ui/sign-in/sign-in-form-config';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
-
 const SignIn: FC = () => {
   const formFieldsRef = useRef<IRefAuthFormFields>({
-    userName: null,
+    email: null,
     password: null,
   });
 
   const [signIn, errors] = useSignIn();
 
   const [userData, setUserData] = useState<IAuthFormFields>({
-    userName: '',
+    email: '',
     password: '',
   });
 
@@ -51,12 +38,15 @@ const SignIn: FC = () => {
   };
 
   return (
-    <section className="signIn-wrapper">
-      <div className="container">
-        <ThemeProvider theme={darkTheme}>
-          <Typography variant="h4" align="center" marginBottom={2} style={{ color: 'white' }}>
-            Sign In
+    <section className="sign-in-wrapper">
+      <div className="sign-in-container">
+        <MemoizedFormLogo />
+
+        <div className="form-wrapper">
+          <Typography variant="h4" align="center" className="sign-in-login-title">
+            Login
           </Typography>
+
           <form>
             {signInFormConfig.map(item => {
               const { key, label, type, rightIcon } = item;
@@ -67,10 +57,11 @@ const SignIn: FC = () => {
                   key={key}
                   name={key}
                   onChange={signInFormChangeHandler}
+                  size="small"
                   value={userData[key]}
                   label={label}
                   variant="outlined"
-                  className="input"
+                  className="sign-in-input"
                   error={!!errors[key]}
                   helperText={errors[key]}
                   type={type}
@@ -93,15 +84,18 @@ const SignIn: FC = () => {
               );
             })}
           </form>
-          <Link className="forgot-password" to={'/forgot-password'}>
-            Forgot Password?
-          </Link>
 
-          <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+          <div className="link-checkbox-wrapper">
+            <FormControlLabel control={<Checkbox defaultChecked />} label="Remember me" />
+            <Link className="forgot-password" to={'/forgot-password'}>
+              Forgot Password?
+            </Link>
+          </div>
+
           <Button variant="contained" onClick={() => signIn(userData)} className="submit-button">
             {tKeys('login')}
           </Button>
-        </ThemeProvider>
+        </div>
       </div>
     </section>
   );

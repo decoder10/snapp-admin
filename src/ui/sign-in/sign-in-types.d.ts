@@ -1,9 +1,9 @@
 interface IAuthFormFields {
-  userName: string;
+  email: string;
   password: string;
 }
 
 interface IRefAuthFormFields {
-  userName: HTMLInputElement | null;
+  email: HTMLInputElement | null;
   password: HTMLInputElement | null;
 }

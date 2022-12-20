@@ -7,9 +7,9 @@ interface ISignInConfig {
 
 export const signInFormConfig: ISignInConfig[] = [
   {
-    key: 'userName',
-    label: 'UserName',
-    type: 'text',
+    key: 'email',
+    label: 'Email',
+    type: 'email',
     rightIcon: false,
   },
   {

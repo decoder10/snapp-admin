@@ -9,7 +9,7 @@ export class SignInValidator extends Validator<IAuthFormFields> {
   constructor() {
     super();
 
-    this.ruleFor('userName').notEmpty().withMessage('Please enter your userName');
+    this.ruleFor('email').notEmpty().withMessage('Please enter your userName');
 
     this.ruleFor('password')
       .minLength(this.minLength)
