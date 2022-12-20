@@ -1,8 +1,12 @@
 import { IAuthenticationState } from 'reducers/authentication';
 
 export const loadAuthState = () => {
+  const isRememberAuth = JSON.parse(localStorage.getItem('rememberMe') || '{}').rememberMe;
+
   try {
-    const serializedState = localStorage.getItem('authState');
+    const serializedState = isRememberAuth
+      ? localStorage.getItem('authState')
+      : window.sessionStorage.getItem('authState');
 
     if (serializedState === null) {
       return undefined;
@@ -14,6 +18,8 @@ export const loadAuthState = () => {
 };
 
 export const saveAuthState = ({ authenticationStore }: { authenticationStore: IAuthenticationState }) => {
+  const isRememberAuth = JSON.parse(localStorage.getItem('rememberMe') || '{}').rememberMe;
+
   try {
     const { authentication } = authenticationStore;
 
@@ -22,7 +28,11 @@ export const saveAuthState = ({ authenticationStore }: { authenticationStore: IA
         authenticationStore,
       });
 
-      localStorage.setItem('authState', serializedState);
+      if (isRememberAuth) {
+        localStorage.setItem('authState', serializedState);
+      } else {
+        window.sessionStorage.setItem('authState', serializedState);
+      }
     }
   } catch (e) {
     // ignore errors
@@ -31,4 +41,5 @@ export const saveAuthState = ({ authenticationStore }: { authenticationStore: IA
 
 export const emptyAuthState = () => {
   localStorage.removeItem('authState');
+  window.sessionStorage.removeItem('authState');
 };

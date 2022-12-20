@@ -1,7 +1,7 @@
-export const useSessionStorage = (): [
-  (name: string, state: Undefined<object>) => void,
-  (name: string) => void,
-  (name: string) => object,
+export const useSessionStorage = (): readonly [
+  addSessionStorage: (name: string, state: Undefined<object>) => void,
+  getSessionStorage: (name: string) => Record<string, unknown>,
+  removeSessionStorage: (name: string) => void,
 ] => {
   const addSessionStorage = (name: string, state: Undefined<object>) => {
     const serializedState = JSON.stringify(state);
@@ -15,5 +15,5 @@ export const useSessionStorage = (): [
 
   const getSessionStorage = (name: string) => JSON.parse(window.sessionStorage.getItem(name) || '{}');
 
-  return [addSessionStorage, removeSessionStorage, getSessionStorage];
+  return [addSessionStorage, getSessionStorage, removeSessionStorage] as const;
 };

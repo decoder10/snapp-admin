@@ -6,9 +6,7 @@ import { ListItemIcon } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import { useAppDispatch } from 'hooks/hooks';
-
-import { emptyAuthState } from 'configs/auth-storage';
+import { useLogOut } from 'hooks/use-logout';
 
 import { headerProfileMenuConfig } from 'statics/header/header-profile/header-profile-menu-config';
 
@@ -18,7 +16,7 @@ interface IProps {
 }
 
 const HeaderProfileMenu: FC<IProps> = ({ anchorEl, setAnchorEl }) => {
-  const dispatch = useAppDispatch();
+  const [logOut] = useLogOut();
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -27,8 +25,7 @@ const HeaderProfileMenu: FC<IProps> = ({ anchorEl, setAnchorEl }) => {
 
     switch (action) {
       case 'logout':
-        emptyAuthState();
-        dispatch({ type: 'LOGOUT' });
+        logOut();
         break;
       default:
         break;
