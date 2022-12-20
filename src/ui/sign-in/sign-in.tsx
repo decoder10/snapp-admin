@@ -1,40 +1,28 @@
-import { ChangeEvent, FC, useRef, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 
 import { tKeys } from 'translations/translation-keys';
 
-import { Button, Checkbox, FormControlLabel, InputAdornment, TextField, Typography } from '@mui/material';
+import { Button, Checkbox, FormControlLabel, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-
-import Eye from 'core/eye/eye';
 
 import { MemoizedFormLogo } from 'statics/form-logo/form-logo';
 
 import { useSignIn } from 'ui/sign-in/hook/use-sign-in';
-import { signInFormConfig } from 'ui/sign-in/sign-in-form-config';
+import SignInForm from 'ui/sign-in/sign-in-form';
 
 const SignIn: FC = () => {
-  const formFieldsRef = useRef<IRefAuthFormFields>({
-    email: null,
-    password: null,
-  });
-
   const [signIn, errors] = useSignIn();
 
-  const [userData, setUserData] = useState<IAuthFormFields>({
+  const userDataRef = useRef<IAuthFormFields>({
     email: '',
     password: '',
   });
+
   const [rememberMe, setRememberMe] = useState<boolean>(false);
-
-  const signInFormChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setUserData({ ...userData, ...{ [name]: value } });
-  };
 
   const handleKeyDown = (event: { key: string }) => {
     if (event.key === 'Enter') {
-      signIn(userData, rememberMe);
+      signIn(userDataRef.current, rememberMe);
     }
   };
 
@@ -48,43 +36,7 @@ const SignIn: FC = () => {
             Login
           </Typography>
 
-          <form>
-            {signInFormConfig.map(item => {
-              const { key, label, type, rightIcon } = item;
-
-              return (
-                <TextField
-                  inputRef={ref => (formFieldsRef.current[key] = ref)}
-                  key={key}
-                  name={key}
-                  onChange={signInFormChangeHandler}
-                  size="small"
-                  value={userData[key]}
-                  label={label}
-                  variant="outlined"
-                  className="sign-in-input"
-                  error={!!errors[key]}
-                  helperText={errors[key]}
-                  type={type}
-                  onKeyDown={handleKeyDown}
-                  autoComplete={userData[key]}
-                  InputProps={{
-                    endAdornment: rightIcon ? (
-                      <InputAdornment position="end">
-                        <Eye
-                          makeVisible={value => {
-                            if (formFieldsRef.current && formFieldsRef.current[key]) {
-                              formFieldsRef.current[key]!.type = value ? 'text' : 'password';
-                            }
-                          }}
-                        />
-                      </InputAdornment>
-                    ) : null,
-                  }}
-                />
-              );
-            })}
-          </form>
+          <SignInForm errors={errors} onEnter={handleKeyDown} onChange={data => (userDataRef.current = data)} />
 
           <div className="link-checkbox-wrapper">
             <FormControlLabel
@@ -96,7 +48,7 @@ const SignIn: FC = () => {
             </Link>
           </div>
 
-          <Button variant="contained" onClick={() => signIn(userData, rememberMe)} className="submit-button">
+          <Button variant="contained" onClick={() => signIn(userDataRef.current, rememberMe)} className="submit-button">
             {tKeys('login')}
           </Button>
         </div>
