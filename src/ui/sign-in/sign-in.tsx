@@ -37,6 +37,7 @@ const SignIn: FC = () => {
     userName: '',
     password: '',
   });
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
 
   const signInFormChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -46,7 +47,7 @@ const SignIn: FC = () => {
 
   const handleKeyDown = (event: { key: string }) => {
     if (event.key === 'Enter') {
-      signIn(userData);
+      signIn(userData, rememberMe);
     }
   };
 
@@ -97,8 +98,11 @@ const SignIn: FC = () => {
             Forgot Password?
           </Link>
 
-          <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
-          <Button variant="contained" onClick={() => signIn(userData)} className="submit-button">
+          <FormControlLabel
+            control={<Checkbox checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />}
+            label="Label"
+          />
+          <Button variant="contained" onClick={() => signIn(userData, rememberMe)} className="submit-button">
             {tKeys('login')}
           </Button>
         </ThemeProvider>

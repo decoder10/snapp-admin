@@ -1,7 +1,7 @@
-export const useLocalStorage = (): [
-  (name: string, state: Undefined<object>) => void,
-  (name: string) => void,
-  (name: string) => object,
+export const useLocalStorage = (): readonly [
+  addLocalStorage: (name: string, state: Undefined<object>) => void,
+  getLocalStorage: (name: string) => Record<string, unknown>,
+  removeLocalStorage: (name: string) => void,
 ] => {
   const addLocalStorage = (name: string, state: Undefined<object>) => {
     const serializedState = JSON.stringify(state);
@@ -15,5 +15,5 @@ export const useLocalStorage = (): [
 
   const getLocalStorage = (name: string) => JSON.parse(localStorage.getItem(name) || '{}');
 
-  return [addLocalStorage, removeLocalStorage, getLocalStorage];
+  return [addLocalStorage, getLocalStorage, removeLocalStorage] as const;
 };

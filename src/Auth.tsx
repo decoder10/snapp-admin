@@ -13,9 +13,7 @@ import { MemoizedMainLoading } from 'statics/statics';
 
 const Auth: FC = () => {
   const dispatch = useAppDispatch();
-
   const isLoading = useAppSelector(getRootLoaderState);
-
   const isAuth = useAppSelector(getIsAuth);
 
   useEffect(() => {

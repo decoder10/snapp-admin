@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 export const useTimer = (
   minutes: number,
   seconds: number,
-): [number, number, (minutes: number, seconds: number) => void] => {
+): readonly [number, number, (minutes: number, seconds: number) => void] => {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const [timerMinutes, setMinutes] = useState<number>(minutes);
@@ -32,5 +32,5 @@ export const useTimer = (
     setSeconds(seconds);
   }
 
-  return [timerMinutes, timerSeconds, resetTimer];
+  return [timerMinutes, timerSeconds, resetTimer] as const;
 };
