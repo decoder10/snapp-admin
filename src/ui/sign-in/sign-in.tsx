@@ -32,7 +32,14 @@ const SignIn: FC = () => {
         <MemoizedFormLogo />
 
         <div className="form-wrapper">
-          <Typography variant="h4" align="center" className="sign-in-login-title">
+          <Typography
+            align="center"
+            variant="body1"
+            fontSize="24px"
+            fontWeight="700"
+            lineHeight="33px"
+            marginBottom="64px"
+          >
             Login
           </Typography>
 
@@ -48,7 +55,7 @@ const SignIn: FC = () => {
             </Link>
           </div>
 
-          <Button variant="contained" onClick={() => signIn(userDataRef.current, rememberMe)} className="submit-button">
+          <Button variant="contained" onClick={() => signIn(userDataRef.current, rememberMe)}>
             {tKeys('login')}
           </Button>
         </div>

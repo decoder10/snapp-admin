@@ -1,16 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import { MemoizedFormLogo } from 'statics/form-logo/form-logo';
 
 import ForgotPasswordEmail from 'ui/forgot-password/forgot-password-email';
+import Otp from 'ui/forgot-password/otp';
 
 const ForgotPassword: FC = () => {
+  const [otpVIew, setOtpView] = useState<boolean>(false);
   return (
     <section className="forgot-password-wrapper">
       <div className="forgot-password-container">
         <MemoizedFormLogo />
-        {/* <Otp /> */}
-        <ForgotPasswordEmail />
+        {otpVIew ? <Otp /> : <ForgotPasswordEmail changeStep={setOtpView} />}
       </div>
     </section>
   );
