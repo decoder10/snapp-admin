@@ -1,4 +1,24 @@
+import React from 'react';
+
 import { createTheme } from '@mui/material';
+
+declare module '@mui/material/styles' {
+  interface TypographyVariants {
+    body3: React.CSSProperties;
+  }
+
+  // allow configuration using `createTheme`
+  interface TypographyVariantsOptions {
+    body3?: React.CSSProperties;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    body3: true;
+  }
+}
 
 export const mainLightTheme = createTheme({
   palette: {
@@ -25,6 +45,10 @@ export const mainLightTheme = createTheme({
     },
     body2: {
       color: '#333333',
+    },
+    body3: {
+      color: '#333333',
+      opacity: 0.7,
     },
   },
 });

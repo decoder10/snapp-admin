@@ -56,7 +56,7 @@ const Otp: FC = () => {
             fontWeight="400"
             lineHeight="23px"
             marginBottom="4px"
-            variant="body2"
+            variant="body3"
           >
             We've sent you an OTP code to
           </Typography>
