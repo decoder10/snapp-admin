@@ -1,0 +1,3 @@
+interface IOtp {
+  otp: string;
+}

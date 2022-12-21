@@ -22,7 +22,5 @@ export class ForgotPasswordValidator extends Validator<IForgotPasswordFormFields
         return value === field.password;
       })
       .withMessage(tKeys('mustBeSame'));
-
-    this.ruleFor('otp').notEmpty().minLength(4);
   }
 }

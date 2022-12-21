@@ -8,13 +8,13 @@ interface ISignInConfig {
 export const signInFormConfig: ISignInConfig[] = [
   {
     key: 'email',
-    label: 'Email',
+    label: 'email',
     type: 'email',
     rightIcon: false,
   },
   {
     key: 'password',
-    label: 'Password',
+    label: 'password',
     type: 'password',
     rightIcon: true,
   },

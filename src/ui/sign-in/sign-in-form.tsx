@@ -1,5 +1,7 @@
 import React, { ChangeEvent, FC, useRef, useState } from 'react';
 
+import { tKeys } from 'translations/translation-keys';
+
 import { InputAdornment, TextField } from '@mui/material';
 
 import Eye from 'core/eye/eye';
@@ -45,7 +47,7 @@ const SignInForm: FC<IProps> = ({ errors, onEnter, onChange }) => {
             onChange={signInFormChangeHandler}
             size="small"
             value={userData[key]}
-            label={label}
+            label={tKeys(label)}
             variant="outlined"
             className="sign-in-input"
             error={!!errors[key]}

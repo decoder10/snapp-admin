@@ -1,0 +1,76 @@
+.otp-wrapper {
+	@extend .fullSize;
+	@extend .flex-center;
+	background-color: #EFF1F2;
+
+	.otp-container {
+		display: flex;
+		flex-direction: row;
+		width: 736px;
+		height: 446px;
+		border-radius: 16px;
+
+		.otp-content-wrapper {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding: 8px 40px 0;
+			width: 57%;
+			height: 100%;
+			border-radius: 0 16px 16px 0;
+			background-color: #ffffff;
+
+			.otp-title-text {
+				font-size: 20px;
+				font-weight: 500;
+				line-height: 32px;
+				color: #333333;
+				margin-bottom: 8px;
+			}
+			.otp-second-text {
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 23px;
+				color: #333333;
+				opacity: 0.7;
+				margin-bottom: 8px;
+			}
+			.otp-phoneNumber-text {
+				font-size: 16px;
+				font-weight: 700;
+				line-height: 27px;
+				color: #333333;
+				margin-bottom: 52px;
+			}
+
+
+			.otp-container-style {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+
+				.otp-input {
+					width: 64px !important;
+					height: 64px;
+					font-size: 24px;
+					font-weight: 600;
+					line-height: 36px;
+					font-family: Inter, sans-serif;
+					color: #2f8dd9;
+					border: 1px solid #333333;
+					opacity: 0.5;
+					margin-right: 12px;
+					background-color: #FFFFFFB2;
+					border-radius: 16px;
+				}
+			}
+
+
+			.otp-button {
+
+			}
+		}
+
+
+	}
+}

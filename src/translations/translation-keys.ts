@@ -28,6 +28,8 @@ export const tKeys = (key: string | number, variables?: (string | number)[]) => 
 
     // sign-in
     login: '[login]',
+    password: '[password]',
+    email: '[email]',
 
     // forgot-password
     confirm: '[confirm]',
