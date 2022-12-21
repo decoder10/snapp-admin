@@ -19,7 +19,7 @@ export const mainLightTheme = createTheme({
       default: '#EFF1F2',
     },
     text: {
-      primary: '#0000',
+      primary: '#000',
       secondary: '#333333',
       disabled: '#606C80',
     },
