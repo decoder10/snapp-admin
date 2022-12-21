@@ -1,7 +1,7 @@
 .sign-in-wrapper {
 	@extend .fullSize;
 	@extend .flex-center;
-	background-color: #EFF1F2;
+	background-color: var(--mui-palette-background-default);
 
 	.sign-in-container {
 		display: flex;
@@ -18,14 +18,13 @@
 			width: 57%;
 			height: 100%;
 			border-radius: 0 16px 16px 0;
-			background-color: #ffffff;
+			background-color: var(--mui-palette-background-paper);
 
 			.sign-in-login-title {
 				font-size: 24px;
 				font-weight: 700;
 				line-height: 33px;
-
-				color: #000000;
+				color: var(--mui-palette-text-primary);
 				margin-bottom: 64px;
 			}
 
@@ -49,11 +48,10 @@
 					font-size: 14px;
 					font-weight: 600;
 					line-height: 19px;
-					color: #407AFF;
+					color: var(--mui-palette-primary-main);
 					text-decoration: none;
 				}
 			}
-
 
 			.submit-button {
 				font-weight: bold;
