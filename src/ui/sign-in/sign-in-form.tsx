@@ -12,9 +12,10 @@ interface IProps {
   errors: Partial<IAuthFormFields>;
   onEnter(event: { key: string }): void;
   onChange(finalData: IAuthFormFields): void;
+  updateErrors(errors: Partial<IAuthFormFields>): void;
 }
 
-const SignInForm: FC<IProps> = ({ errors, onEnter, onChange }) => {
+const SignInForm: FC<IProps> = ({ errors, onEnter, onChange, updateErrors }) => {
   const [userData, setUserData] = useState<IAuthFormFields>({
     email: '',
     password: '',
@@ -30,6 +31,9 @@ const SignInForm: FC<IProps> = ({ errors, onEnter, onChange }) => {
 
     const finalData = { ...userData, ...{ [name]: value } };
 
+    delete errors[name as TKeyOf<Partial<IAuthFormFields>>];
+
+    updateErrors(errors);
     setUserData(finalData);
     onChange(finalData);
   };
@@ -47,7 +51,6 @@ const SignInForm: FC<IProps> = ({ errors, onEnter, onChange }) => {
             name={key}
             onChange={signInFormChangeHandler}
             size="small"
-            value={userData[key]}
             label={tKeys(label)}
             variant="outlined"
             className="sign-in-input"
@@ -55,7 +58,7 @@ const SignInForm: FC<IProps> = ({ errors, onEnter, onChange }) => {
             helperText={errors[key]}
             type={type}
             onKeyDown={onEnter}
-            autoComplete={key}
+            autoComplete={userData[key]}
             InputProps={{
               endAdornment: rightIcon ? (
                 <InputAdornment position="end">

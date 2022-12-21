@@ -13,8 +13,8 @@ export class SignInValidator extends Validator<IAuthFormFields> {
 
     this.ruleFor('password')
       .minLength(this.minLength)
-      .withMessage(tKeys('signInPasswordDigitsRange', [this.minLength, this.maxLength]))
+      .withMessage(tKeys('signInPasswordMinimum', [this.minLength]))
       .maxLength(this.maxLength)
-      .withMessage(`Pass must be ${this.minLength} - ${this.maxLength} digits`);
+      .withMessage(tKeys('signInPasswordMaximum', [this.maxLength]));
   }
 }

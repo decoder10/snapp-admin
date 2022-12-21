@@ -11,7 +11,7 @@ import { useSignIn } from 'ui/sign-in/hook/use-sign-in';
 import SignInForm from 'ui/sign-in/sign-in-form';
 
 const SignIn: FC = () => {
-  const [signIn, errors] = useSignIn();
+  const [signIn, errors, setErrors] = useSignIn();
 
   const userDataRef = useRef<IAuthFormFields>({
     email: '',
@@ -33,18 +33,23 @@ const SignIn: FC = () => {
 
         <div className="form-wrapper">
           <Typography variant="h4" align="center" className="sign-in-login-title">
-            Login
+            {tKeys('login')}
           </Typography>
 
-          <SignInForm errors={errors} onEnter={handleKeyDown} onChange={data => (userDataRef.current = data)} />
+          <SignInForm
+            errors={errors}
+            onEnter={handleKeyDown}
+            onChange={data => (userDataRef.current = data)}
+            updateErrors={setErrors}
+          />
 
           <div className="link-checkbox-wrapper">
             <FormControlLabel
               control={<Checkbox checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />}
-              label="Remember me"
+              label={tKeys('rememberMe')}
             />
             <Link className="forgot-password" to={'/forgot-password'}>
-              Forgot Password?
+              {tKeys('forgotPassword')}
             </Link>
           </div>
 

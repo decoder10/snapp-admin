@@ -2,7 +2,11 @@ import { t } from './translator';
 
 export const tKeys = (key: string | number, variables?: (string | number)[]) => {
   const tr: { [key: string | number]: string } = {
-    signInPasswordDigitsRange: '[signInPasswordDigitsRange]',
+    // ====================== errors =======================================
+
+    signInPasswordMinimum: '[signInPasswordMinimum]',
+    signInPasswordMaximum: '[signInPasswordMaximum]',
+
     // aside
     dashboard: '[dashboard]',
     adminUsers: '[adminUsers]',
@@ -28,6 +32,8 @@ export const tKeys = (key: string | number, variables?: (string | number)[]) => 
 
     // sign-in
     login: '[login]',
+    forgotPassword: '[forgotPassword]',
+    rememberMe: '[rememberMe]',
     password: '[password]',
     email: '[email]',
 
