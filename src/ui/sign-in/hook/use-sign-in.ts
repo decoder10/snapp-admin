@@ -10,8 +10,11 @@ import { userAuthenticate } from 'reducers/authentication';
 import { SignInValidator } from 'ui/sign-in/validator/sign-in-validator';
 
 export const useSignIn = (): readonly [
-  signIn: (userData: IAuthFormFields, rememberMe: boolean) => void,
+  signIn: (userData: IAuthFormFields, rememberMe: boolean) => Promise<void>,
   errors: Partial<IAuthFormFields>,
+  setErrors: (
+    value: ((prevState: Partial<IAuthFormFields>) => Partial<IAuthFormFields>) | Partial<IAuthFormFields>,
+  ) => void,
 ] => {
   const dispatch = useAppDispatch();
 
@@ -32,5 +35,5 @@ export const useSignIn = (): readonly [
     }
   };
 
-  return [signIn, errors] as const;
+  return [signIn, errors, setErrors] as const;
 };
