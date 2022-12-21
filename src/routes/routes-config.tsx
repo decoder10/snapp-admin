@@ -29,6 +29,7 @@ import Documents from 'ui/documents/documents';
 import ForgotPassword from 'ui/forgot-password/forgot-password';
 import Help from 'ui/help/help';
 import Merchant from 'ui/merchant/merchant';
+import NewPassword from 'ui/new-password/new-password';
 import NotFound from 'ui/not-found/not-found';
 import Payments from 'ui/payments/payments';
 import Permissions from 'ui/permissions/permissions';
@@ -203,6 +204,11 @@ export const signInRouteConfig: Omit<CustomRouteConfig, 'isMenuItem'>[] = [
     path: 'forgot-password',
     title: 'Forgot Password',
     element: <ForgotPassword />,
+  },
+  {
+    path: 'new-password',
+    title: 'New Password',
+    element: <NewPassword />,
   },
   {
     path: '*',

@@ -10,7 +10,7 @@ import { userAuthenticate } from 'reducers/authentication';
 import { SignInValidator } from 'ui/sign-in/validator/sign-in-validator';
 
 export const useSignIn = (): readonly [
-  signIn: (userData: IAuthFormFields, rememberMe: boolean) => Promise<void>,
+  signIn: (userData: IAuthFormFields, rememberMe: boolean) => void,
   errors: Partial<IAuthFormFields>,
   setErrors: (
     value: ((prevState: Partial<IAuthFormFields>) => Partial<IAuthFormFields>) | Partial<IAuthFormFields>,
@@ -23,10 +23,10 @@ export const useSignIn = (): readonly [
 
   const validator = new SignInValidator();
 
-  const signIn = async (userData: IAuthFormFields, rememberMe: boolean) => {
+  const signIn = (userData: IAuthFormFields, rememberMe: boolean) => {
     const err = validator.validate(userData);
 
-    await addLocalStorage('rememberMe', { rememberMe: rememberMe });
+    addLocalStorage('rememberMe', { rememberMe: rememberMe });
 
     if (_.size(err) === 0) {
       dispatch(userAuthenticate(userData));

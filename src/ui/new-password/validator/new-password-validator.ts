@@ -2,7 +2,7 @@ import { tKeys } from 'translations/translation-keys';
 
 import { Validator } from 'fluentvalidation-ts';
 
-export class ForgotPasswordValidator extends Validator<IForgotPasswordFormFields> {
+export class NewPasswordValidator extends Validator<IForgotPasswordFormFields> {
   private minLength = 8;
   private maxLength = 12;
 

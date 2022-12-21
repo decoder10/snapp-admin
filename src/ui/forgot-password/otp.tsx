@@ -4,12 +4,15 @@ import { Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import _ from 'lodash';
 import OtpInput from 'react-otp-input';
+import { useNavigate } from 'react-router-dom';
 
 import ResendTimer from 'core/resend-timer/resend-timer';
 
 import { OtpValidator } from 'ui/forgot-password/validator/otp-validator';
 
 const Otp: FC = () => {
+  const navigate = useNavigate();
+
   const [otp, setOtp] = useState<IOtp>({ otp: '' });
   const [error, setError] = useState<Partial<IOtp>>({});
   const validator = new OtpValidator();
@@ -24,8 +27,9 @@ const Otp: FC = () => {
 
   const confirm = () => {
     const err = validator.validate(otp);
+
     if (_.size(err) === 0) {
-      // to be continued
+      navigate('/new-password', { state: { otpDone: true } });
     } else {
       setError(err as IOtp);
     }
