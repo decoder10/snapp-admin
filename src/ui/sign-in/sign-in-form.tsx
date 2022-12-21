@@ -41,6 +41,7 @@ const SignInForm: FC<IProps> = ({ errors, onEnter, onChange }) => {
 
         return (
           <TextField
+            fullWidth={true}
             inputRef={ref => (formFieldsRef.current[key] = ref)}
             key={key}
             name={key}
@@ -54,8 +55,7 @@ const SignInForm: FC<IProps> = ({ errors, onEnter, onChange }) => {
             helperText={errors[key]}
             type={type}
             onKeyDown={onEnter}
-            autoComplete={userData[key]}
-            InputLabelProps={{ shrink: true }}
+            autoComplete={key}
             InputProps={{
               endAdornment: rightIcon ? (
                 <InputAdornment position="end">
