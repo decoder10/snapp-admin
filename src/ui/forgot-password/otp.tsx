@@ -7,9 +7,7 @@ import OtpInput from 'react-otp-input';
 
 import ResendTimer from 'core/resend-timer/resend-timer';
 
-import { MemoizedFormLogo } from 'statics/form-logo/form-logo';
-
-import { OtpValidator } from 'ui/forgot-password/validator/otpValidator';
+import { OtpValidator } from 'ui/forgot-password/validator/otp-validator';
 
 const Otp: FC = () => {
   const [otp, setOtp] = useState<IOtp>({ otp: '' });
@@ -35,62 +33,44 @@ const Otp: FC = () => {
 
   const number = '08768262427';
   return (
-    <section className="otp-wrapper">
-      <div className="otp-container">
-        <MemoizedFormLogo />
-        <div className="otp-content-wrapper">
-          <Typography
-            align="center"
-            fontSize="20px"
-            fontWeight="500"
-            lineHeight="32px"
-            marginBottom="2px"
-            variant="body2"
-          >
-            Enter the OTP Code
-          </Typography>
+    <div className="otp-content-wrapper">
+      <Typography align="center" fontSize="20px" fontWeight="500" lineHeight="32px" marginBottom="2px" variant="body2">
+        Enter the OTP Code
+      </Typography>
 
-          <Typography
-            align="center"
-            fontSize="14px"
-            fontWeight="400"
-            lineHeight="23px"
-            marginBottom="4px"
-            variant="body3"
-          >
-            We've sent you an OTP code to
-          </Typography>
+      <Typography
+        align="center"
+        fontSize="14px"
+        fontWeight="400"
+        lineHeight="23px"
+        marginBottom="4px"
+        variant="body2"
+        className="opacity7"
+      >
+        We've sent you an OTP code to
+      </Typography>
 
-          <Typography
-            align="center"
-            fontSize="16px"
-            fontWeight="700"
-            lineHeight="27px"
-            marginBottom="48px"
-            variant="body2"
-          >
-            {number}
-          </Typography>
+      <Typography align="center" fontSize="16px" fontWeight="700" lineHeight="27px" marginBottom="48px" variant="body2">
+        {number}
+      </Typography>
 
-          <OtpInput
-            value={otp.otp}
-            onChange={otpChangeHandler}
-            numInputs={4}
-            inputStyle="otp-input"
-            containerStyle="otp-container-style"
-            hasErrored={!error}
-            errorStyle={{ border: '1px solid red' }}
-            shouldAutoFocus
-          />
+      <OtpInput
+        value={otp.otp}
+        onChange={otpChangeHandler}
+        numInputs={4}
+        inputStyle="otp-input"
+        containerStyle="otp-container-style"
+        hasErrored={!!error.otp}
+        errorStyle={{ border: '1px solid red' }}
+        shouldAutoFocus
+      />
 
-          <ResendTimer resend={resend} />
+      <ResendTimer resend={resend} />
 
-          <Button className="otp-button" onClick={confirm} variant="contained">
-            confirm
-          </Button>
-        </div>
-      </div>
-    </section>
+      <Button onClick={confirm} variant="contained">
+        confirm
+      </Button>
+    </div>
   );
 };
 
