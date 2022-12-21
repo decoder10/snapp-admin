@@ -39,13 +39,36 @@ const Otp: FC = () => {
       <div className="otp-container">
         <MemoizedFormLogo />
         <div className="otp-content-wrapper">
-          <Typography align="center" fontSize="20px" fontWeight="500" lineHeight="32px" marginBottom="2px">
+          <Typography
+            align="center"
+            fontSize="20px"
+            fontWeight="500"
+            lineHeight="32px"
+            marginBottom="2px"
+            variant="body2"
+          >
             Enter the OTP Code
           </Typography>
-          <Typography align="center" fontSize="14px" fontWeight="400" lineHeight="23px" marginBottom="4px">
+
+          <Typography
+            align="center"
+            fontSize="14px"
+            fontWeight="400"
+            lineHeight="23px"
+            marginBottom="4px"
+            variant="body2"
+          >
             We've sent you an OTP code to
           </Typography>
-          <Typography align="center" fontSize="16px" fontWeight="700" lineHeight="27px" marginBottom="48px">
+
+          <Typography
+            align="center"
+            fontSize="16px"
+            fontWeight="700"
+            lineHeight="27px"
+            marginBottom="48px"
+            variant="body2"
+          >
             {number}
           </Typography>
 

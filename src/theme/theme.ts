@@ -18,10 +18,24 @@ export const mainLightTheme = createTheme({
       paper: '#fff',
       default: '#EFF1F2',
     },
-    text: {
-      primary: '#000',
-      secondary: '#333333',
-      disabled: '#606C80',
+  },
+  typography: {
+    body1: {
+      color: '#000000',
+    },
+    body2: {
+      color: '#333333',
+    },
+  },
+});
+
+export const mainTextTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#000000',
+    },
+    secondary: {
+      main: '#333333',
     },
   },
 });
