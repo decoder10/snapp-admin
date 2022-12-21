@@ -1,15 +1,16 @@
-.timerContainer {
+.timer-container {
     display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
+	margin-top: 33px;
+	margin-bottom: 32px;
 
-	p {
-		color:black;
-	}
 
-	.resendButton {
+
+
+	.resend-button {
 		font-weight: bold;
-		color: black;
+		color: var(--mui-palette-text-secondary);
 		text-decoration: underline;
 	}
 }

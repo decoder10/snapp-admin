@@ -39,13 +39,13 @@ const Otp: FC = () => {
       <div className="otp-container">
         <MemoizedFormLogo />
         <div className="otp-content-wrapper">
-          <Typography align="center" className="otp-title-text">
+          <Typography align="center" fontSize="20px" fontWeight="500" lineHeight="32px" marginBottom="2px">
             Enter the OTP Code
           </Typography>
-          <Typography align="center" className="otp-second-text">
+          <Typography align="center" fontSize="14px" fontWeight="400" lineHeight="23px" marginBottom="4px">
             We've sent you an OTP code to
           </Typography>
-          <Typography align="center" className="otp-phoneNumber-text">
+          <Typography align="center" fontSize="16px" fontWeight="700" lineHeight="27px" marginBottom="48px">
             {number}
           </Typography>
 
@@ -62,7 +62,7 @@ const Otp: FC = () => {
 
           <ResendTimer resend={resend} />
 
-          <Button className="otp-button" onClick={confirm}>
+          <Button className="otp-button" onClick={confirm} variant="contained">
             confirm
           </Button>
         </div>

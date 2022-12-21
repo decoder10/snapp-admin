@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from '@mui/material';
+import { Link, Typography } from '@mui/material';
 
 import { useTimer } from 'core/resend-timer/use-timer';
 
@@ -21,28 +21,28 @@ const ResendTimer = ({ minutes, seconds, resend }: IProps & typeof defaultProps)
   const disabled = (timerSeconds && timerSeconds > 0) || (timerMinutes && timerMinutes > 0);
 
   return (
-    <div className="timerContainer">
+    <div className="timer-container">
       {disabled ? (
-        <p>
-          Time Remaining: {timerMinutes && timerMinutes < 10 ? `0${timerMinutes}` : timerMinutes}:
-          {timerSeconds && timerSeconds < 10 ? `0${timerSeconds}` : timerSeconds}
-        </p>
+        <>
+          <Typography fontSize="12px" fontWeight="400" lineHeight="20px">
+            Time Remaining:
+          </Typography>
+          <Typography fontSize="12px" fontWeight="600" lineHeight="20px" marginLeft={1}>
+            {timerMinutes && timerMinutes < 10 ? `0${timerMinutes}` : timerMinutes}:
+            {timerSeconds && timerSeconds < 10 ? `0${timerSeconds}` : timerSeconds}
+          </Typography>
+        </>
       ) : (
-        <p>Didnt receive code</p>
+        <Link
+          href="#"
+          onClick={() => {
+            resetTimer(minutes, seconds);
+            resend && resend();
+          }}
+        >
+          Resend OTP
+        </Link>
       )}
-
-      <Button
-        style={{ textDecoration: disabled ? 'none' : 'underline' }}
-        disabled={!!disabled}
-        className="resendButton"
-        variant="text"
-        onClick={() => {
-          resetTimer(minutes, seconds);
-          resend && resend();
-        }}
-      >
-        Resend OTP
-      </Button>
     </div>
   );
 };

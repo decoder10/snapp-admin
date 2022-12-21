@@ -55,7 +55,7 @@ const SignInForm: FC<IProps> = ({ errors, onEnter, onChange }) => {
             type={type}
             onKeyDown={onEnter}
             autoComplete={userData[key]}
-            focused={index === 0}
+            InputLabelProps={{ shrink: true }}
             InputProps={{
               endAdornment: rightIcon ? (
                 <InputAdornment position="end">

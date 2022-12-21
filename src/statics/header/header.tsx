@@ -5,11 +5,12 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { mainDarkTheme } from 'theme/theme';
 
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
@@ -18,15 +19,6 @@ import { getMenuState, setMenuStateAction } from 'reducers/menu-state';
 import { CoreIconButton, CoreSearch } from 'core/core';
 
 import HeaderProfileMenu from 'statics/header/header-profile/header-profile-menu';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#1976d2',
-    },
-  },
-});
 
 const Header: FC = () => {
   const dispatch = useAppDispatch();
@@ -37,7 +29,7 @@ const Header: FC = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={mainDarkTheme}>
         <AppBar position="fixed">
           <Toolbar>
             <CoreIconButton

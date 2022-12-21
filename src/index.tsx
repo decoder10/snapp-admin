@@ -1,7 +1,9 @@
+import { ThemeProvider } from '@mui/material';
 import Auth from 'Auth';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { mainLightTheme } from 'theme/theme';
 
 import { store } from 'configs/store';
 
@@ -19,7 +21,9 @@ const root = createRoot(container);
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Auth />
+      <ThemeProvider theme={mainLightTheme}>
+        <Auth />
+      </ThemeProvider>
     </BrowserRouter>
 
     <MemoizedLoader />
