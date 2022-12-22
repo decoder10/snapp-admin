@@ -13,8 +13,8 @@ import { useSignIn } from 'ui/sign-in/hook/use-sign-in';
 import SignInForm from 'ui/sign-in/sign-in-form';
 
 const SignIn: FC = () => {
-  const [signIn, errors, setErrors] = useSignIn();
-  const [onKeyDown] = useKeyDown();
+  const { signIn, errors, setErrors } = useSignIn();
+  const { onKeyDown } = useKeyDown();
 
   const userDataRef = useRef<IAuthFormFields>({
     email: '',

@@ -16,7 +16,7 @@ interface IProps {
 }
 
 const HeaderProfileMenu: FC<IProps> = ({ anchorEl, setAnchorEl }) => {
-  const [logOut] = useLogOut();
+  const { logOut } = useLogOut();
 
   const isMenuOpen = Boolean(anchorEl);
 

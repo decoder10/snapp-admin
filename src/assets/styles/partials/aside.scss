@@ -1,7 +1,7 @@
 aside.main-sidebar {
 	@extend .scrollbar;
 	height: 100%;
-	border-right: 1px solid lightgray;
+	border-right: 1px solid var(--mui-palette-border-primary);
 	transition: all 0.3s ease;
 	overflow-x: hidden;
 	overflow-y: auto;

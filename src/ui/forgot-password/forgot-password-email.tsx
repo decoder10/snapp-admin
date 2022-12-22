@@ -8,8 +8,8 @@ import { useKeyDown } from 'hooks/use-key-down';
 import { useSendOtp } from 'ui/forgot-password/hook/use-send-otp';
 
 const ForgotPasswordEmail = ({ changeStep }: { changeStep(value: boolean): void }) => {
-  const [sendOtp, error, setError] = useSendOtp();
-  const [onKeyDown] = useKeyDown();
+  const { sendOtp, error, setError } = useSendOtp();
+  const { onKeyDown } = useKeyDown();
 
   const [email, setEmail] = useState<IForgotPasswordEmail>({ email: '' });
 

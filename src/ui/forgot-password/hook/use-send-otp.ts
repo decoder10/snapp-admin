@@ -9,11 +9,11 @@ type TSetError = (
   value: ((prevState: Partial<IForgotPasswordEmail>) => Partial<IForgotPasswordEmail>) | Partial<IForgotPasswordEmail>,
 ) => void;
 
-export const useSendOtp = (): readonly [
-  sendOtp: TSendOtp,
-  error: Partial<IForgotPasswordEmail>,
-  setError: TSetError,
-] => {
+export const useSendOtp = (): {
+  readonly sendOtp: TSendOtp;
+  readonly error: Partial<IForgotPasswordEmail>;
+  readonly setError: TSetError;
+} => {
   const [error, setError] = useState<Partial<IForgotPasswordEmail>>({});
 
   const validator = new ForgotPasswordEmailValidator();
@@ -28,5 +28,5 @@ export const useSendOtp = (): readonly [
     }
   };
 
-  return [sendOtp, error, setError] as const;
+  return { sendOtp, error, setError };
 };

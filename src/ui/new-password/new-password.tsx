@@ -15,8 +15,8 @@ import { useNewPassword } from 'ui/new-password/hook/use-new-password';
 import { forgotPasswordFormConfig } from 'ui/new-password/new-password-config';
 
 const NewPassword: FC = () => {
-  const [setNewPassword, errors, setErrors] = useNewPassword();
-  const [onKeyDown] = useKeyDown();
+  const { setNewPassword, errors, setErrors } = useNewPassword();
+  const { onKeyDown } = useKeyDown();
 
   const forgotPasswordRef = useRef<IRefForgotPasswordFormFields>({
     password: null,

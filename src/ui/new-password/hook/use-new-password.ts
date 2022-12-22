@@ -12,18 +12,18 @@ type TSetErrors = (
     | Partial<IForgotPasswordFormFields>,
 ) => void;
 
-export const useNewPassword = (): readonly [
-  setNewPassword: TSetNewPassword,
-  errors: Partial<IForgotPasswordFormFields>,
-  setErrors: TSetErrors,
-] => {
+export const useNewPassword = (): {
+  readonly setNewPassword: TSetNewPassword;
+  readonly errors: Partial<IForgotPasswordFormFields>;
+  readonly setErrors: TSetErrors;
+} => {
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState<Partial<IForgotPasswordFormFields>>({});
 
   const validator = new NewPasswordValidator();
 
-  const setNewPassword = (forgotPasswordData: IForgotPasswordFormFields) => {
+  const setNewPassword: TSetNewPassword = forgotPasswordData => {
     const err = validator.validate(forgotPasswordData);
 
     if (_.size(err) === 0) {
@@ -33,5 +33,5 @@ export const useNewPassword = (): readonly [
     }
   };
 
-  return [setNewPassword, errors, setErrors] as const;
+  return { setNewPassword, errors, setErrors };
 };

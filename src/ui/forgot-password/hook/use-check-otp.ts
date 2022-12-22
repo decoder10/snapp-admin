@@ -8,7 +8,11 @@ import { OtpValidator } from 'ui/forgot-password/validator/otp-validator';
 type TCheckOtp = (otp: IOtp) => void;
 type TSetError = (value: ((prevState: Partial<IOtp>) => Partial<IOtp>) | Partial<IOtp>) => void;
 
-export const useCheckOtp = (): readonly [checkOtp: TCheckOtp, error: Partial<IOtp>, setError: TSetError] => {
+export const useCheckOtp = (): {
+  readonly checkOtp: TCheckOtp;
+  readonly error: Partial<IOtp>;
+  readonly setError: TSetError;
+} => {
   const navigate = useNavigate();
 
   const [error, setError] = useState<Partial<IOtp>>({});
@@ -25,5 +29,5 @@ export const useCheckOtp = (): readonly [checkOtp: TCheckOtp, error: Partial<IOt
     }
   };
 
-  return [checkOtp, error, setError] as const;
+  return { checkOtp, error, setError };
 };

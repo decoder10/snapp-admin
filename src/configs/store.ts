@@ -17,7 +17,8 @@ export const store = configureStore({
 });
 
 store.subscribe(() => {
-  const [addLocalStorage] = useLocalStorage();
+  const { addLocalStorage } = useLocalStorage();
+
   const data = store.getState();
 
   if (data.menuStateStore) {
