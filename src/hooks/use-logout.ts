@@ -3,9 +3,9 @@ import { useLocalStorage } from 'hooks/use-local-storage';
 
 import { emptyAuthState } from 'configs/auth-storage';
 
-export const useLogOut = (): readonly [() => void] => {
+export const useLogOut = (): { logOut: () => void } => {
   const dispatch = useAppDispatch();
-  const [addLocalStorage] = useLocalStorage();
+  const { addLocalStorage } = useLocalStorage();
 
   const logOut = () => {
     emptyAuthState();
@@ -13,5 +13,5 @@ export const useLogOut = (): readonly [() => void] => {
     dispatch({ type: 'LOGOUT' });
   };
 
-  return [logOut] as const;
+  return { logOut };
 };

@@ -14,11 +14,15 @@ type TSetErrors = (
   value: ((prevState: Partial<IAuthFormFields>) => Partial<IAuthFormFields>) | Partial<IAuthFormFields>,
 ) => void;
 
-export const useSignIn = (): readonly [signIn: TSignIn, errors: Partial<IAuthFormFields>, setErrors: TSetErrors] => {
+export const useSignIn = (): {
+  readonly signIn: TSignIn;
+  readonly errors: Partial<IAuthFormFields>;
+  readonly setErrors: TSetErrors;
+} => {
   const dispatch = useAppDispatch();
 
   const [errors, setErrors] = useState<Partial<IAuthFormFields>>({});
-  const [addLocalStorage] = useLocalStorage();
+  const { addLocalStorage } = useLocalStorage();
 
   const validator = new SignInValidator();
 
@@ -34,5 +38,5 @@ export const useSignIn = (): readonly [signIn: TSignIn, errors: Partial<IAuthFor
     }
   };
 
-  return [signIn, errors, setErrors] as const;
+  return { signIn, errors, setErrors };
 };

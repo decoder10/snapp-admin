@@ -2,11 +2,11 @@ type TAddSessionStorage = (name: string, state: Undefined<object>) => void;
 type TGetSessionStorage = (name: string) => Record<string, unknown>;
 type TRemoveSessionStorage = (name: string) => void;
 
-export const useSessionStorage = (): readonly [
-  addSessionStorage: TAddSessionStorage,
-  getSessionStorage: TGetSessionStorage,
-  removeSessionStorage: TRemoveSessionStorage,
-] => {
+export const useSessionStorage = (): {
+  readonly addSessionStorage: TAddSessionStorage;
+  readonly getSessionStorage: TGetSessionStorage;
+  readonly removeSessionStorage: TRemoveSessionStorage;
+} => {
   const addSessionStorage: TAddSessionStorage = (name, state) => {
     const serializedState = JSON.stringify(state);
 
@@ -19,5 +19,5 @@ export const useSessionStorage = (): readonly [
 
   const getSessionStorage: TGetSessionStorage = name => JSON.parse(window.sessionStorage.getItem(name) || '{}');
 
-  return [addSessionStorage, getSessionStorage, removeSessionStorage] as const;
+  return { addSessionStorage, getSessionStorage, removeSessionStorage };
 };

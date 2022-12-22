@@ -9,7 +9,7 @@ import ResendTimer from 'core/resend-timer/resend-timer';
 import { useCheckOtp } from 'ui/forgot-password/hook/use-check-otp';
 
 const Otp: FC = () => {
-  const [checkOtp, error, setError] = useCheckOtp();
+  const { checkOtp, error, setError } = useCheckOtp();
 
   const [otp, setOtp] = useState<IOtp>({ otp: '' });
 
