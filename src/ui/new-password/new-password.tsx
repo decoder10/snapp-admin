@@ -39,7 +39,7 @@ const NewPassword: FC = () => {
 
   return (
     <section className="new-password-wrapper">
-      <div className="new-password-container">
+      <div className="new-password-container" id="new-password">
         <MemoizedFormLogo />
 
         <div className="new-password-form-container">
@@ -92,6 +92,7 @@ const NewPassword: FC = () => {
           </form>
 
           <Button
+            id="confirm-btn"
             className="forgot-confirm-button"
             variant="contained"
             onClick={() => setNewPassword(forgotPasswordData)}

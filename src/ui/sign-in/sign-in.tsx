@@ -28,7 +28,7 @@ const SignIn: FC = () => {
       <div className="sign-in-container">
         <MemoizedFormLogo />
 
-        <div className="form-wrapper">
+        <div className="form-wrapper" id="SignIn">
           <Typography
             align="center"
             variant="body1"
@@ -49,15 +49,15 @@ const SignIn: FC = () => {
 
           <div className="link-checkbox-wrapper">
             <FormControlLabel
-              control={<Checkbox checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />}
+              control={<Checkbox id="checkbox" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />}
               label={tKeys('rememberMe')}
             />
-            <Link className="forgot-password" to={'/forgot-password'}>
+            <Link className="forgot-password" to={'/forgot-password'} id="forgot-password-link">
               {tKeys('forgotPassword')}
             </Link>
           </div>
 
-          <Button variant="contained" onClick={() => signIn(userDataRef.current, rememberMe)}>
+          <Button variant="contained" onClick={() => signIn(userDataRef.current, rememberMe)} id="login-btn">
             {tKeys('login')}
           </Button>
         </div>

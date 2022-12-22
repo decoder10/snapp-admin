@@ -46,6 +46,7 @@ const Aside: FC = () => {
                 >
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText
+                    id={title}
                     primary={tKeys(title)}
                     className={`${menuState ? '' : 'visible-hidden'}`}
                     style={{ color: 'white' }}

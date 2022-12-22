@@ -14,6 +14,7 @@ const Eye = ({ makeVisible }: { makeVisible: (value: boolean) => void }) => {
 
   return (
     <IconButton
+      id="eye"
       style={{ backgroundColor: 'transparent' }}
       color="default"
       onMouseDown={handleMouseEvent}

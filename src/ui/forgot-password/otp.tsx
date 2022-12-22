@@ -26,7 +26,7 @@ const Otp: FC = () => {
   const number = '08768262427';
 
   return (
-    <div className="otp-content-wrapper">
+    <div className="otp-content-wrapper" id="Otp">
       <Typography align="center" fontSize="20px" fontWeight="500" lineHeight="32px" marginBottom="2px" variant="body2">
         Enter the OTP Code
       </Typography>
@@ -60,7 +60,7 @@ const Otp: FC = () => {
 
       <ResendTimer resend={resend} />
 
-      <Button onClick={() => checkOtp(otp)} variant="contained">
+      <Button onClick={() => checkOtp(otp)} variant="contained" id="confirm-btn">
         confirm
       </Button>
     </div>
