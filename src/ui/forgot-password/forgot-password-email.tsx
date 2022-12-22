@@ -20,7 +20,7 @@ const ForgotPasswordEmail = ({ changeStep }: { changeStep(value: boolean): void 
   };
 
   return (
-    <div className="email-content-wrapper">
+    <div className="email-content-wrapper" id="ForgotPasswordEmail">
       <Typography align="center" fontSize="24px" fontWeight="700" lineHeight="33px" marginBottom="24px" variant="body1">
         Forgotten Password
       </Typography>
@@ -51,7 +51,7 @@ const ForgotPasswordEmail = ({ changeStep }: { changeStep(value: boolean): void 
         helperText={error.email}
       />
 
-      <Button variant="contained" onClick={() => sendOtp(email, changeStep)}>
+      <Button variant="contained" onClick={() => sendOtp(email, changeStep)} id="Get-Code-btn">
         Get Code
       </Button>
     </div>

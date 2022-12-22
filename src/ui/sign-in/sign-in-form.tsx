@@ -39,7 +39,7 @@ const SignInForm: FC<IProps> = ({ errors, onEnter, onChange, updateErrors }) => 
   };
 
   return (
-    <form>
+    <form id="SignInForm">
       {signInFormConfig.map((item, index) => {
         const { key, label, type, rightIcon } = item;
 

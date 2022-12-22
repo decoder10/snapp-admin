@@ -34,6 +34,7 @@ const ResendTimer = ({ minutes, seconds, resend }: IProps & typeof defaultProps)
         </>
       ) : (
         <Link
+          id="Resend-otp-link"
           href="#"
           onClick={() => {
             resetTimer(minutes, seconds);
