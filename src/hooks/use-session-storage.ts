@@ -1,19 +1,23 @@
+type TAddSessionStorage = (name: string, state: Undefined<object>) => void;
+type TGetSessionStorage = (name: string) => Record<string, unknown>;
+type TRemoveSessionStorage = (name: string) => void;
+
 export const useSessionStorage = (): readonly [
-  addSessionStorage: (name: string, state: Undefined<object>) => void,
-  getSessionStorage: (name: string) => Record<string, unknown>,
-  removeSessionStorage: (name: string) => void,
+  addSessionStorage: TAddSessionStorage,
+  getSessionStorage: TGetSessionStorage,
+  removeSessionStorage: TRemoveSessionStorage,
 ] => {
-  const addSessionStorage = (name: string, state: Undefined<object>) => {
+  const addSessionStorage: TAddSessionStorage = (name, state) => {
     const serializedState = JSON.stringify(state);
 
     window.sessionStorage.setItem(name, serializedState);
   };
 
-  const removeSessionStorage = (name: string) => {
+  const removeSessionStorage: TRemoveSessionStorage = name => {
     window.sessionStorage.removeItem(name);
   };
 
-  const getSessionStorage = (name: string) => JSON.parse(window.sessionStorage.getItem(name) || '{}');
+  const getSessionStorage: TGetSessionStorage = name => JSON.parse(window.sessionStorage.getItem(name) || '{}');
 
   return [addSessionStorage, getSessionStorage, removeSessionStorage] as const;
 };

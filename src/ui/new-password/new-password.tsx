@@ -5,6 +5,8 @@ import { tKeys } from 'translations/translation-keys';
 import { Button, InputAdornment, TextField } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
+import { useKeyDown } from 'hooks/use-key-down';
+
 import Eye from 'core/eye/eye';
 
 import { MemoizedFormLogo } from 'statics/form-logo/form-logo';
@@ -13,7 +15,8 @@ import { useNewPassword } from 'ui/new-password/hook/use-new-password';
 import { forgotPasswordFormConfig } from 'ui/new-password/new-password-config';
 
 const NewPassword: FC = () => {
-  const [setNewPassword, errors] = useNewPassword();
+  const [setNewPassword, errors, setErrors] = useNewPassword();
+  const [onKeyDown] = useKeyDown();
 
   const forgotPasswordRef = useRef<IRefForgotPasswordFormFields>({
     password: null,
@@ -29,12 +32,9 @@ const NewPassword: FC = () => {
     const { name, value } = e.target;
 
     setForgotPasswordData({ ...forgotPasswordData, ...{ [name]: value } });
-  };
 
-  const handleKeyDown = (event: { key: string }) => {
-    if (event.key === 'Enter') {
-      setNewPassword(forgotPasswordData);
-    }
+    delete errors[name as TKeyOf<Partial<IForgotPasswordFormFields>>];
+    setErrors(errors);
   };
 
   return (
@@ -67,7 +67,7 @@ const NewPassword: FC = () => {
                   key={key}
                   label={label}
                   onChange={fgFormChangeHandler}
-                  onKeyDown={handleKeyDown}
+                  onKeyDown={event => onKeyDown(event, 'Enter', () => setNewPassword(forgotPasswordData))}
                   variant="outlined"
                   name={key}
                   error={!!errors[key]}

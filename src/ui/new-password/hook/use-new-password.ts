@@ -1,20 +1,23 @@
 import { useState } from 'react';
 
 import _ from 'lodash';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { NewPasswordValidator } from 'ui/new-password/validator/new-password-validator';
 
+type TSetNewPassword = (forgotPasswordData: IForgotPasswordFormFields) => void;
+type TSetErrors = (
+  value:
+    | ((prevState: Partial<IForgotPasswordFormFields>) => Partial<IForgotPasswordFormFields>)
+    | Partial<IForgotPasswordFormFields>,
+) => void;
+
 export const useNewPassword = (): readonly [
-  setNewPassword: (forgotPasswordData: IForgotPasswordFormFields) => void,
+  setNewPassword: TSetNewPassword,
   errors: Partial<IForgotPasswordFormFields>,
-  setErrors: (
-    value:
-      | ((prevState: Partial<IForgotPasswordFormFields>) => Partial<IForgotPasswordFormFields>)
-      | Partial<IForgotPasswordFormFields>,
-  ) => void,
+  setErrors: TSetErrors,
 ] => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState<Partial<IForgotPasswordFormFields>>({});
 
@@ -24,8 +27,7 @@ export const useNewPassword = (): readonly [
     const err = validator.validate(forgotPasswordData);
 
     if (_.size(err) === 0) {
-      // to be continued
-      // navigate('/sign-in');
+      navigate('/sign-in');
     } else {
       setErrors(err as IForgotPasswordFormFields);
     }

@@ -2,40 +2,29 @@ import React, { FC, useState } from 'react';
 
 import { Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import _ from 'lodash';
 import OtpInput from 'react-otp-input';
-import { useNavigate } from 'react-router-dom';
 
 import ResendTimer from 'core/resend-timer/resend-timer';
 
-import { OtpValidator } from 'ui/forgot-password/validator/otp-validator';
+import { useCheckOtp } from 'ui/forgot-password/hook/use-check-otp';
 
 const Otp: FC = () => {
-  const navigate = useNavigate();
+  const [checkOtp, error, setError] = useCheckOtp();
 
   const [otp, setOtp] = useState<IOtp>({ otp: '' });
-  const [error, setError] = useState<Partial<IOtp>>({});
-  const validator = new OtpValidator();
 
   const otpChangeHandler = (otp: string) => {
     setOtp({ otp: otp });
+
+    setError({});
   };
 
   const resend = () => {
     setOtp({ otp: '' });
   };
 
-  const confirm = () => {
-    const err = validator.validate(otp);
-
-    if (_.size(err) === 0) {
-      navigate('/new-password', { state: { otpDone: true } });
-    } else {
-      setError(err as IOtp);
-    }
-  };
-
   const number = '08768262427';
+
   return (
     <div className="otp-content-wrapper">
       <Typography align="center" fontSize="20px" fontWeight="500" lineHeight="32px" marginBottom="2px" variant="body2">
@@ -71,7 +60,7 @@ const Otp: FC = () => {
 
       <ResendTimer resend={resend} />
 
-      <Button onClick={confirm} variant="contained">
+      <Button onClick={() => checkOtp(otp)} variant="contained">
         confirm
       </Button>
     </div>

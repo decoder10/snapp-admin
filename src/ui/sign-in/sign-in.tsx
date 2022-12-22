@@ -5,6 +5,8 @@ import { tKeys } from 'translations/translation-keys';
 import { Button, Checkbox, FormControlLabel, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+import { useKeyDown } from 'hooks/use-key-down';
+
 import { MemoizedFormLogo } from 'statics/form-logo/form-logo';
 
 import { useSignIn } from 'ui/sign-in/hook/use-sign-in';
@@ -12,6 +14,7 @@ import SignInForm from 'ui/sign-in/sign-in-form';
 
 const SignIn: FC = () => {
   const [signIn, errors, setErrors] = useSignIn();
+  const [onKeyDown] = useKeyDown();
 
   const userDataRef = useRef<IAuthFormFields>({
     email: '',
@@ -19,12 +22,6 @@ const SignIn: FC = () => {
   });
 
   const [rememberMe, setRememberMe] = useState<boolean>(false);
-
-  const handleKeyDown = (event: { key: string }) => {
-    if (event.key === 'Enter') {
-      signIn(userDataRef.current, rememberMe);
-    }
-  };
 
   return (
     <section className="sign-in-wrapper">
@@ -45,7 +42,7 @@ const SignIn: FC = () => {
 
           <SignInForm
             errors={errors}
-            onEnter={handleKeyDown}
+            onEnter={event => onKeyDown(event, 'Enter', () => signIn(userDataRef.current, rememberMe))}
             onChange={data => (userDataRef.current = data)}
             updateErrors={setErrors}
           />

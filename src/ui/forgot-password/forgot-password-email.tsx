@@ -2,28 +2,21 @@ import React, { ChangeEvent, useState } from 'react';
 
 import { Button, TextField } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import _ from 'lodash';
 
-import { ForgotPasswordEmailValidator } from 'ui/forgot-password/validator/forgot-password-email-validator';
+import { useKeyDown } from 'hooks/use-key-down';
+
+import { useSendOtp } from 'ui/forgot-password/hook/use-send-otp';
 
 const ForgotPasswordEmail = ({ changeStep }: { changeStep(value: boolean): void }) => {
-  const [email, setEmail] = useState<IForgotPasswordEmail>({ email: '' });
-  const [error, setError] = useState<Partial<IForgotPasswordEmail>>({});
+  const [sendOtp, error, setError] = useSendOtp();
+  const [onKeyDown] = useKeyDown();
 
-  const validator = new ForgotPasswordEmailValidator();
+  const [email, setEmail] = useState<IForgotPasswordEmail>({ email: '' });
 
   const emailChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail({ email: e.target.value });
-  };
 
-  const onGetCode = () => {
-    const err = validator.validate(email);
-    if (_.size(err) === 0) {
-      // to be continued
-      changeStep(true);
-    } else {
-      setError(err as IForgotPasswordEmail);
-    }
+    setError({});
   };
 
   return (
@@ -47,6 +40,7 @@ const ForgotPasswordEmail = ({ changeStep }: { changeStep(value: boolean): void 
       <TextField
         name="email"
         onChange={emailChangeHandler}
+        onKeyDown={event => onKeyDown(event, 'Enter', () => sendOtp(email, changeStep))}
         size="small"
         label="Email"
         className="email-input"
@@ -57,7 +51,7 @@ const ForgotPasswordEmail = ({ changeStep }: { changeStep(value: boolean): void 
         helperText={error.email}
       />
 
-      <Button variant="contained" onClick={onGetCode}>
+      <Button variant="contained" onClick={() => sendOtp(email, changeStep)}>
         Get Code
       </Button>
     </div>

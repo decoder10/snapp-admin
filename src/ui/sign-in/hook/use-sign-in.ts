@@ -9,13 +9,12 @@ import { userAuthenticate } from 'reducers/authentication';
 
 import { SignInValidator } from 'ui/sign-in/validator/sign-in-validator';
 
-export const useSignIn = (): readonly [
-  signIn: (userData: IAuthFormFields, rememberMe: boolean) => void,
-  errors: Partial<IAuthFormFields>,
-  setErrors: (
-    value: ((prevState: Partial<IAuthFormFields>) => Partial<IAuthFormFields>) | Partial<IAuthFormFields>,
-  ) => void,
-] => {
+type TSignIn = (userData: IAuthFormFields, rememberMe: boolean) => void;
+type TSetErrors = (
+  value: ((prevState: Partial<IAuthFormFields>) => Partial<IAuthFormFields>) | Partial<IAuthFormFields>,
+) => void;
+
+export const useSignIn = (): readonly [signIn: TSignIn, errors: Partial<IAuthFormFields>, setErrors: TSetErrors] => {
   const dispatch = useAppDispatch();
 
   const [errors, setErrors] = useState<Partial<IAuthFormFields>>({});
@@ -23,7 +22,7 @@ export const useSignIn = (): readonly [
 
   const validator = new SignInValidator();
 
-  const signIn = (userData: IAuthFormFields, rememberMe: boolean) => {
+  const signIn: TSignIn = (userData, rememberMe) => {
     const err = validator.validate(userData);
 
     addLocalStorage('rememberMe', { rememberMe: rememberMe });
