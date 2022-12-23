@@ -94,6 +94,7 @@ const NewPassword: FC = () => {
 
           <Button
             id="confirm-btn"
+            size="large"
             className="forgot-confirm-button"
             variant="contained"
             onClick={() => setNewPassword(forgotPasswordData)}

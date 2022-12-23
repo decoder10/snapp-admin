@@ -1,5 +1,7 @@
 import React, { FC, useState } from 'react';
 
+import { tKeys } from 'translations/translation-keys';
+
 import { Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import OtpInput from 'react-otp-input';
@@ -60,8 +62,8 @@ const Otp: FC = () => {
 
       <ResendTimer resend={resend} />
 
-      <Button onClick={() => checkOtp(otp)} variant="contained" id="confirm-btn">
-        confirm
+      <Button size="large" onClick={() => checkOtp(otp)} variant="contained" id="confirm-btn">
+        {tKeys('confirm')}
       </Button>
     </div>
   );

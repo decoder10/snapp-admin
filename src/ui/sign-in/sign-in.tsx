@@ -57,7 +57,12 @@ const SignIn: FC = () => {
             </Link>
           </div>
 
-          <Button variant="contained" onClick={() => signIn(userDataRef.current, rememberMe)} id="login-btn">
+          <Button
+            variant="contained"
+            size="large"
+            onClick={() => signIn(userDataRef.current, rememberMe)}
+            id="login-btn"
+          >
             {tKeys('login')}
           </Button>
         </div>

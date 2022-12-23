@@ -37,6 +37,9 @@ export const tKeys = (key: string | number, variables?: (string | number)[]) => 
     password: '[password]',
     email: '[email]',
 
+    // forgot-password-email
+    getCode: '[getCode]',
+
     // forgot-password
     confirm: '[confirm]',
 

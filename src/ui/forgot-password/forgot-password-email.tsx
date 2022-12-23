@@ -1,5 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 
+import { tKeys } from 'translations/translation-keys';
+
 import { Button, TextField } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
@@ -51,8 +53,8 @@ const ForgotPasswordEmail = ({ changeStep }: { changeStep(value: boolean): void 
         helperText={error.email}
       />
 
-      <Button variant="contained" onClick={() => sendOtp(email, changeStep)} id="Get-Code-btn">
-        Get Code
+      <Button size="large" variant="contained" onClick={() => sendOtp(email, changeStep)} id="Get-Code-btn">
+        {tKeys('login')}
       </Button>
     </div>
   );
