@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Link, Typography } from '@mui/material';
 
@@ -16,9 +16,15 @@ const defaultProps = {
 };
 
 export const ResendTimer = ({ minutes, seconds, resend }: IProps & typeof defaultProps) => {
-  const [timerMinutes, timerSeconds, resetTimer] = useTimer(minutes, seconds);
+  const { timerMinutes, timerSeconds, resetTimer, clearTimer } = useTimer(minutes, seconds);
 
   const disabled = (timerSeconds && timerSeconds > 0) || (timerMinutes && timerMinutes > 0);
+
+  useEffect(() => {
+    return () => clearTimer();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="timer-container">

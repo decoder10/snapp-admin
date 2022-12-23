@@ -77,6 +77,7 @@ const NewPassword: FC = () => {
                     endAdornment: rightIcon ? (
                       <InputAdornment position="end">
                         <Eye
+                          id={`${key}-eye`}
                           makeVisible={value => {
                             if (forgotPasswordRef.current && forgotPasswordRef.current[key]) {
                               forgotPasswordRef.current[key]!.type = value ? 'text' : 'password';
