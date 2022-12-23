@@ -56,7 +56,7 @@ const Otp: FC = () => {
         inputStyle="otp-input"
         containerStyle="otp-container-style"
         hasErrored={!!error.otp}
-        errorStyle={{ border: '1px solid red' }}
+        errorStyle={{ border: '1px solid #FB2424' }}
         shouldAutoFocus
       />
 
