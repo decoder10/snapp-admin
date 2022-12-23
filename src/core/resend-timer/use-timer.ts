@@ -1,9 +1,12 @@
 import { useRef, useState } from 'react';
 
+type TResetTimer = (minutes: number, seconds: number) => void;
+type TClearTimer = () => void;
+
 export const useTimer = (
   minutes: number,
   seconds: number,
-): readonly [number, number, (minutes: number, seconds: number) => void] => {
+): { timerMinutes: number; timerSeconds: number; resetTimer: TResetTimer; clearTimer: TClearTimer } => {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const [timerMinutes, setMinutes] = useState<number>(minutes);
@@ -27,10 +30,16 @@ export const useTimer = (
     }
   }, 1000);
 
+  const clearTimer = () => {
+    if (timerRef?.current) {
+      clearInterval(timerRef.current);
+    }
+  };
+
   function resetTimer(minutes: number, seconds: number) {
     setMinutes(minutes);
     setSeconds(seconds);
   }
 
-  return [timerMinutes, timerSeconds, resetTimer] as const;
+  return { timerMinutes, timerSeconds, resetTimer, clearTimer };
 };

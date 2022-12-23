@@ -63,6 +63,7 @@ const SignInForm: FC<IProps> = ({ errors, onEnter, onChange, updateErrors }) => 
               endAdornment: rightIcon ? (
                 <InputAdornment position="end">
                   <Eye
+                    id={`${key}-eye`}
                     makeVisible={value => {
                       if (formFieldsRef.current && formFieldsRef.current[key]) {
                         formFieldsRef.current[key]!.type = value ? 'text' : 'password';
