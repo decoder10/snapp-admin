@@ -15,11 +15,11 @@
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background: #2d2d2d;
+		background: var(--mui-palette-primary-main);
 	}
 
 	&::-webkit-scrollbar-track {
-		background: #ddd;
+		background: var(--mui-palette-background-primary);
 	}
 }
 

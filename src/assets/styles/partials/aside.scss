@@ -33,11 +33,14 @@ aside.main-sidebar {
 		.MuiListItemText-root {
 			.MuiTypography-root {
 				color: var(--mui-palette-text-disabled);
+				font-size: 14px;
+				font-weight: 400;
 			}
 
 			&.active {
 				.MuiTypography-root  {
 					color: var(--mui-palette-primary-dark);
+					font-weight: 700;
 				}
 			}
 		}
