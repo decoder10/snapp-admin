@@ -1,0 +1,8 @@
+.dashboard {
+	@extend .fullSize;
+	@extend .flex-center;
+
+	img {
+		display: block;
+	}
+}
