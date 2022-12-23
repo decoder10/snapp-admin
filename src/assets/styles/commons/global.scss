@@ -8,10 +8,6 @@ body {
 	font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
-.app {
-	padding: var(--header-height) 0 0 0;
-}
-
 .app-container {
 	@extend .fullSize;
 	display: flex;
@@ -20,8 +16,9 @@ body {
 }
 
 .main-content {
+	padding: var(--header-height) 0 0 0;
 	transition: all 0.3s ease;
-	padding: var(--space);
+	overflow: hidden;
 
 	&.opened {
 		width: calc(100% - var(--sidebar-width-opened));

@@ -1,11 +1,11 @@
 import React, { FC, memo } from 'react';
 
-import { CircularProgress } from '@mui/material';
+import mainLoading from 'assets/images/main-loading.svg';
 
 const MainLoading: FC = () => {
   return (
-    <div className="main-loading" style={{ backgroundColor: '#2d2d2d' }}>
-      <CircularProgress color="inherit" />
+    <div className="main-loading">
+      <img src={mainLoading} alt="Snapp loading" />
     </div>
   );
 };

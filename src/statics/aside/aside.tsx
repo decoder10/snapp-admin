@@ -2,12 +2,7 @@ import { FC, memo } from 'react';
 
 import { tKeys } from 'translations/translation-keys';
 
-import { useTheme } from '@mui/material';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from 'hooks/hooks';
@@ -16,20 +11,34 @@ import { routeConfig } from 'routes/routes-config';
 
 import { getMenuState } from 'reducers/menu-state';
 
+import asideHeaderLogo from 'assets/images/header-logo-compact.svg';
+
 const Aside: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const theme = useTheme();
-  const primaryColor = theme.palette.primary;
+  const primaryColor = theme.palette.primary.main;
+  const disabledColor = theme.palette.text.disabled;
 
   const menuState = useAppSelector(getMenuState);
 
   return (
-    <aside
-      className={`main-sidebar  ${menuState ? 'opened' : 'closed'}`}
-      style={{ backgroundColor: primaryColor.main }}
-    >
+    <aside className={`main-sidebar  ${menuState ? 'opened' : 'closed'}`}>
+      <header className={`aside-header  ${menuState ? 'opened' : 'closed'}`}>
+        <img src={asideHeaderLogo} alt="Snapp logo" />
+
+        <Typography
+          variant="body1"
+          fontSize="14px"
+          fontWeight="700"
+          marginLeft="16px"
+          className={`${menuState ? '' : 'visible-hidden'}`}
+        >
+          Snapp Dashboard
+        </Typography>
+      </header>
+
       <nav aria-label="main navigation">
         <List>
           {routeConfig.map(item => {
@@ -42,14 +51,14 @@ const Aside: FC = () => {
                 <ListItemButton
                   onClick={() => navigate(path || '/')}
                   selected={isActive}
-                  style={{ backgroundColor: isActive ? primaryColor.dark : 'transparent' }}
+                  style={{ backgroundColor: isActive ? 'white' : 'transparent' }}
                 >
-                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemIcon sx={{ color: isActive ? primaryColor : disabledColor }}>{icon}</ListItemIcon>
+
                   <ListItemText
                     id={title}
                     primary={tKeys(title)}
-                    className={`${menuState ? '' : 'visible-hidden'}`}
-                    style={{ color: 'white' }}
+                    className={`${menuState ? '' : 'visible-hidden'} ${isActive ? 'active' : ''}`}
                   />
                 </ListItemButton>
               </ListItem>

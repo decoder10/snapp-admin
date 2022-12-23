@@ -18,6 +18,11 @@ export const mainLightTheme = createTheme({
       paper: '#fff',
       default: '#EFF1F2',
     },
+    text: {
+      primary: '#000000',
+      secondary: '#333333',
+      disabled: '#606C80',
+    },
   },
   typography: {
     body1: {

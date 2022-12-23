@@ -10,7 +10,7 @@ function App() {
   const menuState = useAppSelector(getMenuState);
 
   return (
-    <div className="app">
+    <>
       <MemoizedHeader />
 
       <div className="app-container">
@@ -20,7 +20,7 @@ function App() {
           <AdminRoutes />
         </section>
       </div>
-    </div>
+    </>
   );
 }
 

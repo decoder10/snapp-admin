@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import OtpInput from 'react-otp-input';
 
-import ResendTimer from 'core/resend-timer/resend-timer';
+import { ResendTimer } from 'core/core';
 
 import { useCheckOtp } from 'ui/forgot-password/hook/use-check-otp';
 

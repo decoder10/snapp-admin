@@ -15,7 +15,7 @@ const defaultProps = {
   seconds: 59,
 };
 
-const ResendTimer = ({ minutes, seconds, resend }: IProps & typeof defaultProps) => {
+export const ResendTimer = ({ minutes, seconds, resend }: IProps & typeof defaultProps) => {
   const [timerMinutes, timerSeconds, resetTimer] = useTimer(minutes, seconds);
 
   const disabled = (timerSeconds && timerSeconds > 0) || (timerMinutes && timerMinutes > 0);
@@ -49,5 +49,3 @@ const ResendTimer = ({ minutes, seconds, resend }: IProps & typeof defaultProps)
 };
 
 ResendTimer.defaultProps = defaultProps;
-
-export default ResendTimer;

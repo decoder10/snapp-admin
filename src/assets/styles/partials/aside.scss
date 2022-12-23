@@ -1,13 +1,47 @@
 aside.main-sidebar {
 	@extend .scrollbar;
 	height: 100%;
-	border-right: 1px solid var(--mui-palette-border-primary);
+	background: var(--mui-palette-background-primary);
+	border-right: 1px solid var(--mui-palette-border-secondary);
 	transition: all 0.3s ease;
 	overflow-x: hidden;
 	overflow-y: auto;
 
+	.aside-header {
+		display: flex;
+		align-items: center;
+		width: var(--sidebar-width-opened);
+		height: var(--header-height);
+		padding: 0 24px;
+		border-bottom: 1px solid var(--mui-palette-border-secondary);
+		transition: all 0.3s ease;
+
+		&.closed {
+			padding: 0 14px;
+		}
+	}
+
 	nav {
 		width: var(--sidebar-width-opened);
+
+		.MuiListItem-root.MuiListItem-gutters {
+			width: 86%;
+			border-radius: 0 8px 8px 0;
+			overflow: hidden;
+		}
+
+		.MuiListItemText-root {
+			.MuiTypography-root {
+				color: var(--mui-palette-text-disabled);
+			}
+
+			&.active {
+				.MuiTypography-root  {
+					color: var(--mui-palette-primary-dark);
+				}
+			}
+		}
+
 	}
 
 	&.opened {
