@@ -23,9 +23,11 @@ const Aside: FC = () => {
 
   const menuState = useAppSelector(getMenuState);
 
+  const menuStateClassNames = menuState ? 'opened' : 'closed';
+
   return (
-    <aside className={`main-sidebar  ${menuState ? 'opened' : 'closed'}`}>
-      <header className={`aside-header  ${menuState ? 'opened' : 'closed'}`}>
+    <aside className={`main-sidebar  ${menuStateClassNames}`}>
+      <header className={`aside-header  ${menuStateClassNames}`}>
         <img src={asideHeaderLogo} alt="Snapp logo" />
 
         <Typography
@@ -33,7 +35,7 @@ const Aside: FC = () => {
           fontSize="14px"
           fontWeight="700"
           marginLeft="16px"
-          className={`${menuState ? '' : 'visible-hidden'}`}
+          className={`${menuState ? '' : 'hide'}`}
         >
           Snapp Dashboard
         </Typography>
@@ -47,7 +49,7 @@ const Aside: FC = () => {
             const isActive = location.pathname === path;
 
             return isMenuItem ? (
-              <ListItem key={title} disablePadding>
+              <ListItem key={title} disablePadding className={menuStateClassNames}>
                 <ListItemButton
                   onClick={() => navigate(path || '/')}
                   selected={isActive}
@@ -58,7 +60,8 @@ const Aside: FC = () => {
                   <ListItemText
                     id={title}
                     primary={tKeys(title)}
-                    className={`${menuState ? '' : 'visible-hidden'} ${isActive ? 'active' : ''}`}
+                    sx={{ margin: 0 }}
+                    className={`${menuState ? '' : 'hide'} ${isActive ? 'active' : ''}`}
                   />
                 </ListItemButton>
               </ListItem>

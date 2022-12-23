@@ -14,11 +14,6 @@ aside.main-sidebar {
 		height: var(--header-height);
 		padding: 0 24px;
 		border-bottom: 1px solid var(--mui-palette-border-secondary);
-		transition: all 0.3s ease;
-
-		&.closed {
-			padding: 0 14px;
-		}
 	}
 
 	nav {
@@ -28,20 +23,30 @@ aside.main-sidebar {
 			width: 86%;
 			border-radius: 0 8px 8px 0;
 			overflow: hidden;
+
+			&.closed {
+				width: 26%;
+			}
+
+			.MuiButtonBase-root {
+				padding-left: 24px
+			}
 		}
 
 		.MuiListItemText-root {
 			.MuiTypography-root {
 				color: var(--mui-palette-text-disabled);
+				font-size: 14px;
+				font-weight: 400;
 			}
 
 			&.active {
 				.MuiTypography-root  {
 					color: var(--mui-palette-primary-dark);
+					font-weight: 700;
 				}
 			}
 		}
-
 	}
 
 	&.opened {

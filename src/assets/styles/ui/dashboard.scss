@@ -1,8 +1,26 @@
 .dashboard {
 	@extend .fullSize;
-	@extend .flex-center;
 
-	img {
-		display: block;
+	.dashboard-content {
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		height: calc(100% - 40px);
+		padding-bottom: 4px;
+
+		img {
+			display: block;
+			width: calcPercent(904, 1163);
+			height: calcPercent(673, 726);
+		}
+	}
+
+	.dashboard-footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 40px;
+		padding: 0 24px 0 11px;
+		border-top: 1px solid var(--mui-palette-border-secondary);
 	}
 }
