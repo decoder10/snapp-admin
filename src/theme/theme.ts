@@ -10,8 +10,8 @@ export const mainLightTheme = createTheme({
     },
     secondary: {
       main: '#606C80',
-      light: '#F73378',
-      dark: '#AB003C',
+      light: '#8e9aaf',
+      dark: '#004ba0',
       contrastText: '#fff',
     },
     background: {
