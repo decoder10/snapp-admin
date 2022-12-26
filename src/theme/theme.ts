@@ -31,6 +31,10 @@ export const mainLightTheme = createTheme({
     body2: {
       color: '#333333',
     },
+    subtitle1: {
+      color: '#000000',
+      opacity: 0.6,
+    },
   },
 });
 

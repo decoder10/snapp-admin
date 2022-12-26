@@ -29,6 +29,7 @@ export const tKeys = (key: string | number, variables?: (string | number)[]) => 
 
     // header-profile-manu
     logOut: '[logOut]',
+    profile: '[profile]',
 
     // sign-in
     login: '[login]',

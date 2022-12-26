@@ -3,7 +3,7 @@ import { FC, memo } from 'react';
 import { tKeys } from 'translations/translation-keys';
 
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from 'hooks/hooks';
 
@@ -28,17 +28,19 @@ const Aside: FC = () => {
   return (
     <aside className={`main-sidebar  ${menuStateClassNames}`}>
       <header className={`aside-header  ${menuStateClassNames}`}>
-        <img src={asideHeaderLogo} alt="Snapp logo" />
+        <Link to="/">
+          <img src={asideHeaderLogo} alt="Snapp logo" />
 
-        <Typography
-          variant="body1"
-          fontSize="14px"
-          fontWeight="700"
-          marginLeft="16px"
-          className={`${menuState ? '' : 'hide'}`}
-        >
-          Snapp Dashboard
-        </Typography>
+          <Typography
+            variant="body1"
+            fontSize="14px"
+            fontWeight="700"
+            marginLeft="16px"
+            className={`${menuState ? '' : 'hide'}`}
+          >
+            Snapp Dashboard
+          </Typography>
+        </Link>
       </header>
 
       <nav aria-label="main navigation">
