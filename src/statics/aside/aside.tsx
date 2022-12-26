@@ -19,7 +19,7 @@ const Aside: FC = () => {
 
   const theme = useTheme();
   const primaryColor = theme.palette.primary.main;
-  const disabledColor = theme.palette.text.disabled;
+  const secondaryColor = theme.palette.secondary.main;
 
   const menuState = useAppSelector(getMenuState);
 
@@ -55,7 +55,7 @@ const Aside: FC = () => {
                   selected={isActive}
                   style={{ backgroundColor: isActive ? 'white' : 'transparent' }}
                 >
-                  <ListItemIcon sx={{ color: isActive ? primaryColor : disabledColor }}>{icon}</ListItemIcon>
+                  <ListItemIcon sx={{ color: isActive ? primaryColor : secondaryColor }}>{icon}</ListItemIcon>
 
                   <ListItemText
                     id={title}
