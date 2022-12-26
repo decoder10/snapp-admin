@@ -40,6 +40,7 @@ const ForgotPasswordEmail = ({ changeStep }: { changeStep(value: boolean): void 
       </Typography>
 
       <TextField
+        id="email"
         name="email"
         onChange={emailChangeHandler}
         onKeyDown={event => onKeyDown(event, 'Enter', () => sendOtp(email, changeStep))}

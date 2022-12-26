@@ -60,6 +60,7 @@ const NewPassword: FC = () => {
 
               return (
                 <TextField
+                  id={key}
                   fullWidth={true}
                   inputRef={ref => (forgotPasswordRef.current[key] = ref)}
                   type={type}

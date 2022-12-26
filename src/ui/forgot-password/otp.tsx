@@ -58,6 +58,7 @@ const Otp: FC = () => {
         hasErrored={!!error.otp}
         errorStyle={{ border: '1px solid #FB2424' }}
         shouldAutoFocus
+        data-testid={'otp'}
       />
 
       <ResendTimer resend={resend} />

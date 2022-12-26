@@ -1,8 +1,8 @@
-import React, { FC, MouseEvent, useState } from 'react';
+import React, { FC, useRef, useState } from 'react';
 
 import { tKeys } from 'translations/translation-keys';
 
-import { ListItemIcon, Typography, Menu, MenuItem, Stack, Divider } from '@mui/material';
+import { ListItemIcon, Typography, Menu, MenuItem, Stack, Divider, Box } from '@mui/material';
 import { ProfileActionTypesEnum } from 'enums/enums';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,6 +16,8 @@ import { headerProfileMenuConfig } from 'statics/header/header-profile/header-pr
 const HeaderProfile: FC = () => {
   const navigate = useNavigate();
   const { logOut } = useLogOut();
+
+  const profileRef = useRef(null);
 
   const [anchorEl, setAnchorEl] = useState<Nullable<HTMLElement>>(null);
 
@@ -38,28 +40,45 @@ const HeaderProfile: FC = () => {
 
   return (
     <>
-      <Stack direction="row" spacing={2} alignItems={'center'}>
+      <Stack direction="row" spacing={2} alignItems={'center'} ref={profileRef}>
         <CoreIconButton
           size="small"
           children={<CoreAvatar />}
-          click={(event: MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)}
           edge={'end'}
+          click={() => setAnchorEl(profileRef.current)}
         />
-        <div
-          onClick={(event: MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)}
-          style={{ cursor: 'pointer' }}
-        >
+
+        <div onClick={() => setAnchorEl(profileRef.current)} style={{ cursor: 'pointer' }}>
           <Typography variant="h1" fontSize="12px" fontWeight="800" lineHeight="16px">
             Jackson D.
           </Typography>
-          <Typography variant="body2" fontSize="10px" fontWeight="500" lineHeight="12px">
+          <Typography variant="subtitle1" fontSize="10px" fontWeight="500" lineHeight="12px">
             Mananger
           </Typography>
         </div>
       </Stack>
 
-      <Menu anchorEl={anchorEl} keepMounted open={isMenuOpen} onClose={() => handleMenuClose()} sx={{ width: '200px' }}>
-        <Divider />
+      <Menu
+        anchorEl={anchorEl}
+        keepMounted
+        open={isMenuOpen}
+        onClose={() => handleMenuClose()}
+        PaperProps={{
+          sx: {
+            minWidth: 200,
+          },
+        }}
+      >
+        <Box paddingX={2} paddingBottom="20px">
+          <Typography variant="h1" fontSize="16px" fontWeight="400" lineHeight="24px">
+            Jackson D.
+          </Typography>
+          <Typography variant="subtitle1" fontSize="14px" fontWeight="400" lineHeight="20px">
+            Mananger
+          </Typography>
+        </Box>
+
+        <Divider sx={{ marginBottom: 1 }} />
 
         {headerProfileMenuConfig.map(item => {
           const { title, icon, actionType, link, component } = item;
@@ -70,7 +89,9 @@ const HeaderProfile: FC = () => {
             <MenuItem onClick={() => handleMenuClose(actionType, link)} key={title}>
               {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
 
-              {tKeys(title || '')}
+              <Typography variant="body1" fontSize="14px" fontWeight="400" lineHeight="20px">
+                {tKeys(title || '')}
+              </Typography>
             </MenuItem>
           );
         })}

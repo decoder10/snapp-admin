@@ -45,6 +45,7 @@ const SignInForm: FC<IProps> = ({ errors, onEnter, onChange, updateErrors }) => 
 
         return (
           <TextField
+            id={key}
             fullWidth={true}
             inputRef={ref => (formFieldsRef.current[key] = ref)}
             key={key}

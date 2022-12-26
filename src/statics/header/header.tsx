@@ -11,6 +11,7 @@ import { getMenuState, setMenuStateAction } from 'reducers/menu-state';
 
 import { CoreIconButton } from 'core/core';
 
+import HeaderLanguageSelect from 'statics/header/header-language-select/header-language-select';
 import HeaderProfile from 'statics/header/header-profile/header-profile';
 
 const Header: FC = () => {
@@ -29,8 +30,10 @@ const Header: FC = () => {
 
       <Box sx={{ flexGrow: 1 }} />
 
-      <Stack direction="row" spacing={2} alignItems={'center'}>
+      <Stack direction="row" spacing={3} alignItems={'center'}>
         <HeaderProfile />
+
+        <HeaderLanguageSelect />
       </Stack>
     </header>
   );
