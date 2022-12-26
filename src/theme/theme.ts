@@ -36,6 +36,9 @@ export const mainLightTheme = createTheme({
       opacity: 0.6,
     },
   },
+  shape: {
+    borderRadius: 8,
+  },
 });
 
 export const mainTextTheme = createTheme({
