@@ -1,7 +1,6 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { Divider } from '@mui/material';
 
 export const headerProfileMenuConfig: IHeaderProfileMenuConfig[] = [
   {
@@ -23,7 +22,7 @@ export const headerProfileMenuConfig: IHeaderProfileMenuConfig[] = [
     icon: <CreditCardIcon />,
   },
   {
-    component: <Divider />,
+    title: 'divider',
     actionType: 'divider',
   },
   {

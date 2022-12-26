@@ -81,10 +81,10 @@ const HeaderProfile: FC = () => {
         <Divider sx={{ marginBottom: 1 }} />
 
         {headerProfileMenuConfig.map(item => {
-          const { title, icon, actionType, link, component } = item;
+          const { title, icon, actionType, link } = item;
 
           return actionType === ProfileActionTypesEnum.divider ? (
-            component
+            <Divider key={title} />
           ) : (
             <MenuItem onClick={() => handleMenuClose(actionType, link)} key={title}>
               {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
