@@ -2,9 +2,7 @@ import arm from 'assets/images/arm.svg';
 import eng from 'assets/images/eng.svg';
 import rus from 'assets/images/rus.svg';
 
-type LanguageConfig = Omit<IHeaderLanguageConfig, 'clickHandler'>;
-
-export const headerLanguageConfig: LanguageConfig[] = [
+export const headerLanguageConfig: IHeaderLanguageConfig[] = [
   // todo should be taken from backEnd
   {
     title: 'Eng',

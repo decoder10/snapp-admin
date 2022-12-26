@@ -22,3 +22,15 @@
 		width: calc(100% - var(--sidebar-width-closed));
 	}
 }
+
+.header-language-item{
+	background-color: red;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0px;
+	isolation: isolate;
+
+	width: 123px;
+	height: 36px;
+}

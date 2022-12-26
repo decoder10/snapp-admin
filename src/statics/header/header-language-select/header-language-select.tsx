@@ -1,33 +1,33 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
-// import { tKeys } from 'translations/translation-keys';
-// import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-// import { headerProfileMenuConfig } from 'statics/header/header-profile/header-profile-menu-config';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+
+import { getLanguageId, languageIdAction } from 'reducers/language';
+
+import { headerLanguageConfig } from 'statics/header/header-language-select/header-language-config';
+import HeaderLanguageItem from 'statics/header/header-language-select/header-language-item';
 
 const HeaderLanguageSelect: FC = () => {
-  const [language, setLanguage] = useState<string>('EN');
+  const dispatch = useAppDispatch();
+  const languageIdState = useAppSelector(getLanguageId);
 
   const handleChange = (event: SelectChangeEvent) => {
-    setLanguage(event.target.value as string);
+    dispatch(languageIdAction(event.target.value));
   };
 
   return (
-    // <Box sx={{ minWidth: 120 }}>
-    <Select
-      labelId="demo-simple-select-label"
-      id="demo-simple-select"
-      value={language}
-      onChange={handleChange}
-      size="small"
-    >
-      <MenuItem value={'EN'}>EN</MenuItem>
-      <MenuItem value={20}>Arm</MenuItem>
-      <MenuItem value={30}>Ru</MenuItem>
+    <Select id="header-language-select" value={languageIdState} onChange={handleChange} size="small">
+      {headerLanguageConfig.map(item => {
+        return (
+          <MenuItem key={item.value} value={item.value}>
+            <HeaderLanguageItem {...item} />
+          </MenuItem>
+        );
+      })}
     </Select>
-    // </Box>
   );
 };
 

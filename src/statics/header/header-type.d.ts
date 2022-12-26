@@ -4,5 +4,4 @@ interface IHeaderLanguageConfig {
   title: string;
   languageIcon: SvgInHtml;
   value: string;
-  clickHandler: () => void;
 }
