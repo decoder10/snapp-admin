@@ -19,7 +19,13 @@ const HeaderLanguageSelect: FC = () => {
   };
 
   return (
-    <Select id="header-language-select" value={languageIdState} onChange={handleChange} size="small">
+    <Select
+      id="header-language-select"
+      value={languageIdState}
+      onChange={handleChange}
+      size="small"
+      sx={{ width: '124px' }}
+    >
       {headerLanguageConfig.map(item => {
         return (
           <MenuItem key={item.value} value={item.value}>
