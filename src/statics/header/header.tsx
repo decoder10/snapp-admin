@@ -1,4 +1,4 @@
-import { FC, useState, MouseEvent, memo } from 'react';
+import { FC, memo } from 'react';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
@@ -9,16 +9,14 @@ import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
 import { getMenuState, setMenuStateAction } from 'reducers/menu-state';
 
-import { CoreAvatar, CoreIconButton } from 'core/core';
+import { CoreIconButton } from 'core/core';
 
-import HeaderProfileMenu from 'statics/header/header-profile/header-profile-menu';
+import HeaderProfile from 'statics/header/header-profile/header-profile';
 
 const Header: FC = () => {
   const dispatch = useAppDispatch();
 
   const menuState = useAppSelector(getMenuState);
-
-  const [anchorEl, setAnchorEl] = useState<Nullable<HTMLElement>>(null);
 
   return (
     <header className={`main-header ${menuState ? 'opened' : 'closed'}`}>
@@ -32,14 +30,8 @@ const Header: FC = () => {
       <Box sx={{ flexGrow: 1 }} />
 
       <Stack direction="row" spacing={2} alignItems={'center'}>
-        <CoreIconButton
-          size="small"
-          children={<CoreAvatar />}
-          click={(event: MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)}
-          edge={'end'}
-        />
+        <HeaderProfile />
       </Stack>
-      <HeaderProfileMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
     </header>
   );
 };

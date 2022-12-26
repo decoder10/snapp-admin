@@ -4,4 +4,10 @@ export enum PermissionTypesEnum {
   redirect = 'redirect',
 }
 
+export enum ProfileActionTypesEnum {
+  'logout' = 'logout',
+  'navigate' = 'navigate',
+  'divider' = 'divider',
+}
+
 export enum ModalEnum {}

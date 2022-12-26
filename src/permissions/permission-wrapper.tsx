@@ -1,6 +1,6 @@
 import React, { ReactNode, ReactElement } from 'react';
 
-import { PermissionTypesEnum } from 'enums';
+import { PermissionTypesEnum } from 'enums/enums';
 import { AbilityPermission } from 'permissions/ability-permission';
 import { RedirectionPermission } from 'permissions/redirection-permission';
 import { VisibilityPermission } from 'permissions/visibility-permission';
