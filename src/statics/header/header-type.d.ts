@@ -10,7 +10,7 @@ interface IHeaderLanguageConfig {
 interface IHeaderProfileMenuConfig {
   title?: string;
   link?: string;
-  actionType?: keyof typeof import('enums/enums').ProfileActionTypesEnum;
+  actionType?: TKeyOf<typeof import('enums/enums').ProfileActionTypesEnum>;
   icon?: React.ReactNode;
   component?: React.ReactNode;
 }

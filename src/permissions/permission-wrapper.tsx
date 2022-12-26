@@ -6,7 +6,7 @@ import { RedirectionPermission } from 'permissions/redirection-permission';
 import { VisibilityPermission } from 'permissions/visibility-permission';
 
 interface IWrapperProps {
-  wrapper: keyof typeof PermissionTypesEnum;
+  wrapper: TKeyOf<typeof PermissionTypesEnum>;
   permission: Permission;
   children: ReactNode;
 }
