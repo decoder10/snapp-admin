@@ -11,6 +11,7 @@ import { getMenuState, setMenuStateAction } from 'reducers/menu-state';
 
 import { CoreAvatar, CoreIconButton } from 'core/core';
 
+import HeaderLanguageSelect from 'statics/header/header-language-select/header-language-select';
 import HeaderProfileMenu from 'statics/header/header-profile/header-profile-menu';
 
 const Header: FC = () => {
@@ -38,7 +39,10 @@ const Header: FC = () => {
           click={(event: MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)}
           edge={'end'}
         />
+
+        <HeaderLanguageSelect />
       </Stack>
+
       <HeaderProfileMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
     </header>
   );
