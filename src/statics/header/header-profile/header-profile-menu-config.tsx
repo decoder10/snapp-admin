@@ -1,5 +1,4 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 export const headerProfileMenuConfig: IHeaderProfileMenuConfig[] = [
@@ -14,16 +13,6 @@ export const headerProfileMenuConfig: IHeaderProfileMenuConfig[] = [
     actionType: 'navigate',
     link: '/profile',
     icon: <AccountCircleIcon />,
-  },
-  {
-    title: 'billing',
-    actionType: 'navigate',
-    link: '/billing',
-    icon: <CreditCardIcon />,
-  },
-  {
-    title: 'divider',
-    actionType: 'divider',
   },
   {
     title: 'logOut',

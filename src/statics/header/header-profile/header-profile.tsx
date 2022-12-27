@@ -2,7 +2,7 @@ import React, { FC, useRef, useState } from 'react';
 
 import { tKeys } from 'translations/translation-keys';
 
-import { ListItemIcon, Typography, Menu, MenuItem, Stack, Divider, Box } from '@mui/material';
+import { ListItemIcon, Typography, Menu, MenuItem, Stack } from '@mui/material';
 import { ProfileActionTypesEnum } from 'enums/enums';
 import { useNavigate } from 'react-router-dom';
 
@@ -69,23 +69,10 @@ const HeaderProfile: FC = () => {
           },
         }}
       >
-        <Box paddingX={2} paddingBottom="20px">
-          <Typography variant="h1" fontSize="16px" fontWeight="400" lineHeight="24px">
-            Jackson D.
-          </Typography>
-          <Typography variant="subtitle1" fontSize="14px" fontWeight="400" lineHeight="20px">
-            Mananger
-          </Typography>
-        </Box>
-
-        <Divider sx={{ marginBottom: 1 }} />
-
         {headerProfileMenuConfig.map(item => {
           const { title, icon, actionType, link } = item;
 
-          return actionType === ProfileActionTypesEnum.divider ? (
-            <Divider key={title} />
-          ) : (
+          return (
             <MenuItem onClick={() => handleMenuClose(actionType, link)} key={title}>
               {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
 
