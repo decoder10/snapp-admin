@@ -25,27 +25,18 @@ function createData(
 
 const rows = [
   createData(123, 'Bennett', 'Jeremiah', 'Harrison', '950 Ridge RD C25', 'bjharrison@gmail.com', 'Terminated', 'VIEW'),
-  createData(123, 'Bennett', 'Jeremiah', 'Harrison', '950 Ridge RD C25', 'bjharrison@gmail.com', 'Terminated', 'VIEW'),
-  createData(123, 'Bennett', 'Jeremiah', 'Harrison', '950 Ridge RD C25', 'bjharrison@gmail.com', 'Terminated', 'VIEW'),
-  createData(123, 'Bennett', 'Jeremiah', 'Harrison', '950 Ridge RD C25', 'bjharrison@gmail.com', 'Terminated', 'VIEW'),
-  createData(123, 'Bennett', 'Jeremiah', 'Harrison', '950 Ridge RD C25', 'bjharrison@gmail.com', 'Terminated', 'VIEW'),
-  createData(123, 'Bennett', 'Jeremiah', 'Harrison', '950 Ridge RD C25', 'bjharrison@gmail.com', 'Terminated', 'VIEW'),
-  createData(123, 'Bennett', 'Jeremiah', 'Harrison', '950 Ridge RD C25', 'bjharrison@gmail.com', 'Terminated', 'VIEW'),
+  createData(123, 'Maria', 'Jeremiah', 'Harrison', '950 Ridge RD C25', 'bjharrison@gmail.com', 'Terminated', 'VIEW'),
+  createData(123, 'John', 'Jeremiah', 'Harrison', '950 Ridge RD C25', 'bjharrison@gmail.com', 'Terminated', 'VIEW'),
+  createData(123, 'Gor ', 'Jeremiah', 'Harrison', '950 Ridge RD C25', 'bjharrison@gmail.com', 'Terminated', 'VIEW'),
+  createData(123, 'Tigran', 'Jeremiah', 'Harrison', '950 Ridge RD C25', 'bjharrison@gmail.com', 'Terminated', 'VIEW'),
+  createData(123, 'Aram', 'Jeremiah', 'Harrison', '950 Ridge RD C25', 'bjharrison@gmail.com', 'Terminated', 'VIEW'),
+  createData(123, 'Spo', 'Jeremiah', 'Harrison', '950 Ridge RD C25', 'bjharrison@gmail.com', 'Terminated', 'VIEW'),
 ];
 
 const CustomerTable: FC = () => {
   return (
-    <TableContainer
-      component={Paper}
-      style={{
-        width: '1128px',
-        height: '609px',
-        backgroundColor: '#FFFFFF',
-        borderRadius: '16px',
-        // padding: '24px 32px',
-      }}
-    >
-      <Table sx={{ backgroundColor: 'red' }} aria-label="simple table">
+    <TableContainer component={Paper}>
+      <Table>
         <TableHead>
           <TableRow>
             <TableCell>Customer ID</TableCell>
