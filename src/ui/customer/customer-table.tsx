@@ -18,6 +18,8 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import _ from 'lodash';
 
+import CustomTableHead from 'ui/customer/customer-table-head';
+
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -71,7 +73,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-interface ITableData {
+export interface ITableData {
   customerId: number | string;
   name: string;
   middleName: string;
@@ -83,7 +85,7 @@ interface ITableData {
 
 const rows: ITableData[] = [
   {
-    customerId: 1,
+    customerId: 1455558999,
     name: 'Cupcake',
     middleName: 'Khachatryan',
     lastName: 'Harrison',
@@ -92,7 +94,7 @@ const rows: ITableData[] = [
     status: 'Terminated',
   },
   {
-    customerId: 2,
+    customerId: 7854449554,
     name: 'Donut',
     middleName: 'Harutyunyan',
     lastName: 'Harrison',
@@ -101,7 +103,7 @@ const rows: ITableData[] = [
     status: 'Verifiyed',
   },
   {
-    customerId: 3,
+    customerId: 1258964789,
     name: 'Eclair',
     middleName: 'Vardanyan',
     lastName: 'Harrison',
@@ -110,7 +112,7 @@ const rows: ITableData[] = [
     status: 'pending',
   },
   {
-    customerId: 4,
+    customerId: 4589652368,
     name: 'Frozen',
     middleName: 'Gevorgyan',
     lastName: 'Harrison',
@@ -119,7 +121,7 @@ const rows: ITableData[] = [
     status: 'Terminated',
   },
   {
-    customerId: 5,
+    customerId: 4587965287,
     name: 'Gingerbread',
     middleName: 'jeremih',
     lastName: 'Harrison',
@@ -128,7 +130,7 @@ const rows: ITableData[] = [
     status: 'Terminated',
   },
   {
-    customerId: 6,
+    customerId: 2365897415,
     name: 'Honeycomb',
     middleName: 'Smit',
     lastName: 'Harrison',
@@ -137,7 +139,7 @@ const rows: ITableData[] = [
     status: 'Terminated',
   },
   {
-    customerId: 7,
+    customerId: 3215897458,
     name: 'Ice cream sandwich',
     middleName: 'Omar',
     lastName: 'Harrison',
@@ -146,7 +148,7 @@ const rows: ITableData[] = [
     status: 'Verifiyed',
   },
   {
-    customerId: 8,
+    customerId: 5698547821,
     name: 'Jelly Bean',
     middleName: 'Carter',
     lastName: 'Harrison',
@@ -155,7 +157,7 @@ const rows: ITableData[] = [
     status: 'Verifiyed',
   },
   {
-    customerId: 9,
+    customerId: 6548791236,
     name: 'KitKat',
     middleName: 'Willson',
     lastName: 'Harrison',
@@ -164,7 +166,7 @@ const rows: ITableData[] = [
     status: 'pending',
   },
   {
-    customerId: 10,
+    customerId: 5487963214,
     name: 'Lollipop',
     middleName: 'Brook',
     lastName: 'Harrison',
@@ -173,7 +175,7 @@ const rows: ITableData[] = [
     status: 'Verifiyed',
   },
   {
-    customerId: 11,
+    customerId: 5897410236,
     name: 'Marshmallow',
     middleName: 'Lizz',
     lastName: 'Harrison',
@@ -182,7 +184,7 @@ const rows: ITableData[] = [
     status: 'Terminated',
   },
   {
-    customerId: 12,
+    customerId: 9658741256,
     name: 'Nougat',
     middleName: 'Morris',
     lastName: 'Harrison',
@@ -191,7 +193,7 @@ const rows: ITableData[] = [
     status: 'Terminated',
   },
   {
-    customerId: 13,
+    customerId: 9875412589,
     name: 'Oreo',
     middleName: 'Johnson',
     lastName: 'Harrison',
@@ -201,12 +203,53 @@ const rows: ITableData[] = [
   },
 ];
 
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+export type Order = 'asc' | 'desc';
+
+function getComparator<Key extends keyof any>(
+  order: Order,
+  orderBy: Key,
+): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
+  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) {
+      return order;
+    }
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map(el => el[0]);
+}
+
 const CustomPaginationActionsTable = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [order, setOrder] = React.useState<Order>('asc');
+  const [orderBy, setOrderBy] = React.useState<keyof ITableData>('name');
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
+  const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof ITableData) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
@@ -220,14 +263,21 @@ const CustomPaginationActionsTable = () => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+        <CustomTableHead onRequestSort={handleRequestSort} order={order} orderBy={orderBy} />
         <TableBody>
-          {(rowsPerPage > 0 ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : rows).map(row => (
+          {(rowsPerPage > 0
+            ? stableSort(rows, getComparator(order, orderBy)).slice(
+                page * rowsPerPage,
+                page * rowsPerPage + rowsPerPage,
+              )
+            : rows
+          ).map(row => (
             <TableRow key={row.customerId}>
               <>
                 {_.keys(row).map(key => {
                   if (key === 'status') {
                     return (
-                      <TableCell key={key}>
+                      <TableCell key={key} align="left">
                         <Chip
                           size="small"
                           label={row[key]}
@@ -236,9 +286,13 @@ const CustomPaginationActionsTable = () => {
                       </TableCell>
                     );
                   }
-                  return <TableCell key={key}>{row[key as keyof ITableData]}</TableCell>;
+                  return (
+                    <TableCell style={{ minWidth: '12.5%' }} key={key} align="left">
+                      {row[key as keyof ITableData]}
+                    </TableCell>
+                  );
                 })}
-                <TableCell key={`${row.customerId}action`}>
+                <TableCell key={`${row.customerId}action`} align="left">
                   <Button
                     size="small"
                     variant="outlined"
