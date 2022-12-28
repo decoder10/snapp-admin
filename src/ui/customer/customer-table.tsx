@@ -16,6 +16,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import _ from 'lodash';
 
 interface TablePaginationActionsProps {
   count: number;
@@ -70,33 +71,134 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-function createData(
-  customerId: number,
-  name: string,
-  middleName: string,
-  lastName: string,
-  address: string,
-  email: string,
-  status: string,
-  actionButton: string,
-) {
-  return { customerId, name, middleName, lastName, address, email, status, actionButton };
+interface ITableData {
+  customerId: number | string;
+  name: string;
+  middleName: string;
+  lastName: string;
+  address: string;
+  email: string;
+  status: string;
 }
 
-const rows = [
-  createData(1, 'Cupcake', 'Khachatryan', 'Harrison', 'Yerevan Armenia', 'gorkhach@gmail.com', 'Terminated', 'View'),
-  createData(2, 'Donut', 'Harutyunyan', 'Harrison', 'Yerevan Armenia', 'gorkhach@gmail.com', 'Verifiyed', 'View'),
-  createData(3, 'Eclair', 'Vardanyan', 'Harrison', 'Yerevan Armenia', 'gorkhach@gmail.com', 'pending', 'View'),
-  createData(4, 'Frozen', 'Gevorgyan', 'Harrison', 'Yerevan Armenia', 'gorkhach@gmail.com', 'Terminated', 'View'),
-  createData(5, 'Gingerbread', 'jeremih', 'Harrison', 'Yerevan Armenia', 'gorkhach@gmail.com', 'Terminated', 'View'),
-  createData(6, 'Honeycomb', 'Smit', 'Harrison', 'Yerevan Armenia', 'gorkhach@gmail.com', 'Terminated', 'View'),
-  createData(7, 'Ice cream sandwich', 'Omar', 'Harrison', 'Yerevan Armenia', 'gorkhach@gmail.com', 'Verifiyed', 'View'),
-  createData(8, 'Jelly Bean', 'Carter', 'Harrison', 'Yerevan Armenia', 'gorkhach@gmail.com', 'Verifiyed', 'View'),
-  createData(9, 'KitKat', 'Willson', 'Harrison', 'Yerevan Armenia', 'gorkhach@gmail.com', 'pending', 'View'),
-  createData(10, 'Lollipop', 'Brook', 'Harrison', 'Yerevan Armenia', 'gorkhach@gmail.com', 'Verifiyed', 'View'),
-  createData(11, 'Marshmallow', 'Lizz', 'Harrison', 'Yerevan Armenia', 'gorkhach@gmail.com', 'Terminated', 'View'),
-  createData(12, 'Nougat', 'Morris', 'Harrison', 'Yerevan Armenia', 'gorkhach@gmail.com', 'Terminated', 'View'),
-  createData(13, 'Oreo', 'Johnson', 'Harrison', 'Yerevan Armenia', 'gorkhach@gmail.com', 'pending', 'View'),
+const rows: ITableData[] = [
+  {
+    customerId: 1,
+    name: 'Cupcake',
+    middleName: 'Khachatryan',
+    lastName: 'Harrison',
+    address: 'Yerevan Armenia',
+    email: 'gorkhach@gmail.com',
+    status: 'Terminated',
+  },
+  {
+    customerId: 2,
+    name: 'Donut',
+    middleName: 'Harutyunyan',
+    lastName: 'Harrison',
+    address: 'Yerevan Armenia',
+    email: 'gorkhach@gmail.com',
+    status: 'Verifiyed',
+  },
+  {
+    customerId: 3,
+    name: 'Eclair',
+    middleName: 'Vardanyan',
+    lastName: 'Harrison',
+    address: 'Yerevan Armenia',
+    email: 'gorkhach@gmail.com',
+    status: 'pending',
+  },
+  {
+    customerId: 4,
+    name: 'Frozen',
+    middleName: 'Gevorgyan',
+    lastName: 'Harrison',
+    address: 'Yerevan Armenia',
+    email: 'gorkhach@gmail.com',
+    status: 'Terminated',
+  },
+  {
+    customerId: 5,
+    name: 'Gingerbread',
+    middleName: 'jeremih',
+    lastName: 'Harrison',
+    address: 'Yerevan Armenia',
+    email: 'gorkhach@gmail.com',
+    status: 'Terminated',
+  },
+  {
+    customerId: 6,
+    name: 'Honeycomb',
+    middleName: 'Smit',
+    lastName: 'Harrison',
+    address: 'Yerevan Armenia',
+    email: 'gorkhach@gmail.com',
+    status: 'Terminated',
+  },
+  {
+    customerId: 7,
+    name: 'Ice cream sandwich',
+    middleName: 'Omar',
+    lastName: 'Harrison',
+    address: 'Yerevan Armenia',
+    email: 'gorkhach@gmail.com',
+    status: 'Verifiyed',
+  },
+  {
+    customerId: 8,
+    name: 'Jelly Bean',
+    middleName: 'Carter',
+    lastName: 'Harrison',
+    address: 'Yerevan Armenia',
+    email: 'gorkhach@gmail.com',
+    status: 'Verifiyed',
+  },
+  {
+    customerId: 9,
+    name: 'KitKat',
+    middleName: 'Willson',
+    lastName: 'Harrison',
+    address: 'Yerevan Armenia',
+    email: 'gorkhach@gmail.com',
+    status: 'pending',
+  },
+  {
+    customerId: 10,
+    name: 'Lollipop',
+    middleName: 'Brook',
+    lastName: 'Harrison',
+    address: 'Yerevan Armenia',
+    email: 'gorkhach@gmail.com',
+    status: 'Verifiyed',
+  },
+  {
+    customerId: 11,
+    name: 'Marshmallow',
+    middleName: 'Lizz',
+    lastName: 'Harrison',
+    address: 'Yerevan Armenia',
+    email: 'gorkhach@gmail.com',
+    status: 'Terminated',
+  },
+  {
+    customerId: 12,
+    name: 'Nougat',
+    middleName: 'Morris',
+    lastName: 'Harrison',
+    address: 'Yerevan Armenia',
+    email: 'gorkhach@gmail.com',
+    status: 'Terminated',
+  },
+  {
+    customerId: 13,
+    name: 'Oreo',
+    middleName: 'Johnson',
+    lastName: 'Harrison',
+    address: 'Yerevan Armenia',
+    email: 'gorkhach@gmail.com',
+    status: 'pending',
+  },
 ];
 
 const CustomPaginationActionsTable = () => {
@@ -120,27 +222,34 @@ const CustomPaginationActionsTable = () => {
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableBody>
           {(rowsPerPage > 0 ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : rows).map(row => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.customerId}
-              </TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.middleName}</TableCell>
-              <TableCell>{row.lastName}</TableCell>
-              <TableCell>{row.address}</TableCell>
-              <TableCell>{row.email}</TableCell>
-              <TableCell>
-                <Chip
-                  size="small"
-                  label={row.status}
-                  color={row.status === 'Terminated' ? 'error' : row.status === 'pending' ? 'warning' : 'success'}
-                />
-              </TableCell>
-              <TableCell>
-                <Button size="small" variant="outlined">
-                  {row.actionButton}
-                </Button>
-              </TableCell>
+            <TableRow key={row.customerId}>
+              <>
+                {_.keys(row).map(key => {
+                  if (key === 'status') {
+                    return (
+                      <TableCell key={key}>
+                        <Chip
+                          size="small"
+                          label={row[key]}
+                          color={row[key] === 'Terminated' ? 'error' : row[key] === 'pending' ? 'warning' : 'success'}
+                        />
+                      </TableCell>
+                    );
+                  }
+                  return <TableCell key={key}>{row[key as keyof ITableData]}</TableCell>;
+                })}
+                <TableCell key={`${row.customerId}action`}>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    onClick={() => {
+                      console.log(88, row);
+                    }}
+                  >
+                    {'View'}
+                  </Button>
+                </TableCell>
+              </>
             </TableRow>
           ))}
           {emptyRows > 0 && (
@@ -151,22 +260,24 @@ const CustomPaginationActionsTable = () => {
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={8}
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
+            {rows.length > rowsPerPage ? (
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={8}
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                SelectProps={{
+                  inputProps: {
+                    'aria-label': 'rows per page',
+                  },
+                  native: true,
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
+            ) : null}
           </TableRow>
         </TableFooter>
       </Table>
