@@ -8,6 +8,10 @@ body {
 	font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
+* {
+	@extend .scrollbar;
+}
+
 .app-container {
 	@extend .fullSize;
 	display: flex;

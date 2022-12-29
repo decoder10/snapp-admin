@@ -1,19 +1,17 @@
 .customer-content {
+	@extend .fullSize;
+	padding: 0 23px 0 12px;
+	overflow-y: auto;
+
+
+	.customer-header {
+		width: 100%;
+		height: 65px;
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
-		flex-direction: column;
-		padding: 0 23px 0 12px;
-
-
-		.customer-header {
-			width: 100%;
-			height: 65px;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			background-color: var(--mui-palette-background-default);
-		}
+		background-color: var(--mui-palette-background-default);
 	}
+}
 
 

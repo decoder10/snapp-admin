@@ -12,6 +12,7 @@
 .scrollbar {
 	&::-webkit-scrollbar {
 		width: 5px;
+		height: 5px;
 	}
 
 	&::-webkit-scrollbar-thumb {
@@ -46,4 +47,28 @@
 
 .hide {
 	display: none;
+}
+
+.sticky-table-column {
+	position: sticky;
+	background: white;
+}
+
+.position-right {
+	right: 0;
+}
+
+.position-left {
+	right: 0;
+}
+
+.table-footer {
+	background: var(--mui-palette-background-paper);
+	width: 100%;
+}
+
+.table-container {
+	background: var(--mui-palette-background-paper);
+	border-radius: 8px;
+	overflow: hidden;
 }
