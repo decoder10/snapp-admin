@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
-import { Chip, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Chip, IconButton, Menu, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import _ from 'lodash';
 
 import { CoreTableHead } from 'core/core-table/core-table-head';
@@ -12,11 +13,13 @@ interface ITableProps<TableData> {
   headCells: TableHeadCell[];
   identifierKey: TKeyOf<TableData>;
   hasPagination: boolean;
+  hasAction: boolean;
   rowsPerPage?: number;
+  actions(rowData: TableData, handleClose: () => void): ReactNode;
 }
 
 export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
-  const { tableData = [], identifierKey, hasPagination, rowsPerPage = 9, headCells } = props;
+  const { tableData = [], identifierKey, hasPagination, hasAction, rowsPerPage = 9, headCells, actions } = props;
 
   const { directionSort, sortedData } = useDirectionSort<TableData>();
 
@@ -24,6 +27,16 @@ export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
   const [perPage, setPerPage] = useState<number>(rowsPerPage);
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<TKeyOf<TableData>>(identifierKey);
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleOpenActionMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseActionMenu = () => {
+    setAnchorEl(null);
+  };
 
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: string) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -47,6 +60,8 @@ export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
 
               <TableBody>
                 {sortedData.map(tableRowItem => {
+                  const open = anchorEl?.id === `${tableRowItem[identifierKey]}long-button`;
+
                   return (
                     <TableRow key={tableRowItem[identifierKey] as number}>
                       {_.keys(tableRowItem).map(tableRowItemKey => {
@@ -70,6 +85,35 @@ export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
                           </TableCell>
                         );
                       })}
+
+                      {hasAction ? (
+                        <TableCell
+                          key={`${tableRowItem[identifierKey]}action`}
+                          align="right"
+                          className="sticky-table-column position-right"
+                        >
+                          <IconButton
+                            id={`${tableRowItem[identifierKey]}long-button`}
+                            aria-controls={open ? 'long-menu' : undefined}
+                            aria-expanded={open ? 'true' : undefined}
+                            aria-haspopup="true"
+                            onClick={handleOpenActionMenu}
+                          >
+                            <MoreVertIcon />
+                          </IconButton>
+
+                          <Menu
+                            id={`${tableRowItem[identifierKey]}long-button`}
+                            MenuListProps={{ 'aria-labelledby': 'long-button' }}
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleCloseActionMenu}
+                            PaperProps={{ style: { width: '192px' } }}
+                          >
+                            {actions(tableRowItem, handleCloseActionMenu)}
+                          </Menu>
+                        </TableCell>
+                      ) : null}
                     </TableRow>
                   );
                 })}

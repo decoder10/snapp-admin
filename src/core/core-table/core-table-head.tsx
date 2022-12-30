@@ -3,8 +3,6 @@ import React from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 
-import { Order } from 'ui/customer/customer-table';
-
 interface ICustomTableProps {
   onRequestSort: (event: React.MouseEvent<unknown>, property: string) => void;
   order: Order;
@@ -19,11 +17,14 @@ export const CoreTableHead = (props: ICustomTableProps) => {
     <TableHead>
       <TableRow>
         {headCells.map(headCell => {
-          return (
+          return headCell.id === 'action' ? (
+            <TableCell key={headCell.id as TKeyOf<TableHeadCell>} className="sticky-table-column position-right">
+              {headCell.label}
+            </TableCell>
+          ) : (
             <TableCell
               key={headCell.id as TKeyOf<TableHeadCell>}
               sortDirection={orderBy === headCell.id ? order : false}
-              className={headCell.id === 'action' ? 'sticky-table-column position-right' : ''}
             >
               <TableSortLabel
                 IconComponent={ArrowDropDownIcon}

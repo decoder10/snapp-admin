@@ -47,6 +47,10 @@ export const tKeys = (key: string | number, variables?: (string | number)[]) => 
     // validations
     noEmpty: '[noEmpty]',
     mustBeSame: '[mustBeSame]',
+
+    // table actions
+    view: '[view]',
+    edit: '[edit]',
   };
 
   if (!tr[key]) {

@@ -28,7 +28,7 @@ export const useDirectionSort = <TableData>() => {
 
     const data = tableData
       .sort(sortByKey(order, orderBy))
-      .slice(currentPage * perPage, currentPage * perPage + perPage);
+      .slice(currentPage * perPage, currentPage * perPage + perPage); // TODO remove when get real data
 
     setSortedData(data);
   }

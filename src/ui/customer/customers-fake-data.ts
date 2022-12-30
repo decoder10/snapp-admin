@@ -20,7 +20,7 @@ export const CustomersFakeData: ITableData[] = [
   {
     customerId: 1258964789,
     name: 'Eclair',
-    middleName: 'Vardanyankggkgkggkiugkugkiugkugkugkugkugkiugkuygkgjghfjfcjyhfyhfjkhfgkhgfkhg',
+    middleName: 'Vardanyankggkgkggkiugkugkiugkug',
     lastName: 'Harrison',
     address: 'Yerevan Armenia',
     email: 'gorkhach@gmail.com',
