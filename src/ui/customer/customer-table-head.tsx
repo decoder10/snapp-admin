@@ -5,7 +5,7 @@ import { TableSortLabel } from '@mui/material';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 
-import { ITableData, Order } from 'ui/customer/customer-table';
+import { Order } from 'ui/customer/customer-table';
 
 interface ITableHeadData extends ITableData {
   action: string;

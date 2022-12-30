@@ -49,16 +49,6 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-export interface ITableData {
-  customerId: number | string;
-  name: string;
-  middleName: string;
-  lastName: string;
-  address: string;
-  email: string;
-  status: string;
-}
-
 const rows: ITableData[] = [
   {
     customerId: 1455558999,
@@ -301,9 +291,9 @@ const CustomPaginationActionsTable = () => {
       <table className="table-footer">
         <TableFooter>
           <TableRow>
-            {rows.length > rowsPerPage ? (
+            {rows.length ? (
               <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: 0 }]}
                 colSpan={8}
                 count={rows.length}
                 rowsPerPage={rowsPerPage}
