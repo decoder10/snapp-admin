@@ -16,7 +16,6 @@ type Authentication = Nullable<{ token: string; refreshToken: string }>;
 
 interface TableHeadCell {
   id: string;
-  label: string;
 }
 
 interface ITableFilter<TableData> {

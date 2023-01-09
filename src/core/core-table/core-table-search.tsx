@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 import { tKeys } from 'translations/translation-keys';
 
@@ -15,18 +15,14 @@ interface ISearch {
 export const CoreTableSearch: FC<ISearch> = props => {
   const { headCells, searchData, handleSearch } = props;
 
-  const [column, setColumn] = useState<string>('');
-
   const handleSearchChange = (event: { target: { value: string } }) => {
     handleSearch({ ...searchData, searchValue: event.target.value });
   };
 
   const handleColumnChange = (event: SelectChangeEvent) => {
-    setColumn(event.target.value as string);
-
     handleSearch({
       ...searchData,
-      searchColumn: headCells[event.target.value as unknown as number]?.id as string,
+      searchColumn: event.target.value,
     });
   };
 
@@ -34,10 +30,11 @@ export const CoreTableSearch: FC<ISearch> = props => {
     <Stack spacing={2} direction="row" alignItems="center">
       <FormControl sx={{ m: 1, minWidth: 184 }} size="small">
         <InputLabel id="search-column-select">{tKeys('column')}</InputLabel>
+
         <Select
           labelId="search-column-select"
           id="search-column-select"
-          value={column}
+          value={searchData.searchColumn}
           label={tKeys('column')}
           onChange={handleColumnChange}
         >
@@ -46,11 +43,11 @@ export const CoreTableSearch: FC<ISearch> = props => {
           </MenuItem>
 
           {headCells.map((item, index) => {
-            const { id, label } = item;
+            const { id } = item;
 
             return id !== 'action' ? (
-              <MenuItem key={id as TKeyOf<TableHeadCell>} value={index}>
-                {label}
+              <MenuItem key={id as TKeyOf<TableHeadCell>} value={id}>
+                {tKeys(id)}
               </MenuItem>
             ) : null;
           })}

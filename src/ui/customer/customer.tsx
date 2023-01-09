@@ -53,7 +53,7 @@ const Customer: FC = () => {
     <div className="customer-content">
       <CoreTable<ITableData>
         hasSearch
-        tableTitle="Customer"
+        tableTitle={tKeys('customers')}
         tableData={CustomersFakeData}
         headCells={headCells}
         identifierKey="customerId"

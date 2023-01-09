@@ -58,11 +58,20 @@ export const tKeys = (key: string | number, variables?: (string | number)[]) => 
     search: '[search]',
     none: '[none]',
     column: '[column]',
+
+    // customers
+    customerId: '[customerId]',
+    name: '[name]',
+    middleName: '[middleName]',
+    lastName: '[lastName]',
+    address: '[address]',
+    status: '[status]',
+    action: '[action]',
   };
 
   if (!tr[key]) {
     if (process.env.NODE_ENV === 'development') {
-      return `--${key} not found--`;
+      return `--${key}--`;
     }
 
     return `[${key}]`;

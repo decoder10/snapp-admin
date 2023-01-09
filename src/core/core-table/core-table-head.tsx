@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { tKeys } from 'translations/translation-keys';
+
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 
@@ -19,7 +21,7 @@ export const CoreTableHead = (props: ICustomTableProps) => {
         {headCells.map(headCell => {
           return headCell.id === 'action' ? (
             <TableCell key={headCell.id as TKeyOf<TableHeadCell>} className="sticky-table-column position-right">
-              {headCell.label}
+              {tKeys(headCell.id)}
             </TableCell>
           ) : (
             <TableCell
@@ -32,7 +34,7 @@ export const CoreTableHead = (props: ICustomTableProps) => {
                 direction={orderBy === headCell.id ? order : 'asc'}
                 onClick={event => onRequestSort(event, headCell.id as string)}
               >
-                {headCell.label}
+                {tKeys(headCell.id)}
               </TableSortLabel>
             </TableCell>
           );
