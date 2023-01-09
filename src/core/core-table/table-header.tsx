@@ -13,6 +13,12 @@ interface ITableHeaderProps {
 export const TableHeader: FC<ITableHeaderProps> = props => {
   const { tableTitle, headCells } = props;
 
+  const handleSearch = (searchData: ITableSearch) => {
+    console.log('log-------searchData', searchData);
+
+    return;
+  };
+
   return (
     <div className="table-header">
       <Typography fontSize="14px" fontWeight="700" lineHeight="24px">
@@ -20,7 +26,7 @@ export const TableHeader: FC<ITableHeaderProps> = props => {
       </Typography>
 
       <div className="right-side">
-        <CoreSearch headCells={headCells} />
+        <CoreSearch headCells={headCells} handleSearch={(searchData: ITableSearch) => handleSearch(searchData)} />
       </div>
     </div>
   );

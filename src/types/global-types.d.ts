@@ -15,8 +15,8 @@ type Permission = string[];
 type Authentication = Nullable<{ token: string; refreshToken: string }>;
 
 interface TableHeadCell {
-  readonly id: keyof ITableHeadData;
-  readonly label: string;
+  id: string;
+  label: string;
 }
 
 interface ITableFilter<TableData> {
@@ -24,6 +24,11 @@ interface ITableFilter<TableData> {
   perPage: number;
   order: Order;
   orderBy: TKeyOf<TableData>;
+}
+
+interface ITableSearch {
+  searchColumn: string;
+  searchValue: string;
 }
 
 interface IKeyValueObject {

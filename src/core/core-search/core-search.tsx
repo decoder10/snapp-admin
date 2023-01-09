@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { tKeys } from 'translations/translation-keys';
 
@@ -8,12 +8,34 @@ import { SelectChangeEvent } from '@mui/material/Select';
 
 interface ISearch {
   headCells: TableHeadCell[];
+  handleSearch(searchData: ITableSearch): void;
 }
 
 export const CoreSearch: FC<ISearch> = props => {
-  const { headCells } = props;
+  const { headCells, handleSearch } = props;
 
   const [column, setColumn] = useState<string>('');
+
+  const [searchData, setSearchData] = useState<ITableSearch>({
+    searchColumn: '',
+    searchValue: '',
+  });
+
+  const handleSearchChange = (event: { target: { value: string } }) => {
+    setSearchData(prevState => ({ ...prevState, searchValue: event.target.value }));
+  };
+
+  const handleColumnChange = (event: SelectChangeEvent) => {
+    setColumn(event.target.value as string);
+    setSearchData(prevState => ({
+      ...prevState,
+      searchColumn: headCells[event.target.value as unknown as number]?.id as string,
+    }));
+  };
+
+  useEffect(() => {
+    handleSearch(searchData);
+  }, [handleSearch, searchData]);
 
   return (
     <Stack spacing={2} direction="row" alignItems="center">
@@ -24,7 +46,7 @@ export const CoreSearch: FC<ISearch> = props => {
           id="search-column-select"
           value={column}
           label={tKeys('column')}
-          onChange={(event: SelectChangeEvent) => setColumn(event.target.value as string)}
+          onChange={handleColumnChange}
         >
           <MenuItem value="">
             <em>{tKeys('none')}</em>
@@ -47,6 +69,8 @@ export const CoreSearch: FC<ISearch> = props => {
         <OutlinedInput
           size="small"
           id="search-field"
+          value={searchData.searchValue}
+          onChange={handleSearchChange}
           startAdornment={
             <InputAdornment position="start">
               <SearchIcon />
