@@ -34,8 +34,12 @@ export const CoreSearch: FC<ISearch> = props => {
   };
 
   useEffect(() => {
+    console.log('log---------------------11111');
+
     handleSearch(searchData);
-  }, [handleSearch, searchData]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchData]);
 
   return (
     <Stack spacing={2} direction="row" alignItems="center">
