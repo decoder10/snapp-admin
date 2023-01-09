@@ -19,6 +19,13 @@ interface TableHeadCell {
   readonly label: string;
 }
 
+interface ITableFilter<TableData> {
+  currentPage: number;
+  perPage: number;
+  order: Order;
+  orderBy: TKeyOf<TableData>;
+}
+
 interface IKeyValueObject {
   [key: string]: string;
 }

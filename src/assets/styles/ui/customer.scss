@@ -2,15 +2,6 @@
 	@extend .fullSize;
 	padding: 24px 24px 24px 11px;
 	overflow-y: auto;
-
-	.customer-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		width: 100%;
-		padding-bottom: 32px;
-		background-color: var(--mui-palette-background-default);
-	}
 }
 
 

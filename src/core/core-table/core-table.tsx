@@ -1,11 +1,11 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Chip, IconButton, Menu, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import _ from 'lodash';
+import { Table, TableContainer } from '@mui/material';
 
+import CoreTableBody from 'core/core-table/core-table-body';
 import { CoreTableHead } from 'core/core-table/core-table-head';
 import { CoreTablePagination } from 'core/core-table/core-table-pagination';
+import { TableHeader } from 'core/core-table/table-header';
 import { useDirectionSort } from 'core/core-table/use-direction-sort';
 
 interface ITableProps<TableData> {
@@ -15,33 +15,43 @@ interface ITableProps<TableData> {
   hasPagination: boolean;
   hasAction: boolean;
   rowsPerPage?: number;
+  tableTitle: string;
   actions(rowData: TableData, handleClose: () => void): ReactNode;
+  handleTableFilterChanges(filterData: ITableFilter<TableData>): void;
 }
 
 export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
-  const { tableData = [], identifierKey, hasPagination, hasAction, rowsPerPage = 9, headCells, actions } = props;
+  const {
+    tableData = [],
+    identifierKey,
+    hasPagination,
+    hasAction,
+    rowsPerPage = 9,
+    headCells,
+    actions,
+    handleTableFilterChanges,
+    tableTitle,
+  } = props;
 
   const { directionSort, sortedData } = useDirectionSort<TableData>();
 
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  const [perPage, setPerPage] = useState<number>(rowsPerPage);
-  const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<TKeyOf<TableData>>(identifierKey);
+  const [tableFilterData, setTableFilterData] = useState<ITableFilter<TableData>>({
+    currentPage: 0,
+    perPage: rowsPerPage,
+    order: 'asc',
+    orderBy: identifierKey,
+  });
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-  const handleOpenActionMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleCloseActionMenu = () => {
-    setAnchorEl(null);
-  };
+  const { orderBy, order, currentPage, perPage } = tableFilterData;
 
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: string) => {
     const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property as TKeyOf<TableData>);
+
+    setTableFilterData(prevState => ({
+      ...prevState,
+      order: isAsc ? 'desc' : 'asc',
+      orderBy: property as TKeyOf<TableData>,
+    }));
   };
 
   useEffect(() => {
@@ -50,89 +60,58 @@ export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, order, orderBy, perPage, tableData]);
 
+  useEffect(() => {
+    handleTableFilterChanges(tableFilterData);
+  }, [handleTableFilterChanges, tableFilterData]);
+
   return (
-    <div className="table-container">
-      {sortedData.length ? (
-        <>
-          <TableContainer>
-            <Table aria-label="custom pagination table">
-              <CoreTableHead order={order} onRequestSort={handleRequestSort} orderBy={orderBy} headCells={headCells} />
+    <>
+      <TableHeader tableTitle={tableTitle} />
 
-              <TableBody>
-                {sortedData.map(tableRowItem => {
-                  const open = anchorEl?.id === `${tableRowItem[identifierKey]}long-button`;
+      <div className="table-container">
+        {sortedData.length ? (
+          <>
+            <TableContainer>
+              <Table aria-label="custom pagination table">
+                <CoreTableHead
+                  order={order}
+                  onRequestSort={handleRequestSort}
+                  orderBy={orderBy}
+                  headCells={headCells}
+                />
 
-                  return (
-                    <TableRow key={tableRowItem[identifierKey] as number}>
-                      {_.keys(tableRowItem).map(tableRowItemKey => {
-                        if (tableRowItemKey === 'status') {
-                          const item = tableRowItem[tableRowItemKey as TKeyOf<TableData>] as string;
+                <CoreTableBody<TableData>
+                  sortedData={sortedData}
+                  identifierKey={identifierKey}
+                  hasAction={hasAction}
+                  actions={actions}
+                />
+              </Table>
+            </TableContainer>
 
-                          return (
-                            <TableCell key={tableRowItemKey} align="left">
-                              <Chip
-                                size="small"
-                                label={item}
-                                color={item === 'Terminated' ? 'error' : item === 'pending' ? 'warning' : 'success'}
-                              />
-                            </TableCell>
-                          );
-                        }
-
-                        return (
-                          <TableCell style={{ minWidth: '12.5%' }} key={tableRowItemKey} align="left">
-                            {tableRowItem[tableRowItemKey as TKeyOf<TableData>] as string}
-                          </TableCell>
-                        );
-                      })}
-
-                      {hasAction ? (
-                        <TableCell
-                          key={`${tableRowItem[identifierKey]}action`}
-                          align="right"
-                          className="sticky-table-column position-right"
-                        >
-                          <IconButton
-                            id={`${tableRowItem[identifierKey]}long-button`}
-                            aria-controls={open ? 'long-menu' : undefined}
-                            aria-expanded={open ? 'true' : undefined}
-                            aria-haspopup="true"
-                            onClick={handleOpenActionMenu}
-                          >
-                            <MoreVertIcon />
-                          </IconButton>
-
-                          <Menu
-                            id={`${tableRowItem[identifierKey]}long-button`}
-                            MenuListProps={{ 'aria-labelledby': 'long-button' }}
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleCloseActionMenu}
-                            PaperProps={{ style: { width: '192px' } }}
-                          >
-                            {actions(tableRowItem, handleCloseActionMenu)}
-                          </Menu>
-                        </TableCell>
-                      ) : null}
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
-
-          {hasPagination ? (
-            <CoreTablePagination
-              rowsPerPage={rowsPerPage}
-              perPage={perPage}
-              page={currentPage}
-              dataLength={tableData.length}
-              handleSetCurrentPage={value => setCurrentPage(value)}
-              handleSetPerPage={value => setPerPage(value)}
-            />
-          ) : null}
-        </>
-      ) : null}
-    </div>
+            {hasPagination ? (
+              <CoreTablePagination
+                rowsPerPage={rowsPerPage}
+                perPage={perPage}
+                page={currentPage}
+                dataLength={tableData.length}
+                handleSetCurrentPage={value =>
+                  setTableFilterData(prevState => ({
+                    ...prevState,
+                    currentPage: value,
+                  }))
+                }
+                handleSetPerPage={value =>
+                  setTableFilterData(prevState => ({
+                    ...prevState,
+                    perPage: value,
+                  }))
+                }
+              />
+            ) : null}
+          </>
+        ) : null}
+      </div>
+    </>
   );
 };
