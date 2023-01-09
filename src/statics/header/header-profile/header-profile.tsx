@@ -2,7 +2,7 @@ import React, { FC, useRef, useState } from 'react';
 
 import { tKeys } from 'translations/translation-keys';
 
-import { ListItemIcon, Typography, Menu, MenuItem, Stack } from '@mui/material';
+import { ListItemIcon, Typography, Menu, MenuItem, Stack, Divider } from '@mui/material';
 import { ProfileActionTypesEnum } from 'enums/enums';
 import { useNavigate } from 'react-router-dom';
 
@@ -70,9 +70,11 @@ const HeaderProfile: FC = () => {
         }}
       >
         {headerProfileMenuConfig.map(item => {
-          const { title, icon, actionType, link } = item;
+          const { title, icon, actionType, link, type } = item;
 
-          return (
+          return type === 'divider' ? (
+            <Divider key={title} />
+          ) : (
             <MenuItem onClick={() => handleMenuClose(actionType, link)} key={title}>
               {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
 

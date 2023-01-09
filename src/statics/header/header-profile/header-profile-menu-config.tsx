@@ -15,6 +15,10 @@ export const headerProfileMenuConfig: IHeaderProfileMenuConfig[] = [
     icon: <AccountCircleIcon />,
   },
   {
+    title: 'divider',
+    type: 'divider',
+  },
+  {
     title: 'logOut',
     actionType: 'logout',
   },

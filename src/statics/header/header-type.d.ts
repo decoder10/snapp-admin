@@ -11,4 +11,5 @@ interface IHeaderProfileMenuConfig {
   link?: string;
   actionType?: TKeyOf<typeof import('enums/enums').ProfileActionTypesEnum>;
   icon?: React.ReactNode;
+  type?: string;
 }
