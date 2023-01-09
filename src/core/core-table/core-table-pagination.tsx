@@ -11,6 +11,7 @@ interface IPaginationProps {
   rowsPerPage: number;
   page: number;
   dataLength: number;
+  colspan: number;
   handleSetCurrentPage(value: number): void;
   handleSetPerPage(value: number): void;
 }
@@ -51,7 +52,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 }
 
 export const CoreTablePagination: FC<IPaginationProps> = props => {
-  const { perPage, dataLength, rowsPerPage, page, handleSetCurrentPage, handleSetPerPage } = props;
+  const { perPage, dataLength, rowsPerPage, page, colspan, handleSetCurrentPage, handleSetPerPage } = props;
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     handleSetCurrentPage(newPage);
@@ -69,7 +70,7 @@ export const CoreTablePagination: FC<IPaginationProps> = props => {
           {dataLength ? (
             <TablePagination
               rowsPerPageOptions={[rowsPerPage, 20, 40, 60, 80, 100]}
-              colSpan={8}
+              colSpan={colspan}
               count={dataLength}
               rowsPerPage={perPage}
               page={page}

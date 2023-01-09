@@ -12,10 +12,11 @@ interface ITableProps<TableData> {
   tableData: TableData[];
   headCells: TableHeadCell[];
   identifierKey: TKeyOf<TableData>;
-  hasPagination: boolean;
-  hasAction: boolean;
   rowsPerPage?: number;
   tableTitle: string;
+  hasPagination: boolean;
+  hasAction: boolean;
+  hasSearch: boolean;
   actions(rowData: TableData, handleClose: () => void): ReactNode;
   handleTableFilterChanges(filterData: ITableFilter<TableData>): void;
 }
@@ -31,6 +32,7 @@ export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
     actions,
     handleTableFilterChanges,
     tableTitle,
+    hasSearch,
   } = props;
 
   const { directionSort, sortedData } = useDirectionSort<TableData>();
@@ -65,53 +67,48 @@ export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
   }, [handleTableFilterChanges, tableFilterData]);
 
   return (
-    <>
-      <TableHeader tableTitle={tableTitle} />
+    <div className="core-table-wrap">
+      <TableHeader tableTitle={tableTitle} hasSearch={hasSearch} headCells={headCells} />
 
       <div className="table-container">
-        {sortedData.length ? (
-          <>
-            <TableContainer>
-              <Table aria-label="custom pagination table">
-                <CoreTableHead
-                  order={order}
-                  onRequestSort={handleRequestSort}
-                  orderBy={orderBy}
-                  headCells={headCells}
-                />
+        <>
+          <TableContainer>
+            <Table aria-label="custom pagination table">
+              <CoreTableHead order={order} onRequestSort={handleRequestSort} orderBy={orderBy} headCells={headCells} />
 
-                <CoreTableBody<TableData>
-                  sortedData={sortedData}
-                  identifierKey={identifierKey}
-                  hasAction={hasAction}
-                  actions={actions}
-                />
-              </Table>
-            </TableContainer>
-
-            {hasPagination ? (
-              <CoreTablePagination
-                rowsPerPage={rowsPerPage}
-                perPage={perPage}
-                page={currentPage}
-                dataLength={tableData.length}
-                handleSetCurrentPage={value =>
-                  setTableFilterData(prevState => ({
-                    ...prevState,
-                    currentPage: value,
-                  }))
-                }
-                handleSetPerPage={value =>
-                  setTableFilterData(prevState => ({
-                    ...prevState,
-                    perPage: value,
-                  }))
-                }
+              <CoreTableBody<TableData>
+                sortedData={sortedData}
+                identifierKey={identifierKey}
+                hasAction={hasAction}
+                actions={actions}
+                colspan={hasAction ? headCells.length : headCells.length + 1}
               />
-            ) : null}
-          </>
-        ) : null}
+            </Table>
+          </TableContainer>
+
+          {hasPagination ? (
+            <CoreTablePagination
+              rowsPerPage={rowsPerPage}
+              perPage={perPage}
+              page={currentPage}
+              dataLength={tableData.length}
+              colspan={hasAction ? headCells.length : headCells.length + 1}
+              handleSetCurrentPage={value =>
+                setTableFilterData(prevState => ({
+                  ...prevState,
+                  currentPage: value,
+                }))
+              }
+              handleSetPerPage={value =>
+                setTableFilterData(prevState => ({
+                  ...prevState,
+                  perPage: value,
+                }))
+              }
+            />
+          ) : null}
+        </>
       </div>
-    </>
+    </div>
   );
 };

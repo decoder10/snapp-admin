@@ -7,6 +7,8 @@ export const tKeys = (key: string | number, variables?: (string | number)[]) => 
     signInPasswordMinimum: '[signInPasswordMinimum]',
     signInPasswordMaximum: '[signInPasswordMaximum]',
 
+    // ====================== app =======================================
+
     // aside
     dashboard: '[dashboard]',
     adminUsers: '[adminUsers]',
@@ -48,9 +50,14 @@ export const tKeys = (key: string | number, variables?: (string | number)[]) => 
     noEmpty: '[noEmpty]',
     mustBeSame: '[mustBeSame]',
 
-    // table actions
+    // table
+    noData: '[noData]',
     view: '[view]',
     edit: '[edit]',
+
+    search: '[search]',
+    none: '[none]',
+    column: '[column]',
   };
 
   if (!tr[key]) {

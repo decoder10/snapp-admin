@@ -1,57 +1,64 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+
+import { tKeys } from 'translations/translation-keys';
 
 import SearchIcon from '@mui/icons-material/Search';
-import InputBase from '@mui/material/InputBase';
-import { alpha, styled } from '@mui/material/styles';
+import { Button, FormControl, InputAdornment, InputLabel, MenuItem, OutlinedInput, Select, Stack } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material/Select';
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
+interface ISearch {
+  headCells: TableHeadCell[];
+}
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
+export const CoreSearch: FC<ISearch> = props => {
+  const { headCells } = props;
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
+  const [column, setColumn] = useState<string>('');
 
-export const CoreSearch: FC = () => {
   return (
-    <Search>
-      <SearchIconWrapper>
-        <SearchIcon />
-      </SearchIconWrapper>
+    <Stack spacing={2} direction="row" alignItems="center">
+      <FormControl sx={{ m: 1, minWidth: 184 }} size="small">
+        <InputLabel id="search-column-select">{tKeys('column')}</InputLabel>
+        <Select
+          labelId="search-column-select"
+          id="search-column-select"
+          value={column}
+          label={tKeys('column')}
+          onChange={(event: SelectChangeEvent) => setColumn(event.target.value as string)}
+        >
+          <MenuItem value="">
+            <em>{tKeys('none')}</em>
+          </MenuItem>
 
-      <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
-    </Search>
+          {headCells.map((item, index) => {
+            const { id, label } = item;
+
+            return id !== 'action' ? (
+              <MenuItem key={id as TKeyOf<TableHeadCell>} value={index}>
+                {label}
+              </MenuItem>
+            ) : null;
+          })}
+        </Select>
+      </FormControl>
+
+      <FormControl sx={{ m: 1, width: 184 }} variant="outlined">
+        <InputLabel htmlFor="search-field">{tKeys('search')}</InputLabel>
+        <OutlinedInput
+          size="small"
+          id="search-field"
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          }
+          label={tKeys('search')}
+        />
+      </FormControl>
+
+      <Button variant="contained" size="medium">
+        {tKeys('search')}
+      </Button>
+    </Stack>
   );
 };
