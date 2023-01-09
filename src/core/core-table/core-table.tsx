@@ -1,11 +1,11 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 
-import { Table, TableContainer } from '@mui/material';
+import { Table, TableContainer, Typography } from '@mui/material';
 
 import CoreTableBody from 'core/core-table/core-table-body';
 import { CoreTableHead } from 'core/core-table/core-table-head';
 import { CoreTablePagination } from 'core/core-table/core-table-pagination';
-import { TableHeader } from 'core/core-table/table-header';
+import { CoreTableSearch } from 'core/core-table/core-table-search';
 import { useDirectionSort } from 'core/core-table/use-direction-sort';
 
 interface ITableProps<TableData> {
@@ -18,7 +18,7 @@ interface ITableProps<TableData> {
   hasAction: boolean;
   hasSearch: boolean;
   actions(rowData: TableData, handleClose: () => void): ReactNode;
-  handleTableFilterChanges(filterData: ITableFilter<TableData>): void;
+  handleTableFilterChanges(filterData: ITableFilter<TableData> & ITableSearch): void;
 }
 
 export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
@@ -36,6 +36,11 @@ export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
   } = props;
 
   const { directionSort, sortedData } = useDirectionSort<TableData>();
+
+  const [searchData, setSearchData] = useState<ITableSearch>({
+    searchColumn: '',
+    searchValue: '',
+  });
 
   const [tableFilterData, setTableFilterData] = useState<ITableFilter<TableData>>({
     currentPage: 0,
@@ -63,12 +68,26 @@ export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
   }, [currentPage, order, orderBy, perPage, tableData]);
 
   useEffect(() => {
-    handleTableFilterChanges(tableFilterData);
-  }, [handleTableFilterChanges, tableFilterData]);
+    handleTableFilterChanges({ ...tableFilterData, ...searchData });
+  }, [handleTableFilterChanges, tableFilterData, searchData]);
 
   return (
     <div className="core-table-wrap">
-      <TableHeader tableTitle={tableTitle} hasSearch={hasSearch} headCells={headCells} />
+      <div className="table-header">
+        <Typography fontSize="14px" fontWeight="700" lineHeight="24px">
+          {tableTitle}
+        </Typography>
+
+        <div className="right-side">
+          {hasSearch ? (
+            <CoreTableSearch
+              headCells={headCells}
+              searchData={searchData}
+              handleSearch={(searchData: ITableSearch) => setSearchData(searchData)}
+            />
+          ) : null}
+        </div>
+      </div>
 
       <div className="table-container">
         <>

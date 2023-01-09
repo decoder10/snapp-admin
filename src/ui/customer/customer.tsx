@@ -20,7 +20,7 @@ const Customer: FC = () => {
     console.log('log------rowData', rowData);
   };
 
-  const handleTableFilterChanges = (filterData: ITableFilter<ITableData>) => {
+  const handleTableFilterChanges = (filterData: ITableFilter<ITableData> & ITableSearch) => {
     console.log('log------filterData', filterData);
 
     return;
@@ -59,7 +59,9 @@ const Customer: FC = () => {
         identifierKey="customerId"
         hasPagination
         hasAction
-        handleTableFilterChanges={(filterData: ITableFilter<ITableData>) => handleTableFilterChanges(filterData)}
+        handleTableFilterChanges={(filterData: ITableFilter<ITableData> & ITableSearch) =>
+          handleTableFilterChanges(filterData)
+        }
         actions={(rowData: ITableData, handleClose: () => void) => renderTableActions(rowData, handleClose)}
       />
     </div>

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { tKeys } from 'translations/translation-keys';
 
@@ -8,38 +8,27 @@ import { SelectChangeEvent } from '@mui/material/Select';
 
 interface ISearch {
   headCells: TableHeadCell[];
+  searchData: ITableSearch;
   handleSearch(searchData: ITableSearch): void;
 }
 
-export const CoreSearch: FC<ISearch> = props => {
-  const { headCells, handleSearch } = props;
+export const CoreTableSearch: FC<ISearch> = props => {
+  const { headCells, searchData, handleSearch } = props;
 
   const [column, setColumn] = useState<string>('');
 
-  const [searchData, setSearchData] = useState<ITableSearch>({
-    searchColumn: '',
-    searchValue: '',
-  });
-
   const handleSearchChange = (event: { target: { value: string } }) => {
-    setSearchData(prevState => ({ ...prevState, searchValue: event.target.value }));
+    handleSearch({ ...searchData, searchValue: event.target.value });
   };
 
   const handleColumnChange = (event: SelectChangeEvent) => {
     setColumn(event.target.value as string);
-    setSearchData(prevState => ({
-      ...prevState,
+
+    handleSearch({
+      ...searchData,
       searchColumn: headCells[event.target.value as unknown as number]?.id as string,
-    }));
+    });
   };
-
-  useEffect(() => {
-    console.log('log---------------------11111');
-
-    handleSearch(searchData);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchData]);
 
   return (
     <Stack spacing={2} direction="row" alignItems="center">
