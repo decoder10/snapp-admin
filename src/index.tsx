@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@mui/material';
 import Auth from 'Auth';
+import { SnackbarProvider } from 'notistack';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -20,11 +21,19 @@ const root = createRoot(container);
 
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <ThemeProvider theme={mainLightTheme}>
-        <Auth />
-      </ThemeProvider>
-    </BrowserRouter>
+    <SnackbarProvider
+      maxSnack={4}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+    >
+      <BrowserRouter>
+        <ThemeProvider theme={mainLightTheme}>
+          <Auth />
+        </ThemeProvider>
+      </BrowserRouter>
+    </SnackbarProvider>
 
     <MemoizedLoader />
   </Provider>,
