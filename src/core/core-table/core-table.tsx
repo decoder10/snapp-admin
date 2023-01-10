@@ -2,40 +2,41 @@ import React, { ReactNode, useEffect, useState } from 'react';
 
 import { Table, TableContainer, Typography } from '@mui/material';
 
+import { useFetch } from 'hooks/use-fetch';
+
 import CoreTableBody from 'core/core-table/core-table-body';
 import { CoreTableHead } from 'core/core-table/core-table-head';
 import { CoreTablePagination } from 'core/core-table/core-table-pagination';
 import { CoreTableSearch } from 'core/core-table/core-table-search';
-import { useDirectionSort } from 'core/core-table/use-direction-sort';
 
 interface ITableProps<TableData> {
-  tableData: TableData[];
   headCells: TableHeadCell[];
   identifierKey: TKeyOf<TableData>;
   rowsPerPage?: number;
   tableTitle: string;
+  url: string;
   hasPagination: boolean;
   hasAction: boolean;
   hasSearch: boolean;
+  method: TFetchTypes;
   actions(rowData: TableData, handleClose: () => void): ReactNode;
-  handleTableFilterChanges(filterData: ITableFilter<TableData> & ITableSearch): void;
 }
 
 export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
+  const { fetchData, resultData } = useFetch<TableData[]>();
+
   const {
-    tableData = [],
     identifierKey,
     hasPagination,
     hasAction,
     rowsPerPage = 9,
     headCells,
-    actions,
-    handleTableFilterChanges,
     tableTitle,
     hasSearch,
+    url,
+    method,
+    actions,
   } = props;
-
-  const { directionSort, sortedData } = useDirectionSort<TableData>();
 
   const [searchData, setSearchData] = useState<ITableSearch>({
     searchColumn: '',
@@ -62,14 +63,10 @@ export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
   };
 
   useEffect(() => {
-    directionSort({ tableData, order, orderBy, currentPage, perPage });
+    fetchData({ method, url }).then(() => undefined);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, order, orderBy, perPage, tableData]);
-
-  useEffect(() => {
-    handleTableFilterChanges({ ...tableFilterData, ...searchData });
-  }, [handleTableFilterChanges, tableFilterData, searchData]);
+  }, [method, url]);
 
   return (
     <div className="core-table-wrap">
@@ -96,7 +93,7 @@ export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
               <CoreTableHead order={order} onRequestSort={handleRequestSort} orderBy={orderBy} headCells={headCells} />
 
               <CoreTableBody<TableData>
-                sortedData={sortedData}
+                sortedData={resultData}
                 identifierKey={identifierKey}
                 hasAction={hasAction}
                 actions={actions}
@@ -110,7 +107,7 @@ export const CoreTable = <TableData,>(props: ITableProps<TableData>) => {
               rowsPerPage={rowsPerPage}
               perPage={perPage}
               page={currentPage}
-              dataLength={tableData.length}
+              dataLength={resultData?.length || 0}
               colspan={hasAction ? headCells.length : headCells.length + 1}
               handleSetCurrentPage={value =>
                 setTableFilterData(prevState => ({

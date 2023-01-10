@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { CSSProperties, FC } from 'react';
 
 import { tKeys } from 'translations/translation-keys';
 
@@ -11,6 +11,11 @@ interface ISearch {
   searchData: ITableSearch;
   handleSearch(searchData: ITableSearch): void;
 }
+
+const textCenter: CSSProperties = {
+  display: 'block',
+  textAlign: 'center',
+};
 
 export const CoreTableSearch: FC<ISearch> = props => {
   const { headCells, searchData, handleSearch } = props;
@@ -38,15 +43,15 @@ export const CoreTableSearch: FC<ISearch> = props => {
           label={tKeys('column')}
           onChange={handleColumnChange}
         >
-          <MenuItem value="">
+          <MenuItem value="" style={textCenter}>
             <em>{tKeys('none')}</em>
           </MenuItem>
 
-          {headCells.map((item, index) => {
+          {headCells.map(item => {
             const { id } = item;
 
             return id !== 'action' ? (
-              <MenuItem key={id as TKeyOf<TableHeadCell>} value={id}>
+              <MenuItem key={id as TKeyOf<TableHeadCell>} value={id} style={textCenter}>
                 {tKeys(id)}
               </MenuItem>
             ) : null;

@@ -7,7 +7,6 @@ import { MenuItem } from '@mui/material';
 import { CoreTable } from 'core/core';
 
 import { headCells } from 'ui/customer/customer-head-config';
-import { CustomersFakeData } from 'ui/customer/customers-fake-data';
 
 const Customer: FC = () => {
   const handleView = (rowData: ITableData) => {
@@ -18,12 +17,6 @@ const Customer: FC = () => {
   const handleEdit = (rowData: ITableData) => {
     // eslint-disable-next-line no-console
     console.log('log------rowData', rowData);
-  };
-
-  const handleTableFilterChanges = (filterData: ITableFilter<ITableData> & ITableSearch) => {
-    console.log('log------filterData', filterData);
-
-    return;
   };
 
   const renderTableActions = (rowData: ITableData, handleClose: () => void) => {
@@ -52,16 +45,14 @@ const Customer: FC = () => {
   return (
     <div className="customer-content">
       <CoreTable<ITableData>
+        url="/customer"
+        method="get"
         hasSearch
         tableTitle={tKeys('customers')}
-        tableData={CustomersFakeData}
         headCells={headCells}
         identifierKey="customerId"
         hasPagination
         hasAction
-        handleTableFilterChanges={(filterData: ITableFilter<ITableData> & ITableSearch) =>
-          handleTableFilterChanges(filterData)
-        }
         actions={(rowData: ITableData, handleClose: () => void) => renderTableActions(rowData, handleClose)}
       />
     </div>

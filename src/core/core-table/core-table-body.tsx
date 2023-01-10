@@ -7,7 +7,7 @@ import { Chip, IconButton, Menu, TableBody, TableCell, TableRow, Typography } fr
 import _ from 'lodash';
 
 interface IBodyProps<TableData> {
-  sortedData: TableData[];
+  sortedData: Nullable<TableData[]>;
   identifierKey: TKeyOf<TableData>;
   hasAction: boolean;
   colspan: number;
@@ -29,7 +29,7 @@ const CoreTableBody = <TableData,>(props: IBodyProps<TableData>) => {
 
   return (
     <TableBody>
-      {sortedData.length ? (
+      {sortedData && sortedData.length ? (
         sortedData.map(tableRowItem => {
           const open = anchorEl?.id === `${tableRowItem[identifierKey]}long-button`;
 
